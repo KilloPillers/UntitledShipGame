@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://daqi0gluhdudh"]
+
+[ext_resource type="Script" path="res://boid.gd" id="1_uj5n2"]
+[ext_resource type="Texture2D" uid="uid://bbgn2uxa6qr4a" path="res://assets/traingle.png" id="2_oqkel"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tcpw8"]
+size = Vector2(32, 32)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_voaap"]
+radius = 120.0
+
+[node name="Boid" type="Area2D" groups=["boid"]]
+rotation = 3.13759
+script = ExtResource("1_uj5n2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 3
+texture = ExtResource("2_oqkel")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_tcpw8")
+
+[node name="Vision" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Vision"]
+shape = SubResource("CircleShape2D_voaap")
+
+[node name="RayFolder" type="Node2D" parent="."]
+
+[node name="RayCast2D" type="RayCast2D" parent="RayFolder"]
+target_position = Vector2(40, -48)
+
+[node name="RayCast2D2" type="RayCast2D" parent="RayFolder"]
+target_position = Vector2(88, -24)
+
+[node name="RayCast2D3" type="RayCast2D" parent="RayFolder"]
+target_position = Vector2(40, 48)
+
+[node name="RayCast2D4" type="RayCast2D" parent="RayFolder"]
+target_position = Vector2(88, 24)
+
+[connection signal="area_entered" from="Vision" to="." method="_on_vision_area_entered"]
+[connection signal="area_exited" from="Vision" to="." method="_on_vision_area_exited"]
