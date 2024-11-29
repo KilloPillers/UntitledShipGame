@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://dgs74em4x64uf"]
+
+[ext_resource type="Script" path="res://scripts/collapsible_wall.gd" id="1_5ie3f"]
+[ext_resource type="Texture2D" uid="uid://bj6td73837ph7" path="res://assets/CollapsableWallLofi.png" id="2_vuyig"]
+[ext_resource type="Script" path="res://scripts/hurt_box.gd" id="3_8mhyi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v3vya"]
+size = Vector2(96, 97)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7l4ua"]
+size = Vector2(96, 97)
+
+[node name="CollapsibleWall" type="StaticBody2D"]
+script = ExtResource("1_5ie3f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_v3vya")
+
+[node name="AnimatedSprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_vuyig")
+
+[node name="HurtBox" type="Area2D" parent="."]
+script = ExtResource("3_8mhyi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_7l4ua")

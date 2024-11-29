@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://bdthin5xux3mq"]
+
+[ext_resource type="Texture2D" uid="uid://conqlioqlwcfx" path="res://assets/SpikeWallLofi.png" id="1_e016q"]
+[ext_resource type="Script" path="res://scripts/hit_box.gd" id="2_y3xc4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8hnbx"]
+size = Vector2(99, 96)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l2baf"]
+size = Vector2(118, 122)
+
+[node name="SpikeWall" type="StaticBody2D"]
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_8hnbx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(3.05176e-05, 3.05176e-05)
+texture = ExtResource("1_e016q")
+
+[node name="HitBox" type="Area2D" parent="."]
+script = ExtResource("2_y3xc4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("RectangleShape2D_l2baf")
