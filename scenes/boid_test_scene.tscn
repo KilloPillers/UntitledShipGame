@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=4 uid="uid://boeyptgi3f11r"]
+[gd_scene load_steps=7 format=4 uid="uid://boeyptgi3f11r"]
 
 [ext_resource type="Script" path="res://scenes/boid_test_scene.gd" id="1_r0gws"]
 [ext_resource type="Texture2D" uid="uid://b2kjv565ypjo" path="res://assets/black.png" id="2_njdnh"]
 [ext_resource type="PackedScene" uid="uid://daqi0gluhdudh" path="res://scenes/boid.tscn" id="3_3d8kn"]
+[ext_resource type="PackedScene" uid="uid://dht8l0kuy2ec" path="res://scenes/boid_spawner.tscn" id="4_jdq32"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_am8tu"]
 texture = ExtResource("2_njdnh")
@@ -32,3 +33,6 @@ position = Vector2(958, 538)
 
 [node name="Boid" parent="." instance=ExtResource("3_3d8kn")]
 position = Vector2(744, 243)
+
+[node name="BoidSpawner" parent="." instance=ExtResource("4_jdq32")]
+position = Vector2(552, 447)
