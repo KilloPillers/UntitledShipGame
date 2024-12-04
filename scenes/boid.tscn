@@ -27,17 +27,18 @@ shape = SubResource("CircleShape2D_voaap")
 
 [node name="RayFolder" type="Node2D" parent="."]
 
-[node name="RayCast2D" type="RayCast2D" parent="RayFolder"]
-target_position = Vector2(40, -48)
-
-[node name="RayCast2D2" type="RayCast2D" parent="RayFolder"]
-target_position = Vector2(88, -24)
-
 [node name="RayCast2D3" type="RayCast2D" parent="RayFolder"]
-target_position = Vector2(40, 48)
+target_position = Vector2(79.6471, 88.3195)
 
 [node name="RayCast2D4" type="RayCast2D" parent="RayFolder"]
-target_position = Vector2(88, 24)
+target_position = Vector2(111.871, 32.448)
+
+[node name="RayCast2D2" type="RayCast2D" parent="RayFolder"]
+scale = Vector2(0.865409, 0.859851)
+target_position = Vector2(112.127, -31.5514)
+
+[node name="RayCast2D" type="RayCast2D" parent="RayFolder"]
+target_position = Vector2(64.3838, -95.7431)
 
 [connection signal="area_entered" from="Vision" to="." method="_on_vision_area_entered"]
 [connection signal="area_exited" from="Vision" to="." method="_on_vision_area_exited"]

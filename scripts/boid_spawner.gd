@@ -3,6 +3,7 @@ extends Node2D
 @export var spawn_rate: float = 1.0
 @export var spawn_amount: int = 5
 @export var boid_scene: PackedScene
+@export var boid_target: Node
 @export var spawn_cap: int = 20
 
 var timer: Timer
@@ -37,6 +38,8 @@ func _on_spawn() -> void:
 func spawn_boid() -> void:
 	var boid = boid_scene.instantiate()
 	boid.global_position = global_position
-	print(boid.global_position)
+	boid.target = boid_target # Target for boids to move towards
+	boid.targeting_time = randi_range(3, 6) # Move towards target for 3-6 seconds
+	boid.targeting_interval = randi_range(10, 20) # Every 10-20 seconds
 	boid.modulate = Color(randf(), randf(), randf())
 	$BoidFolder.add_child(boid)
