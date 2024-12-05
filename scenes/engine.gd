@@ -4,6 +4,7 @@ extends Node2D
 @export var speed : float = 300
 @export var friction : float = 0.01 # 0-1 value. 0.01 default takes about 4 seconds to stop.
 @export var top_speed : float = 300
+@export var turn_speed : float = 5
 
 
 func _ready() -> void:
@@ -11,9 +12,9 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("engine_right"):
-		rotation += 5 * delta
+		rotation += turn_speed * delta
 	if Input.is_action_pressed("engine_left"):
-		rotation -= 5 * delta
+		rotation -= turn_speed * delta
 	if Input.is_action_pressed("engine_power"):
 		#ship.position -= Vector2(cos(rotation), sin(rotation)) * speed
 		
