@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=3 uid="uid://ffo0npwylqoi"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_7wdfl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nt243"]
+bg_color = Color(0.388806, 0.000499742, 0.489887, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bs8le"]
+bg_color = Color(0.942924, 0.0723092, 1, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[node name="healthbar" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7wdfl")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 102.0
+offset_top = 464.0
+offset_right = -918.0
+offset_bottom = 514.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -1.57439
+theme_override_styles/background = SubResource("StyleBoxFlat_nt243")
+theme_override_styles/fill = SubResource("StyleBoxFlat_bs8le")
+value = 90.0

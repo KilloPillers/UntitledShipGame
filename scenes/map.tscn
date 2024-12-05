@@ -1,11 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://cbc53x78xuahv"]
+[gd_scene load_steps=8 format=3 uid="uid://cbc53x78xuahv"]
 
+[ext_resource type="Script" path="res://scripts/map.gd" id="1_l5x7s"]
 [ext_resource type="PackedScene" uid="uid://dht8l0kuy2ec" path="res://scenes/boid_spawner.tscn" id="2_84ngi"]
-[ext_resource type="PackedScene" path="res://scenes/spike_wall.tscn" id="3_s8r8r"]
+[ext_resource type="PackedScene" uid="uid://c4tc1f64stx57" path="res://scenes/spike_wall.tscn" id="3_s8r8r"]
 [ext_resource type="Texture2D" uid="uid://c4yglp0bbpqlr" path="res://assets/World Assets/Map18K.png" id="3_yo4r5"]
 [ext_resource type="PackedScene" uid="uid://c2a6ielbm0t3c" path="res://scenes/ship.tscn" id="4_ev1ob"]
+[ext_resource type="PackedScene" uid="uid://cfkwr2bc1au7k" path="res://scenes/pause_menu.tscn" id="5_f0s87"]
+[ext_resource type="PackedScene" uid="uid://ffo0npwylqoi" path="res://scenes/healthbar.tscn" id="7_g35vy"]
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource("1_l5x7s")
 
 [node name="Boid Enemies" type="Node2D" parent="."]
 top_level = true
@@ -83,11 +87,35 @@ texture = ExtResource("3_yo4r5")
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.486166, 0.256977, 0.497999, 1)
 
+[node name="CanvasLayer3" type="CanvasLayer" parent="."]
+
+[node name="healthbar" parent="CanvasLayer3" instance=ExtResource("7_g35vy")]
+
 [node name="Ship" parent="." instance=ExtResource("4_ev1ob")]
 position = Vector2(-2337, -5603)
 
 [node name="Camera2D" type="Camera2D" parent="Ship/RigidBody2D" index="5"]
 position = Vector2(644, 3137)
 offset = Vector2(-630, -3100)
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="Ship/RigidBody2D/Camera2D"]
+
+[node name="pause" type="Button" parent="Ship/RigidBody2D/Camera2D/CanvasLayer2"]
+top_level = true
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -153.0
+offset_bottom = 77.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 50
+text = "pause
+"
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" parent="CanvasLayer2" instance=ExtResource("5_f0s87")]
+
+[connection signal="pressed" from="Ship/RigidBody2D/Camera2D/CanvasLayer2/pause" to="." method="_on_pause_pressed"]
 
 [editable path="Ship"]
