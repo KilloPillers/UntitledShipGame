@@ -89,18 +89,20 @@ func check_collision() -> Vector2:
 		if r.is_colliding():
 			if r.get_collider().is_in_group("wall"):
 				var collision_point = r.get_collision_point()
+				var collision_normal = r.get_collision_normal()
 				var distance = (global_position - collision_point).length()
 				
-				# Calculate the normal vector (steering direction)
-				var normal = (global_position - collision_point).normalized()
+				# Calculate the reflection direction using the normal
+				var reflection = velocity.bounce(collision_normal).normalized()
 				
 				# Calculate steering strength based on distance
-				var strength = clamp(10 / max(1, distance), 0, 1)  # Adjust 100 and 5 for sensitivity
+				var strength = clamp(5 / max(1, distance), 0, 1)  # Adjust values as needed
 				
-				# Add the avoidance force
-				avoidance_force += normal * strength
+				# Apply the reflection force
+				avoidance_force += reflection * strength * speed
 				
 	return avoidance_force
+
 	
 	
 func calculate_targeting_force() -> Vector2:
