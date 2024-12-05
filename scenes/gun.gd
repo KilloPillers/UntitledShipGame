@@ -3,6 +3,7 @@ extends Node2D
 @export var projectile : PackedScene
 @export var cooldown_max : float = 0.5
 @export var bullet_spread : float = 0.05
+@export var turn_speed : float = 5
 var cur_cooldown_ : float = 0
 var rng_ : RandomNumberGenerator
 
@@ -14,9 +15,9 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if Input.is_action_pressed("gun_right"):
-		rotation += 5 * delta
+		rotation += turn_speed * delta
 	if Input.is_action_pressed("gun_left"):
-		rotation -= 5 * delta
+		rotation -= turn_speed * delta
 	if Input.is_action_pressed("gun_power"):
 		if (cur_cooldown_ <= 0):
 			cur_cooldown_ = cooldown_max
