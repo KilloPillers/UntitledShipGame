@@ -5,3 +5,4 @@
 [node name="ShipTestScene" type="Node2D"]
 
 [node name="Ship" parent="." instance=ExtResource("1_8w0i6")]
+position = Vector2(400, 400)
