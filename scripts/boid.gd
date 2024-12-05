@@ -3,16 +3,36 @@ extends Area2D
 @onready var ray_folder := $RayFolder.get_children()
 var boids_i_see := []
 var velocity := Vector2.ZERO
-var speed := 4.0
-var screensize : Vector2
+var speed := 6.0
 var movv := 400
+var target: Node
+var is_targeting: bool = false
+var targeting_time: float = 3.0
+var targeting_interval: float = 5.0
 
+var targeting_timer: Timer
+var interval_timer: Timer
 
 func _ready() -> void:
-	screensize = get_viewport_rect().size
 	randomize()
 	velocity = Vector2(randf() * 2 - 1, randf() * 2 - 1).normalized() * speed  # Random initial direction
 	
+	 # Create and set up the targeting timer
+	targeting_timer = Timer.new()
+	targeting_timer.one_shot = true
+	targeting_timer.connect("timeout", _on_targeting_time_timeout)
+	add_child(targeting_timer)
+	
+	# Create and set up the interval timer
+	interval_timer = Timer.new()
+	interval_timer.one_shot = true
+	interval_timer.connect("timeout", _on_interval_timer_timeout)
+	add_child(interval_timer)
+	
+	# Start the interval timer
+	interval_timer.wait_time = targeting_interval
+	interval_timer.start()
+
 
 func _physics_process(delta: float) -> void:
 	var flocking_force = Vector2.ZERO
@@ -21,8 +41,10 @@ func _physics_process(delta: float) -> void:
 	
 	var wall_avoidance_force = check_collision()
 	
+	var targeting_force = calculate_targeting_force()
+	
 	# Combine forces with weights
-	velocity += flocking_force * 0.5 + wall_avoidance_force * 1.5  # Adjust weights as needed
+	velocity += flocking_force * 0.1 + wall_avoidance_force * 2.5 + targeting_force * 1.0 
 	
 	velocity = velocity.normalized() * speed
 	move()
@@ -53,12 +75,11 @@ func calculate_flocking_force() -> Vector2:
 		average_position /= number_of_boids
 		
 		# Combine components of the flocking behavior
-		flocking_force += (average_velocity - velocity) / 2  # Alignment
-		flocking_force += (average_position - global_position) * 0.25  # Cohesion (reduced weight)
-		flocking_force += separation_force * 3.0  # Increased weight for separation
+		flocking_force += ((average_velocity - velocity) / 2) * 1  # Alignment
+		flocking_force += (average_position - global_position) * .25  # Cohesion 
+		flocking_force += separation_force * 20.0  # separation
 	
 	return flocking_force
-
 
 
 func check_collision() -> Vector2:
@@ -80,18 +101,16 @@ func check_collision() -> Vector2:
 				avoidance_force += normal * strength
 				
 	return avoidance_force
+	
+	
+func calculate_targeting_force() -> Vector2:
+	if not is_targeting or not target:
+		return Vector2.ZERO
+	return (target.global_position - global_position).normalized() * speed
 
 
 func move() -> void:
 	global_position += velocity
-	if global_position.x < 0:
-		global_position.x = screensize.x
-	if global_position.x > screensize.x:
-		global_position.x = 0
-	if global_position.y < 0:
-		global_position.y = screensize.y
-	if global_position.y > screensize.y:
-		global_position.y = 0
 
 
 func _on_vision_area_entered(area: Area2D) -> void:
@@ -102,3 +121,17 @@ func _on_vision_area_entered(area: Area2D) -> void:
 func _on_vision_area_exited(area: Area2D) -> void:
 	if area:
 		boids_i_see.erase(area)
+
+
+func _on_targeting_time_timeout() -> void:
+	is_targeting = false  # Stop targeting
+	# Start the interval timer
+	interval_timer.wait_time = targeting_interval
+	interval_timer.start()
+	
+
+func _on_interval_timer_timeout() -> void:
+	is_targeting = true  # Start targeting
+	# Start the targeting timer
+	targeting_timer.wait_time = targeting_time
+	targeting_timer.start()

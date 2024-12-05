@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bdthin5xux3mq"]
 
-[ext_resource type="Texture2D" uid="uid://conqlioqlwcfx" path="res://assets/SpikeWallLofi.png" id="1_e016q"]
+[ext_resource type="Texture2D" uid="uid://cnyrnnovtwrrd" path="res://assets/SpikeWallLofi.png" id="1_e016q"]
 [ext_resource type="Script" path="res://scripts/hit_box.gd" id="2_y3xc4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8hnbx"]
