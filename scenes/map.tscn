@@ -14,52 +14,69 @@ script = ExtResource("1_l5x7s")
 [node name="Boid Enemies" type="Node2D" parent="."]
 top_level = true
 
-[node name="BoidSpawner" parent="Boid Enemies" instance=ExtResource("2_84ngi")]
+[node name="BoidSpawner" parent="Boid Enemies" node_paths=PackedStringArray("boid_target") instance=ExtResource("2_84ngi")]
 position = Vector2(-165, -2544)
 spawn_amount = 100
+boid_target = NodePath("../../Ship/RigidBody2D")
+despawn_distance = 2000.0
 
-[node name="BoidSpawner2" parent="Boid Enemies" instance=ExtResource("2_84ngi")]
+[node name="BoidSpawner2" parent="Boid Enemies" node_paths=PackedStringArray("boid_target") instance=ExtResource("2_84ngi")]
 position = Vector2(-1458, -2437)
-spawn_rate = 20.0
 spawn_amount = 100
+boid_target = NodePath("../../Ship/RigidBody2D")
+despawn_distance = 2000.0
 
-[node name="BoidSpawner3" parent="Boid Enemies" instance=ExtResource("2_84ngi")]
+[node name="BoidSpawner3" parent="Boid Enemies" node_paths=PackedStringArray("boid_target") instance=ExtResource("2_84ngi")]
 position = Vector2(2858, -5197)
+boid_target = NodePath("../../Ship/RigidBody2D")
+despawn_distance = 2000.0
 
-[node name="BoidSpawner4" parent="Boid Enemies" instance=ExtResource("2_84ngi")]
+[node name="BoidSpawner4" parent="Boid Enemies" node_paths=PackedStringArray("boid_target") instance=ExtResource("2_84ngi")]
 position = Vector2(3922, -3104)
+boid_target = NodePath("../../Ship/RigidBody2D")
+despawn_distance = 2000.0
 
-[node name="BoidSpawner5" parent="Boid Enemies" instance=ExtResource("2_84ngi")]
+[node name="BoidSpawner5" parent="Boid Enemies" node_paths=PackedStringArray("boid_target") instance=ExtResource("2_84ngi")]
 position = Vector2(1421, -1261)
+boid_target = NodePath("../../Ship/RigidBody2D")
+despawn_distance = 2000.0
 
-[node name="BoidSpawner6" parent="Boid Enemies" instance=ExtResource("2_84ngi")]
+[node name="BoidSpawner6" parent="Boid Enemies" node_paths=PackedStringArray("boid_target") instance=ExtResource("2_84ngi")]
 position = Vector2(2243, 357)
+boid_target = NodePath("../../Ship/RigidBody2D")
+despawn_distance = 2000.0
 
-[node name="BoidSpawner7" parent="Boid Enemies" instance=ExtResource("2_84ngi")]
+[node name="BoidSpawner7" parent="Boid Enemies" node_paths=PackedStringArray("boid_target") instance=ExtResource("2_84ngi")]
 position = Vector2(-2258, -270)
+boid_target = NodePath("../../Ship/RigidBody2D")
+despawn_distance = 2000.0
 
-[node name="BoidSpawner8" parent="Boid Enemies" instance=ExtResource("2_84ngi")]
+[node name="BoidSpawner8" parent="Boid Enemies" node_paths=PackedStringArray("boid_target") instance=ExtResource("2_84ngi")]
 position = Vector2(-2165, 1793)
+boid_target = NodePath("../../Ship/RigidBody2D")
+despawn_distance = 2000.0
 
-[node name="BoidSpawner9" parent="Boid Enemies" instance=ExtResource("2_84ngi")]
+[node name="BoidSpawner9" parent="Boid Enemies" node_paths=PackedStringArray("boid_target") instance=ExtResource("2_84ngi")]
 position = Vector2(-745, 4114)
+boid_target = NodePath("../../Ship/RigidBody2D")
+despawn_distance = 2000.0
 
-[node name="BoidSpawner10" parent="Boid Enemies" instance=ExtResource("2_84ngi")]
+[node name="BoidSpawner10" parent="Boid Enemies" node_paths=PackedStringArray("boid_target") instance=ExtResource("2_84ngi")]
 position = Vector2(4021, 4042)
+boid_target = NodePath("../../Ship/RigidBody2D")
+despawn_distance = 2000.0
 
-[node name="BoidSpawner11" parent="Boid Enemies" instance=ExtResource("2_84ngi")]
+[node name="BoidSpawner11" parent="Boid Enemies" node_paths=PackedStringArray("boid_target") instance=ExtResource("2_84ngi")]
 position = Vector2(-962, 5011)
+boid_target = NodePath("../../Ship/RigidBody2D")
+despawn_distance = 2000.0
 
-[node name="BoidSpawner12" parent="Boid Enemies" instance=ExtResource("2_84ngi")]
+[node name="BoidSpawner12" parent="Boid Enemies" node_paths=PackedStringArray("boid_target") instance=ExtResource("2_84ngi")]
 position = Vector2(4399, 5316)
+boid_target = NodePath("../../Ship/RigidBody2D")
+despawn_distance = 2000.0
 
-[node name="SpikeWall" parent="Boid Enemies" instance=ExtResource("3_s8r8r")]
-position = Vector2(-451, -2868)
-
-[node name="SpikeWall2" parent="Boid Enemies" instance=ExtResource("3_s8r8r")]
-position = Vector2(-1515, -3260)
-
-[node name="Spike Walls" type="Node2D" parent="."]
+[node name="Spike Walls" type="Node2D" parent="." groups=["obstacle"]]
 top_level = true
 
 [node name="SpikeWall" parent="Spike Walls" instance=ExtResource("3_s8r8r")]
@@ -71,7 +88,13 @@ position = Vector2(-523, -3509)
 [node name="SpikeWall3" parent="Spike Walls" instance=ExtResource("3_s8r8r")]
 position = Vector2(7, -2667)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="SpikeWall4" parent="Spike Walls" instance=ExtResource("3_s8r8r")]
+position = Vector2(-451, -2868)
+
+[node name="SpikeWall5" parent="Spike Walls" instance=ExtResource("3_s8r8r")]
+position = Vector2(-1515, -3260)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." groups=["obstacle"]]
 position = Vector2(0, -27)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
@@ -91,8 +114,12 @@ color = Color(0.486166, 0.256977, 0.497999, 1)
 
 [node name="healthbar" parent="CanvasLayer3" instance=ExtResource("7_g35vy")]
 
-[node name="Ship" parent="." instance=ExtResource("4_ev1ob")]
-position = Vector2(-2337, -5603)
+[node name="Ship" parent="." groups=["obstacle"] instance=ExtResource("4_ev1ob")]
+position = Vector2(-760, -2896)
+
+[node name="RigidBody2D" parent="Ship" index="0" groups=["obstacle"]]
+
+[node name="CollisionShape2D" parent="Ship/RigidBody2D" index="0" groups=["obstacle"]]
 
 [node name="Camera2D" type="Camera2D" parent="Ship/RigidBody2D" index="5"]
 position = Vector2(644, 3137)

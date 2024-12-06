@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://daqi0gluhdudh"]
+[gd_scene load_steps=6 format=3 uid="uid://daqi0gluhdudh"]
 
 [ext_resource type="Script" path="res://scripts/boid.gd" id="1_uj5n2"]
+[ext_resource type="PackedScene" uid="uid://cmwi7r1sb76b" path="res://scenes/boid_projectile.tscn" id="2_gg2vn"]
 [ext_resource type="Texture2D" uid="uid://bbgn2uxa6qr4a" path="res://assets/traingle.png" id="2_oqkel"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5usbe"]
@@ -12,6 +13,7 @@ radius = 120.0
 [node name="Boid" type="Area2D" groups=["boid"]]
 rotation = 3.13759
 script = ExtResource("1_uj5n2")
+projectile = ExtResource("2_gg2vn")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 3
@@ -28,17 +30,26 @@ shape = SubResource("CircleShape2D_voaap")
 [node name="RayFolder" type="Node2D" parent="."]
 
 [node name="RayCast2D3" type="RayCast2D" parent="RayFolder"]
+position = Vector2(-2.27374e-13, -8.88178e-16)
+scale = Vector2(0.801338, 0.801338)
 target_position = Vector2(79.6471, 88.3195)
 
 [node name="RayCast2D4" type="RayCast2D" parent="RayFolder"]
+scale = Vector2(1.14984, 1.14984)
 target_position = Vector2(111.871, 32.448)
 
 [node name="RayCast2D2" type="RayCast2D" parent="RayFolder"]
-scale = Vector2(0.865409, 0.859851)
+position = Vector2(0, 7.45058e-09)
+scale = Vector2(1.03669, 1.02734)
 target_position = Vector2(112.127, -31.5514)
 
 [node name="RayCast2D" type="RayCast2D" parent="RayFolder"]
+position = Vector2(4.44089e-16, 5.68434e-14)
+scale = Vector2(0.789826, 0.789826)
 target_position = Vector2(64.3838, -95.7431)
+
+[node name="ProjectileOrigin" type="Node2D" parent="."]
+position = Vector2(15.9999, 0.0640434)
 
 [connection signal="area_entered" from="Vision" to="." method="_on_vision_area_entered"]
 [connection signal="area_exited" from="Vision" to="." method="_on_vision_area_exited"]

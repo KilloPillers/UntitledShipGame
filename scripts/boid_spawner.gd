@@ -5,6 +5,8 @@ extends Node2D
 @export var boid_scene: PackedScene
 @export var boid_target: Node
 @export var spawn_cap: int = 20
+@export var despawn_distance: float = 500.0  # Maximum distance to the target before stopping spawns
+
 
 var timer: Timer
 
@@ -22,6 +24,10 @@ func _ready() -> void:
 	
 
 func _on_spawn() -> void:
+	if is_target_too_far():
+		print("Target is too far, stopping spawns and despawning all boids.")
+		despawn_distant_boids()
+		return
 	# cycle_spawn_amount refers to the amount of boids to spawn
 	# in this cycle. Its normally spawn_amount but in the rare
 	# instances where spawn_amount will exceed spawn capacity
@@ -46,3 +52,17 @@ func spawn_boid() -> void:
 	boid.targeting_interval = randi_range(10, 20) # Every 10-20 seconds
 	boid.modulate = Color(randf(), randf(), randf())
 	$BoidFolder.add_child(boid)
+	
+	
+func is_target_too_far() -> bool:
+	# Calculate the distance between the target and the player
+	var distance_to_target = global_position.distance_to(boid_target.global_position)
+	return distance_to_target > despawn_distance
+
+
+func despawn_distant_boids() -> void:
+	# Remove distant boids from the BoidFolder
+	for boid in $BoidFolder.get_children():
+		var distance_to_target = boid.global_position.distance_to(boid_target.global_position)
+		if distance_to_target > 1500:
+			boid.queue_free()

@@ -164,7 +164,7 @@ script = ExtResource("3_yun3w")
 texture_filter = 1
 position = Vector2(90, 0)
 sprite_frames = SubResource("SpriteFrames_ijd7v")
-animation = &"off"
+animation = &"on"
 
 [node name="Gun" type="Node2D" parent="RigidBody2D"]
 script = ExtResource("3_ewpnl")

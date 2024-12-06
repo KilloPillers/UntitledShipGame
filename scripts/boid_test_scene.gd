@@ -8,8 +8,6 @@ var screensize : Vector2
 func _ready() -> void:
 	screensize = get_viewport_rect().size
 	randomize()
-	#for i in num:
-	#	spawnBoid()
 
 
 func spawnBoid() -> void:
