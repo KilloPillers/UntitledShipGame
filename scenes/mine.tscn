@@ -1,0 +1,157 @@
+[gd_scene load_steps=19 format=3 uid="uid://biff6kvg87h5w"]
+
+[ext_resource type="Script" path="res://scripts/mine.gd" id="1_7ado1"]
+[ext_resource type="Texture2D" uid="uid://mtb8i1d4xvv2" path="res://assets/Mine-Spritesheet.png" id="1_effl1"]
+[ext_resource type="Script" path="res://scripts/hurt_box.gd" id="2_fwc2m"]
+[ext_resource type="Script" path="res://scripts/hit_box.gd" id="3_qrt27"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ulvv7"]
+radius = 30.0167
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qir43"]
+radius = 30.0167
+
+[sub_resource type="Animation" id="Animation_eneg5"]
+resource_name = "exploding"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HitBox/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.266667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_qshmi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HitBox/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_acvsn"]
+resource_name = "triggered"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.133333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ytibw"]
+_data = {
+"RESET": SubResource("Animation_qshmi"),
+"exploding": SubResource("Animation_eneg5"),
+"triggered": SubResource("Animation_acvsn")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xukh8"]
+animation = &"RESET"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yyo0y"]
+animation = &"exploding"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_84khx"]
+animation = &"triggered"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3m1jh"]
+advance_mode = 2
+advance_condition = &"exploding"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5p85a"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_eeyae"]
+advance_mode = 2
+advance_condition = &"triggered"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_71e00"]
+states/RESET/node = SubResource("AnimationNodeAnimation_xukh8")
+states/RESET/position = Vector2(324.45, 100)
+states/exploding/node = SubResource("AnimationNodeAnimation_yyo0y")
+states/exploding/position = Vector2(703, 100)
+states/triggered/node = SubResource("AnimationNodeAnimation_84khx")
+states/triggered/position = Vector2(486, 100)
+transitions = ["triggered", "exploding", SubResource("AnimationNodeStateMachineTransition_3m1jh"), "Start", "RESET", SubResource("AnimationNodeStateMachineTransition_5p85a"), "RESET", "triggered", SubResource("AnimationNodeStateMachineTransition_eeyae")]
+graph_offset = Vector2(108.625, 32.895)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_54y6y"]
+radius = 88.0057
+
+[node name="Mine" type="CharacterBody2D"]
+script = ExtResource("1_7ado1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ulvv7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_effl1")
+hframes = 5
+
+[node name="HurtBox" type="Area2D" parent="."]
+script = ExtResource("2_fwc2m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource("CircleShape2D_qir43")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ytibw")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_71e00")
+anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/exploding = false
+parameters/conditions/triggered = false
+
+[node name="HitBox" type="Area2D" parent="."]
+script = ExtResource("3_qrt27")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("CircleShape2D_54y6y")
+disabled = true

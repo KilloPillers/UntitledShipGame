@@ -1,0 +1,112 @@
+[gd_scene load_steps=16 format=3 uid="uid://c7o8jqk007ob0"]
+
+[ext_resource type="Script" path="res://scripts/turret.gd" id="1_a3i3x"]
+[ext_resource type="PackedScene" uid="uid://bptd0heslwe01" path="res://scenes/projectile.tscn" id="2_05v7n"]
+[ext_resource type="Script" path="res://scripts/hurt_box.gd" id="2_gprqn"]
+[ext_resource type="Texture2D" uid="uid://dkcwr7etkako" path="res://assets/Turret-Spritesheet.png" id="3_02kcc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nmlv8"]
+size = Vector2(79, 47)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w712a"]
+size = Vector2(59, 47)
+
+[sub_resource type="Animation" id="Animation_p14kd"]
+resource_name = "Firing"
+length = 0.22
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Base:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_sy8kb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Base:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vwyyk"]
+_data = {
+"Firing": SubResource("Animation_p14kd"),
+"RESET": SubResource("Animation_sy8kb")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qy05k"]
+animation = &"Firing"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_o5cy1"]
+animation = &"RESET"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3etm6"]
+advance_mode = 2
+advance_condition = &"firing"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4foqi"]
+advance_mode = 2
+advance_condition = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5y7ui"]
+advance_mode = 2
+advance_condition = &"firing"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_inlgs"]
+states/Firing/node = SubResource("AnimationNodeAnimation_qy05k")
+states/Firing/position = Vector2(312, 99)
+states/RESET/node = SubResource("AnimationNodeAnimation_o5cy1")
+states/RESET/position = Vector2(420, 103)
+transitions = ["Start", "Firing", SubResource("AnimationNodeStateMachineTransition_3etm6"), "Firing", "RESET", SubResource("AnimationNodeStateMachineTransition_4foqi"), "RESET", "Firing", SubResource("AnimationNodeStateMachineTransition_5y7ui")]
+
+[node name="Turret" type="CharacterBody2D"]
+script = ExtResource("1_a3i3x")
+projectile = ExtResource("2_05v7n")
+
+[node name="ProjectileOrigin" type="Node2D" parent="."]
+position = Vector2(37, 1.1365e-06)
+rotation = 1.5708
+scale = Vector2(1, 1)
+
+[node name="Base" type="Sprite2D" parent="."]
+texture = ExtResource("3_02kcc")
+hframes = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-8.5, -0.5)
+shape = SubResource("RectangleShape2D_nmlv8")
+
+[node name="HurtBox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("2_gprqn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(-18.5, -0.5)
+shape = SubResource("RectangleShape2D_w712a")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_vwyyk")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_inlgs")
+anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/firing = false
+parameters/conditions/idle = false
