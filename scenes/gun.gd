@@ -7,6 +7,8 @@ extends Node2D
 var cur_cooldown_ : float = 0
 var rng_ : RandomNumberGenerator
 
+@onready var animated_sprite_2d = $AnimatedSprite2D
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	rng_ = RandomNumberGenerator.new()
@@ -18,7 +20,7 @@ func _process(delta: float) -> void:
 		rotation += turn_speed * delta
 	if Input.is_action_pressed("gun_left"):
 		rotation -= turn_speed * delta
-	if Input.is_action_pressed("gun_power"):
+	if Input.is_action_just_pressed("gun_power"):
 		if (cur_cooldown_ <= 0):
 			cur_cooldown_ = cooldown_max
 			var new_projectile = projectile.instantiate()
@@ -26,6 +28,8 @@ func _process(delta: float) -> void:
 			new_projectile.rotation = rotation
 			new_projectile.rotation += (rng_.randf_range(-bullet_spread, bullet_spread))
 			new_projectile.global_position = $ProjectileOrigin.global_position 
-			
+			animated_sprite_2d.play("shoot")
+	elif not animated_sprite_2d.is_playing():
+		animated_sprite_2d.play("off")
 	if (cur_cooldown_ > 0):
 		cur_cooldown_ -= delta

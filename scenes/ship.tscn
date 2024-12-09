@@ -1,8 +1,9 @@
-[gd_scene load_steps=25 format=3 uid="uid://c2a6ielbm0t3c"]
+[gd_scene load_steps=34 format=3 uid="uid://c2a6ielbm0t3c"]
 
 [ext_resource type="Texture2D" uid="uid://cdg4c33l6tgfh" path="res://assets/ShipLoFi.png" id="1_l4aep"]
 [ext_resource type="Script" path="res://scenes/engine.gd" id="1_wo6ai"]
 [ext_resource type="Texture2D" uid="uid://dgvxtjrnfvl2f" path="res://assets/ThrusterOff.png" id="2_iyon2"]
+[ext_resource type="Texture2D" uid="uid://dk83mj5bidwrr" path="res://assets/ThrusterOn-Spritesheet.png" id="3_1w0nf"]
 [ext_resource type="Script" path="res://scenes/gun.gd" id="3_ewpnl"]
 [ext_resource type="Script" path="res://scenes/shield.gd" id="3_yun3w"]
 [ext_resource type="PackedScene" uid="uid://bvwt3ydatqhqb" path="res://scenes/player_projectile.tscn" id="4_di2ho"]
@@ -11,6 +12,38 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_iick3"]
 radius = 78.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aeieu"]
+atlas = ExtResource("3_1w0nf")
+region = Rect2(0, 0, 192, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f2w1a"]
+atlas = ExtResource("3_1w0nf")
+region = Rect2(192, 0, 192, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hmecv"]
+atlas = ExtResource("3_1w0nf")
+region = Rect2(384, 0, 192, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8q5q1"]
+atlas = ExtResource("3_1w0nf")
+region = Rect2(576, 0, 192, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jhlvn"]
+atlas = ExtResource("3_1w0nf")
+region = Rect2(768, 0, 192, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i60nd"]
+atlas = ExtResource("3_1w0nf")
+region = Rect2(960, 0, 192, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uxl5u"]
+atlas = ExtResource("3_1w0nf")
+region = Rect2(1152, 0, 192, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8bvq4"]
+atlas = ExtResource("3_1w0nf")
+region = Rect2(1344, 0, 192, 96)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_wl6rl"]
 animations = [{
@@ -21,6 +54,35 @@ animations = [{
 "loop": true,
 "name": &"off",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aeieu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f2w1a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hmecv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8q5q1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jhlvn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i60nd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uxl5u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8bvq4")
+}],
+"loop": true,
+"name": &"on",
+"speed": 10.0
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0uknn"]
@@ -75,7 +137,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"on",
-"speed": 5.0
+"speed": 10.0
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h2isu"]
@@ -131,9 +193,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_cvwmw")
 }],
-"loop": true,
+"loop": false,
 "name": &"shoot",
-"speed": 5.0
+"speed": 20.0
 }]
 
 [node name="Ship" type="Node2D"]
@@ -154,7 +216,7 @@ rigidbody = NodePath("..")
 texture_filter = 1
 position = Vector2(95, 0)
 sprite_frames = SubResource("SpriteFrames_wl6rl")
-animation = &"off"
+animation = &"on"
 
 [node name="Shield" type="Node2D" parent="RigidBody2D"]
 rotation = 3.14159
@@ -174,7 +236,7 @@ projectile = ExtResource("4_di2ho")
 texture_filter = 1
 position = Vector2(115, 0)
 sprite_frames = SubResource("SpriteFrames_vusym")
-animation = &"off"
+animation = &"shoot"
 
 [node name="ProjectileOrigin" type="Node2D" parent="RigidBody2D/Gun"]
 position = Vector2(127, 0)

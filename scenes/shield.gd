@@ -2,6 +2,8 @@ extends Node2D
 
 @export var turn_speed : float = 5
 
+@onready var animated_sprite_2d = $AnimatedSprite2D
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass
@@ -14,5 +16,8 @@ func _process(delta: float) -> void:
 	if Input.is_action_pressed("shield_left"):
 		rotation -= turn_speed * delta
 	if Input.is_action_pressed("shield_power"):
+		animated_sprite_2d.play("on")
 		pass
 		# will enable a trigger, can't implement till boid projectiles are added
+	else:
+		animated_sprite_2d.play("off")
