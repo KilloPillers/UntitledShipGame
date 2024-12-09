@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cbc53x78xuahv"]
+[gd_scene load_steps=11 format=3 uid="uid://cbc53x78xuahv"]
 
 [ext_resource type="Script" path="res://scripts/map.gd" id="1_l5x7s"]
 [ext_resource type="PackedScene" uid="uid://dht8l0kuy2ec" path="res://scenes/boid_spawner.tscn" id="2_84ngi"]
@@ -7,6 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://c2a6ielbm0t3c" path="res://scenes/ship.tscn" id="4_ev1ob"]
 [ext_resource type="PackedScene" uid="uid://cfkwr2bc1au7k" path="res://scenes/pause_menu.tscn" id="5_f0s87"]
 [ext_resource type="PackedScene" uid="uid://ffo0npwylqoi" path="res://scenes/healthbar.tscn" id="7_g35vy"]
+[ext_resource type="Script" path="res://scripts/engine.gd" id="7_juel7"]
+[ext_resource type="Script" path="res://scripts/shield.gd" id="8_tpiu6"]
+[ext_resource type="Script" path="res://scripts/gun.gd" id="9_nhag2"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_l5x7s")
@@ -120,6 +123,16 @@ position = Vector2(-760, -2896)
 [node name="RigidBody2D" parent="Ship" index="0" groups=["obstacle"]]
 
 [node name="CollisionShape2D" parent="Ship/RigidBody2D" index="0" groups=["obstacle"]]
+
+[node name="Engine" parent="Ship/RigidBody2D" index="1"]
+script = ExtResource("7_juel7")
+
+[node name="Shield" parent="Ship/RigidBody2D" index="2"]
+script = ExtResource("8_tpiu6")
+
+[node name="Gun" parent="Ship/RigidBody2D" index="3"]
+script = ExtResource("9_nhag2")
+projectile = null
 
 [node name="Camera2D" type="Camera2D" parent="Ship/RigidBody2D" index="5"]
 position = Vector2(644, 3137)
