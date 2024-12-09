@@ -6,6 +6,8 @@ extends Node2D
 @export var top_speed : float = 300
 @export var turn_speed : float = 5
 
+@onready var animated_sprite_2d = $AnimatedSprite2D
+
 
 func _ready() -> void:
 	pass
@@ -23,8 +25,11 @@ func _physics_process(delta: float) -> void:
 		
 		if rigidbody.linear_velocity.length() > top_speed:
 			rigidbody.linear_velocity *= (top_speed / rigidbody.linear_velocity.length())
+		
+		animated_sprite_2d.play("on")
 	else:
 		# Mannually apply a fake friction when the engine is de-powered.
 		rigidbody.linear_velocity *= 1 - friction
 		if (rigidbody.linear_velocity.length() < 10):
 			rigidbody.linear_velocity *= 0 # Ensure the ship doesn't infinitely slow down.
+		animated_sprite_2d.play("off")
