@@ -1,0 +1,147 @@
+[gd_scene load_steps=12 format=3 uid="uid://bn8q4y318sqw3"]
+
+[ext_resource type="Shader" path="res://scripts/menu.gdshader" id="1_erxcs"]
+[ext_resource type="Script" path="res://scripts/credits.gd" id="1_jhjth"]
+[ext_resource type="Texture2D" uid="uid://b3d1621mrecbd" path="res://assets/creditbackground.png" id="2_77we1"]
+[ext_resource type="FontFile" uid="uid://bajxpg4kqbw1j" path="res://assets/Orbitron-VariableFont_wght.ttf" id="3_rbrwj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e38ie"]
+shader = ExtResource("1_erxcs")
+shader_parameter/speed = 0.02
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6cqfl"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0l7e0"]
+bg_color = Color(0.941176, 0.0705882, 1, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uao6c"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7srqm"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_um3ry"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="Environment" id="Environment_hv6xs"]
+background_mode = 3
+glow_enabled = true
+glow_intensity = 0.59
+glow_strength = 0.89
+glow_bloom = 0.22
+glow_blend_mode = 0
+
+[node name="credits" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jhjth")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_e38ie")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2514.5
+offset_top = -2724.0
+offset_right = 2514.5
+offset_bottom = 2724.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_77we1")
+
+[node name="Label" type="Label" parent="."]
+layout_direction = 1
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -504.0
+offset_top = 62.0
+offset_right = 504.0
+offset_bottom = 314.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("3_rbrwj")
+theme_override_font_sizes/font_size = 200
+text = "CREDITS"
+
+[node name="names" type="Label" parent="."]
+layout_direction = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -723.5
+offset_top = -163.0
+offset_right = 723.5
+offset_bottom = 272.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_rbrwj")
+theme_override_font_sizes/font_size = 52
+text = "Animation and Visuals, Press Kit and Trailor  - Richard Zhang 
+Game Logic, Gameplay Testing - Nico Medina
+Producer,  Gameplay Testing - Juan Alvarez
+Movement and Physics, Audio - Jasper Fadden
+Map Design, Narrative Design- Ruben Leon
+User Interface and Input, Game Feel - Alex Salgado"
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_direction = 1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -195.0
+offset_top = -148.0
+offset_right = -106.0
+offset_bottom = -107.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(3.27, 3)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="back" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_rbrwj")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxFlat_6cqfl")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_6cqfl")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_6cqfl")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0l7e0")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_uao6c")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_7srqm")
+theme_override_styles/normal = SubResource("StyleBoxFlat_um3ry")
+text = "BACK"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_hv6xs")
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/back" to="." method="_on_back_pressed"]

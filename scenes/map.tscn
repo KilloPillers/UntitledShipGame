@@ -1,5 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://fh32xvaj4ve"]
+[gd_scene load_steps=16 format=3 uid="uid://fh32xvaj4ve"]
 
+[ext_resource type="Script" path="res://scripts/map.gd" id="1_aff03"]
 [ext_resource type="PackedScene" uid="uid://dht8l0kuy2ec" path="res://scenes/boid_spawner.tscn" id="2_84ngi"]
 [ext_resource type="PackedScene" uid="uid://c4tc1f64stx57" path="res://scenes/spike_wall.tscn" id="3_s8r8r"]
 [ext_resource type="Texture2D" uid="uid://c4yglp0bbpqlr" path="res://assets/World Assets/Map18K.png" id="3_yo4r5"]
@@ -10,8 +11,23 @@
 [ext_resource type="PackedScene" uid="uid://c7o8jqk007ob0" path="res://scenes/turret.tscn" id="5_ygccv"]
 [ext_resource type="PackedScene" uid="uid://bx4k84npg6sen" path="res://scenes/leech.tscn" id="6_qa33p"]
 [ext_resource type="PackedScene" uid="uid://ffo0npwylqoi" path="res://scenes/healthbar.tscn" id="7_g35vy"]
+[ext_resource type="Texture2D" uid="uid://b6pldejf7cp1j" path="res://assets/pausebtn.png" id="10_whwpe"]
+[ext_resource type="PackedScene" uid="uid://cfkwr2bc1au7k" path="res://scenes/pause_menu.tscn" id="13_ohou2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cpgav"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+draw_center = false
+
+[sub_resource type="Environment" id="Environment_bktdd"]
+background_mode = 3
+glow_enabled = true
+glow_intensity = 1.77
+glow_strength = 1.11
+glow_bloom = 0.21
+glow_blend_mode = 0
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource("1_aff03")
 
 [node name="Boid Enemies" type="Node2D" parent="."]
 top_level = true
@@ -72,6 +88,10 @@ position = Vector2(-451, -2868)
 
 [node name="SpikeWall2" parent="Boid Enemies" instance=ExtResource("3_s8r8r")]
 position = Vector2(-1515, -3260)
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
+[node name="healthbar" parent="CanvasLayer2" instance=ExtResource("7_g35vy")]
 
 [node name="Spike Walls" type="Node2D" parent="."]
 top_level = true
@@ -147,8 +167,30 @@ position = Vector2(-2386, -6143)
 
 [node name="Camera2D" type="Camera2D" parent="Ship/ShipHull" index="0"]
 
-[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="Ship/ShipHull/Camera2D"]
 
-[node name="healthbar" parent="CanvasLayer2" instance=ExtResource("7_g35vy")]
+[node name="pause" type="Button" parent="Ship/ShipHull/Camera2D/CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -130.0
+offset_top = 22.0
+offset_right = 390.0
+offset_bottom = 542.0
+grow_horizontal = 0
+scale = Vector2(0.159998, 0.16)
+theme_override_styles/focus = SubResource("StyleBoxFlat_cpgav")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_cpgav")
+icon = ExtResource("10_whwpe")
+flat = true
+
+[node name="PauseMenu" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" parent="PauseMenu" instance=ExtResource("13_ohou2")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_bktdd")
+
+[connection signal="pressed" from="Ship/ShipHull/Camera2D/CanvasLayer/pause" to="." method="_on_pause_pressed"]
 
 [editable path="Ship"]

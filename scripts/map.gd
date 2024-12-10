@@ -2,8 +2,7 @@ extends Node2D
 
 
 #Pause Testing---------------------
-@onready var pause_menu = $CanvasLayer2/PauseMenu
-
+@onready var pause_menu = $PauseMenu/PauseMenu        
 
 var is_paused = false  
 #----------------------

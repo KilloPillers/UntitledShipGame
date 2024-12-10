@@ -1,34 +1,39 @@
-[gd_scene load_steps=9 format=3 uid="uid://bhm3octu7nd51"]
+[gd_scene load_steps=12 format=3 uid="uid://bhm3octu7nd51"]
 
 [ext_resource type="Script" path="res://scripts/menu.gd" id="1_4g2h6"]
 [ext_resource type="Texture2D" uid="uid://cy0le873x1cv5" path="res://assets/MainMenu.png" id="2_er0ck"]
+[ext_resource type="FontFile" uid="uid://bajxpg4kqbw1j" path="res://assets/Orbitron-VariableFont_wght.ttf" id="3_biyqw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_crlqa"]
 bg_color = Color(0.579566, 0.540585, 0.922958, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r3g47"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+draw_center = false
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pf06d"]
-bg_color = Color(0.824765, 0.447744, 0.721685, 1)
+bg_color = Color(0.941176, 0.0705882, 1, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l3gok"]
-bg_color = Color(0.77478, 0.031073, 1, 1)
+bg_color = Color(0.776471, 0.0313726, 1, 0)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c5s0u"]
-bg_color = Color(0.850452, 0.419429, 0.74147, 1)
+bg_color = Color(0.941176, 0.0705882, 1, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4dgt5"]
-bg_color = Color(0.887524, 0.000210043, 0.774166, 1)
+bg_color = Color(0.886275, 0, 0.772549, 0)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
@@ -36,6 +41,14 @@ corner_radius_bottom_left = 5
 
 [sub_resource type="VideoStreamTheora" id="VideoStreamTheora_srmn5"]
 file = "res://assets/FinalProjectCutsceneReducedFlash.ogv"
+
+[sub_resource type="Environment" id="Environment_itw4k"]
+background_mode = 3
+glow_enabled = true
+glow_intensity = 0.59
+glow_strength = 0.89
+glow_bloom = 0.22
+glow_blend_mode = 0
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -47,6 +60,7 @@ grow_vertical = 2
 script = ExtResource("1_4g2h6")
 
 [node name="background" type="Panel" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -69,9 +83,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -176.0
-offset_top = -269.0
-offset_right = -66.0
-offset_bottom = -192.0
+offset_top = -421.0
+offset_right = -66.0001
+offset_bottom = -320.0
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(3.27, 3)
@@ -82,16 +96,35 @@ layout_mode = 2
 [node name="Play" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("3_biyqw")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxFlat_r3g47")
 theme_override_styles/hover = SubResource("StyleBoxFlat_pf06d")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_r3g47")
 theme_override_styles/normal = SubResource("StyleBoxFlat_l3gok")
-text = "Play"
+text = "PLAY"
+
+[node name="Credits" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("3_biyqw")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxFlat_r3g47")
+theme_override_styles/hover = SubResource("StyleBoxFlat_c5s0u")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_r3g47")
+theme_override_styles/normal = SubResource("StyleBoxFlat_4dgt5")
+text = "CREDITS"
 
 [node name="Exit" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("3_biyqw")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxFlat_r3g47")
 theme_override_styles/hover = SubResource("StyleBoxFlat_c5s0u")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_r3g47")
 theme_override_styles/normal = SubResource("StyleBoxFlat_4dgt5")
-text = "Exit
+text = "EXIT
 "
 
 [node name="Label" type="Label" parent="."]
@@ -101,13 +134,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -562.0
-offset_top = -472.0
-offset_right = 562.0
-offset_bottom = -295.0
+offset_left = -616.0
+offset_top = -424.0
+offset_right = 616.0
+offset_bottom = -247.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_biyqw")
 theme_override_font_sizes/font_size = 120
 text = "Untitled Ship Game"
 
@@ -118,6 +152,10 @@ offset_right = 40.0
 offset_bottom = 40.0
 stream = SubResource("VideoStreamTheora_srmn5")
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_itw4k")
+
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Credits" to="." method="_on_credits_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]
 [connection signal="finished" from="VideoStreamPlayer" to="." method="_on_video_stream_player_finished"]
