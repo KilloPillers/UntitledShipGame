@@ -1,8 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://dgs74em4x64uf"]
+[gd_scene load_steps=4 format=3 uid="uid://dcov6c20w7d6h"]
 
-[ext_resource type="Script" path="res://scripts/collapsible_wall.gd" id="1_5ie3f"]
-[ext_resource type="Texture2D" uid="uid://dpryed2g54f2r" path="res://assets/World Assets/CollapsableWallLofi.png" id="2_vuyig"]
-[ext_resource type="Script" path="res://scripts/hurt_box.gd" id="3_8mhyi"]
+[ext_resource type="Texture2D" uid="uid://dpryed2g54f2r" path="res://assets/World Assets/CollapsableWallLofi.png" id="1_xg2jc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v3vya"]
 size = Vector2(96, 97)
@@ -13,17 +11,15 @@ size = Vector2(96, 97)
 [node name="CollapsibleWall" type="StaticBody2D"]
 collision_layer = 4
 collision_mask = 7
-script = ExtResource("1_5ie3f")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_v3vya")
 
 [node name="AnimatedSprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_vuyig")
+texture = ExtResource("1_xg2jc")
 
 [node name="HurtBox" type="Area2D" parent="."]
-script = ExtResource("3_8mhyi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 position = Vector2(0, 0.5)

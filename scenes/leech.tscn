@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dtivducdu627y"]
+[gd_scene load_steps=12 format=3 uid="uid://bx4k84npg6sen"]
 
 [ext_resource type="Script" path="res://scripts/leech.gd" id="1_6by6i"]
 [ext_resource type="Script" path="res://scripts/hurt_box.gd" id="1_anowc"]
@@ -59,7 +59,7 @@ states/flying/node = SubResource("AnimationNodeAnimation_1sce4")
 states/flying/position = Vector2(358, 108)
 transitions = ["Start", "flying", SubResource("AnimationNodeStateMachineTransition_p8nvn")]
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[node name="leech" type="CharacterBody2D"]
 script = ExtResource("1_6by6i")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
