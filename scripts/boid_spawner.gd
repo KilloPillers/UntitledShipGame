@@ -9,6 +9,7 @@ extends Node2D
 
 
 var timer: Timer
+var _debug_timer: Timer
 
 
 func _ready() -> void:
@@ -21,11 +22,15 @@ func _ready() -> void:
 	print("Parent position: ", get_parent().global_position)
 	
 
-	
 
 func _on_spawn() -> void:
 	if is_target_too_far():
-		print("Target is too far, stopping spawns and despawning all boids.")
+		if _debug_timer == null or _debug_timer.is_stopped():
+			_debug_timer = Timer.new()
+			add_child(_debug_timer)
+			_debug_timer.start(5)
+			print("Target is too far, stopping spawns and despawning all boids.")
+		
 		despawn_distant_boids()
 		return
 	# cycle_spawn_amount refers to the amount of boids to spawn
@@ -42,6 +47,7 @@ func _on_spawn() -> void:
 	# Spawn the appropriate amount of boids
 	for i in range(cycle_spawn_amount):
 			spawn_boid()
+			
 
 
 func spawn_boid() -> void:

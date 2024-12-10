@@ -6,18 +6,16 @@ enum State {
 	TARGETING,
 }
 
+@export var health:int = 5 #TODO adjust this for game feel
+@export var damage:float = 1
+@export var aggro_range:float = 500 #TODO adjust this for game feel
+@export var shooting_delay:float = 0.4 #TODO adjust this for game feel. If this is adjusted then the shooting animation needs to be adjusted
+@export var bullet_spread:float = 0.2 #TODO adjust this for game feel
 @export var projectile:PackedScene
 
-const HEALTH:int = 20
-
-var aggro_range:float = 500
-var accuracy_angle:float = PI / 2
-var damage:float = 2
-var target_position:Vector2
 var state:State
+var target_position:Vector2
 var target_direction:Vector2
-var shooting_delay:float = 0.4
-var bullet_spread:float = 0.2
 var rng_ : RandomNumberGenerator
 var _timer:Timer
 
@@ -34,8 +32,12 @@ func _ready() -> void:
 	rng_ = RandomNumberGenerator.new()
 
 
-func _physics_process(delta: float) -> void:
-	target_position = %Player.global_position
+func _physics_process(_delta: float) -> void:
+	if %Ship != null:
+		target_position = %Ship/ShipHull.global_position
+	else:
+		print("error, Turret enemy doesn't have ship targeted")
+		target_position = global_position + Vector2(3,3)
 	if global_position.distance_to(target_position) < aggro_range:
 		state = State.TARGETING
 		target_direction = (target_position - global_position).normalized()
@@ -53,10 +55,9 @@ func fire() -> void:
 	var new_projectile = projectile.instantiate()
 	get_tree().root.add_child(new_projectile)
 	var rng_factor = rng_.randf_range(-bullet_spread, bullet_spread)
-	new_projectile.direction = target_direction + Vector2(rng_factor, rng_factor)
-	new_projectile.rotate(new_projectile.direction.angle() + PI/2)
+	new_projectile.rotation = rotation + rng_factor
 	new_projectile.global_position = $ProjectileOrigin.global_position 
-	new_projectile.get_node("Hitbox").collision_mask = 5
+	#new_projectile.get_node("Hitbox").collision_mask = 5
 	
 	_timer = Timer.new()
 	_timer.one_shot = true
@@ -75,9 +76,14 @@ func _manage_animation_tree_state() -> void:
 
 # Called by Hurtbox.gd
 func _deal_damage() -> void:
-	if %Player != null:
-		%Player.take_damage(damage)
+	if %Ship != null:
+		%Ship/ShipHull.take_damage(damage)
 
+
+func take_damage(_damage:int) -> void:
+	health -= _damage
+	if health <= 0:
+		destroy()
 
 # Called by Hurtbox.gd
 func destroy() -> void:

@@ -8,14 +8,15 @@ enum State {
 	ATTACHED,
 }
 
+@export var health:int = 2
+@export var speed:float = 300.0
+@export var aggro_distance:float = 800 #TODO find a good value for this
+@export var explosion_damage:float = 10 
+@export var detonation_delay:float = 2 #TODO find a good value for this
 
-var speed:float = 300.0
 var turn_radius_factor:float = 0.1
-var health:float = 10
-var aggro_distance:float = 1000
-var attach_distance:float = 20.0
+var attach_distance:float = 50.0
 var detonation_timer:Timer
-var explosion_damage:float = 10
 # damage is set to 0 so that it does no damage upon attaching to the player. This value is used in the hitbox.gd script
 var damage:float = 0.0
 var direction:Vector2
@@ -23,21 +24,26 @@ var target_destination:Vector2
 
 var _state := State.IDLE
 
+@onready var animation_tree:AnimationTree = $AnimationTree
+
 
 func _ready() -> void:
+	animation_tree["parameters/conditions/exploding"] = false
 	_state = State.IDLE
-	if %Player != null:
-		target_destination = %Player.global_position
+	if %Ship != null:
+		target_destination = %Ship/ShipHull.global_position
 	else:
 		target_destination = global_position
+		print("error, Kamikaze enemy doesn't have ship targeted")
 	direction = (target_destination - global_position).normalized()
 
 
-func _physics_process(delta: float) -> void:
-	if %Player != null:
-		target_destination = %Player.global_position
+func _physics_process(_delta: float) -> void:
+	if %Ship != null:
+		target_destination = %Ship/ShipHull.global_position
 	else:
 		target_destination = global_position
+		print("error, Kamikaze enemy doesn't have ship targeted")
 	
 	# Rotate Sprit accordingly
 	rotate(angle_difference(rotation, direction.angle()))
@@ -65,18 +71,26 @@ func _physics_process(delta: float) -> void:
 		# Explode once timer finishes
 		if detonation_timer.is_stopped():
 			explode()
+	_manage_animation_tree_state()
 
 
-func take_damage(damage:float) -> void:
-	health -= damage
+func _manage_animation_tree_state() -> void:
+	if _state == State.IDLE:
+		animation_tree["parameters/conditions/exploding"] = false
+	
+
+
+func take_damage(_damage:int) -> void:
+	health -= _damage
 	if health <= 0:
 		destroy()
 
 
 func attach() -> void:
 	_state = State.ATTACHED
-	print("attaching")
+	print("attaching, distance to target = ", global_position.distance_to(target_destination))
 	$CollisionShape2D.disabled = true
+	animation_tree["parameters/conditions/exploding"] = true
 	
 	detonation_timer = Timer.new()
 	detonation_timer.one_shot = true
@@ -86,11 +100,12 @@ func attach() -> void:
 
 func explode() -> void:
 	_state = State.IDLE
-	if %Player != null:
-		%Player.take_damage(explosion_damage)
+	if %Ship != null:
+		%Ship/ShipHull.take_damage(explosion_damage)
 	
 	queue_free()
 
 
 func destroy() -> void:
+	# TODO Implement other logic for when enemy dies, i.e. sound effects, death animation
 	queue_free()

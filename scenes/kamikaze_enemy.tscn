@@ -2,13 +2,13 @@
 
 [ext_resource type="Script" path="res://scripts/kamikaze_enemy.gd" id="1_y07qj"]
 [ext_resource type="Script" path="res://scripts/hurt_box.gd" id="2_bsmln"]
-[ext_resource type="Texture2D" uid="uid://kbsvgrlry0c6" path="res://assets/KamikazeBoid-Spritesheet.png" id="2_sjr62"]
+[ext_resource type="Texture2D" uid="uid://bom1hgsijt2c1" path="res://assets/KamikazeBoid-Spritesheet.png" id="2_sjr62"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ctfcd"]
-radius = 15.2941
+radius = 10.6046
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uc8ua"]
-radius = 26.0
+radius = 21.0238
 
 [sub_resource type="Animation" id="Animation_50n5t"]
 length = 0.001
@@ -23,6 +23,22 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_pb3tc"]
+resource_name = "explode"
+length = 2.06
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-2.98023e-08, 0.133333, 0.266667, 0.4, 0.533333, 0.666667, 0.8, 0.933333, 1.06667, 1.2, 1.33333, 1.46667, 1.6, 1.73333, 1.86667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21]
 }
 
 [sub_resource type="Animation" id="Animation_a3jhh"]
@@ -40,22 +56,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5]
-}
-
-[sub_resource type="Animation" id="Animation_pb3tc"]
-resource_name = "explode"
-length = 2.06
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(-2.98023e-08, 0.133333, 0.266667, 0.4, 0.533333, 0.666667, 0.8, 0.933333, 1.06667, 1.2, 1.33333, 1.46667, 1.6, 1.73333, 1.86667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6iq6x"]
@@ -76,6 +76,7 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1huo0"]
 advance_mode = 2
+advance_condition = &"exploding"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ouniu"]
 states/explode/node = SubResource("AnimationNodeAnimation_hh21w")
@@ -86,13 +87,13 @@ transitions = ["Start", "flying", SubResource("AnimationNodeStateMachineTransiti
 graph_offset = Vector2(70.5004, -19.3875)
 
 [node name="KamikazeEnemy" type="CharacterBody2D"]
+motion_mode = 1
 script = ExtResource("1_y07qj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(1.7, 1.7)
 shape = SubResource("CircleShape2D_ctfcd")
 disabled = true
-one_way_collision = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.75, 0.75)
@@ -100,6 +101,7 @@ texture = ExtResource("2_sjr62")
 hframes = 22
 
 [node name="HurtBox" type="Area2D" parent="."]
+collision_mask = 3
 script = ExtResource("2_bsmln")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
@@ -113,3 +115,4 @@ libraries = {
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_ouniu")
 anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/exploding = false

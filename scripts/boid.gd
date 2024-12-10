@@ -10,7 +10,7 @@ extends Area2D
 var last_shot_time: float = 0.0  # Tracks the last shot time
 var boids_i_see := []
 var velocity := Vector2.ZERO
-var health: int = 10
+var health: int = 1
 var speed := 6.0
 var movv := 400
 var target: Node
@@ -191,3 +191,14 @@ func _fire_projectile() -> void:
 	get_tree().root.add_child(new_projectile)
 	new_projectile.rotation = rotation
 	new_projectile.global_position = global_position
+
+
+func take_damage(_damage:int) -> void:
+	health -= _damage
+	if health <= 0:
+		destroy()
+
+
+func destroy() -> void:
+	# TODO Implement other logic for when enemy dies, i.e. sound effects, death animation
+	queue_free()

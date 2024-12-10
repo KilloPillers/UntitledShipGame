@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bw4vi72rvaoqy"]
+[gd_scene load_steps=5 format=3 uid="uid://bw4vi72rvaoqy"]
 
 [ext_resource type="Script" path="res://scripts/boid_projectile.gd" id="1_0wrbp"]
-[ext_resource type="Texture2D" uid="uid://depjjgi2th74i" path="res://assets/TurretProjectile.png" id="2_d05s0"]
+[ext_resource type="Texture2D" uid="uid://db7m81vni6hng" path="res://assets/TurretProjectile.png" id="2_d05s0"]
+[ext_resource type="Script" path="res://scripts/hit_box.gd" id="3_jp01v"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bqaqj"]
 radius = 5.0
@@ -14,9 +15,10 @@ script = ExtResource("1_0wrbp")
 texture_filter = 1
 texture = ExtResource("2_d05s0")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="HitBox" type="Area2D" parent="."]
+script = ExtResource("3_jp01v")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 position = Vector2(0, -0.5)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_bqaqj")

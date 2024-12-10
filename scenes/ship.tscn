@@ -1,14 +1,16 @@
-[gd_scene load_steps=34 format=3 uid="uid://c2a6ielbm0t3c"]
+[gd_scene load_steps=37 format=3 uid="uid://c2a6ielbm0t3c"]
 
+[ext_resource type="Script" path="res://scripts/ship_hull.gd" id="1_k84c6"]
 [ext_resource type="Texture2D" uid="uid://cdg4c33l6tgfh" path="res://assets/ShipLoFi.png" id="1_l4aep"]
 [ext_resource type="Script" path="res://scripts/engine.gd" id="1_wo6ai"]
 [ext_resource type="Texture2D" uid="uid://dgvxtjrnfvl2f" path="res://assets/ThrusterOff.png" id="2_iyon2"]
 [ext_resource type="Texture2D" uid="uid://dk83mj5bidwrr" path="res://assets/ThrusterOn-Spritesheet.png" id="3_1w0nf"]
 [ext_resource type="Script" path="res://scripts/gun.gd" id="3_ewpnl"]
 [ext_resource type="Script" path="res://scripts/shield.gd" id="3_yun3w"]
-[ext_resource type="PackedScene" path="res://scenes/player_projectile.tscn" id="4_di2ho"]
+[ext_resource type="PackedScene" uid="uid://bvwt3ydatqhqb" path="res://scenes/player_projectile.tscn" id="4_di2ho"]
 [ext_resource type="Texture2D" uid="uid://dlswrju7raxvg" path="res://assets/GunShortened-Spritesheet.png" id="4_dpooq"]
 [ext_resource type="Texture2D" uid="uid://vp0h4s450acf" path="res://assets/ShieldOn-Spritesheet.png" id="4_sjmil"]
+[ext_resource type="Script" path="res://scripts/hurt_box.gd" id="11_d0h4u"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_iick3"]
 radius = 78.0
@@ -198,50 +200,63 @@ animations = [{
 "speed": 20.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_1xnqv"]
+radius = 83.0241
+
 [node name="Ship" type="Node2D"]
 position = Vector2(111, 111)
 
-[node name="RigidBody2D" type="RigidBody2D" parent="."]
+[node name="ShipHull" type="RigidBody2D" parent="."]
 collision_mask = 7
 gravity_scale = 0.0
+lock_rotation = true
+script = ExtResource("1_k84c6")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShipHull"]
 shape = SubResource("CircleShape2D_iick3")
 
-[node name="Engine" type="Node2D" parent="RigidBody2D" node_paths=PackedStringArray("rigidbody")]
+[node name="Engine" type="Node2D" parent="ShipHull" node_paths=PackedStringArray("rigidbody")]
 rotation = 4.71239
 script = ExtResource("1_wo6ai")
 rigidbody = NodePath("..")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="RigidBody2D/Engine"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="ShipHull/Engine"]
 texture_filter = 1
 position = Vector2(95, 0)
 sprite_frames = SubResource("SpriteFrames_wl6rl")
 animation = &"on"
+frame = 4
+frame_progress = 0.277436
 
-[node name="Shield" type="Node2D" parent="RigidBody2D"]
+[node name="Shield" type="Node2D" parent="ShipHull"]
 rotation = 3.14159
 script = ExtResource("3_yun3w")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="RigidBody2D/Shield"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="ShipHull/Shield"]
 texture_filter = 1
 position = Vector2(90, 0)
 sprite_frames = SubResource("SpriteFrames_ijd7v")
 animation = &"on"
 
-[node name="Gun" type="Node2D" parent="RigidBody2D"]
+[node name="Gun" type="Node2D" parent="ShipHull"]
 script = ExtResource("3_ewpnl")
 projectile = ExtResource("4_di2ho")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="RigidBody2D/Gun"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="ShipHull/Gun"]
 texture_filter = 1
 position = Vector2(115, 0)
 sprite_frames = SubResource("SpriteFrames_vusym")
 animation = &"shoot"
 
-[node name="ProjectileOrigin" type="Node2D" parent="RigidBody2D/Gun"]
+[node name="ProjectileOrigin" type="Node2D" parent="ShipHull/Gun"]
 position = Vector2(127, 0)
 
-[node name="HullSprite" type="Sprite2D" parent="RigidBody2D"]
+[node name="HullSprite" type="Sprite2D" parent="ShipHull"]
 texture_filter = 1
 texture = ExtResource("1_l4aep")
+
+[node name="HurtBox" type="Area2D" parent="ShipHull"]
+script = ExtResource("11_d0h4u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShipHull/HurtBox"]
+shape = SubResource("CircleShape2D_1xnqv")

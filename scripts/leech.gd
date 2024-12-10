@@ -9,38 +9,42 @@ enum State {
 }
 
 
-var speed:float = 200.0
+@export var health:float = 1
+@export var damage:int = 1 
+@export var speed:float = 200.0 #TODO adjust this for game feel
+@export var aggro_distance:float = 800 #TODO adjust this for game feel
+@export var attach_distance:float = 50.0 
+@export var damage_tick_rate:float = 1 #TODO adjust this for game feel
+
 var turn_radius_factor:float = 100
-var health:float = 10
-var aggro_distance:float = 800
-var attach_distance:float = 30.0
-var damage_timer:Timer
-var damage:float = 2.0
 var direction:Vector2
 var target_destination:Vector2
+var damage_timer:Timer
 
 var _state := State.IDLE
-var _attached_position:Vector2 
 
 @onready var animation_tree:AnimationTree = $AnimationTree
 
 
 func _ready() -> void:
 	_state = State.IDLE
-	if %Player != null:
-		target_destination = %Player.global_position
+	if %Ship != null:
+		target_destination = %Ship/ShipHull.global_position
 	else:
-		target_destination = global_position	
+		target_destination = global_position + Vector2(5,0)
+		print("error, Leech enemy doesn't have ship targeted")
 	direction = (target_destination - global_position).normalized()
 
 
-func _physics_process(delta: float) -> void:
-	if %Player != null:
-		target_destination = %Player.global_position
+func _physics_process(_delta: float) -> void:
+	# Get the location of the player ship
+	if %Ship != null:
+		target_destination = %Ship/ShipHull.global_position
 	else:
 		target_destination = global_position + Vector2(5,0)
+		print("error, Leech enemy doesn't have ship targeted")
 	
-	# Rotate Sprit accordingly
+	# Rotate Sprit accordingly to the direction it is going
 	rotate(angle_difference(rotation, direction.angle()))
 	
 	# TRACKING Logic
@@ -68,8 +72,8 @@ func _physics_process(delta: float) -> void:
 			_deal_damage()
 
 
-func take_damage(damage:float) -> void:
-	health -= damage
+func take_damage(_damage:float) -> void:
+	health -= _damage
 	if health <= 0:
 		destroy()
 
@@ -82,15 +86,18 @@ func attach() -> void:
 	damage_timer = Timer.new()
 	damage_timer.one_shot = true
 	add_child(damage_timer)
-	damage_timer.start(1)
+	damage_timer.start(0)
 
 
 func _deal_damage() -> void:
-	if %Player != null:
-		target_destination = %Player.global_position
-	else:
-		%Player.take_damage(damage)
+	if %Ship != null:
+		%Ship/ShipHull.take_damage(damage)
+		damage_timer = Timer.new()
+		damage_timer.one_shot = true
+		add_child(damage_timer)
+		damage_timer.start(damage_tick_rate)
 
 
 func destroy() -> void:
+	# TODO Implement other logic for when enemy dies, i.e. sound effects, death animation
 	queue_free()

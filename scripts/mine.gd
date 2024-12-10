@@ -7,13 +7,14 @@ enum State {
 	EXPLODING,
 }
 
-var health:float = 10
-var damage:float = 10
-var trigger_distance:float = 100
-var detonation_delay:float = 3
+@export var health:int = 2
+@export var damage:int = 10
+@export var trigger_distance:float = 200
+#@export var explosion_radius:float = 100
+@export var detonation_delay:float = 1.0
+
 var state:State
 var _detonation_timer:Timer
-var explosion_radius:float = 100
 
 @onready var animation_tree:AnimationTree = $AnimationTree
 
@@ -24,7 +25,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if state == State.IDLE:
-		if global_position.distance_to(%Player.global_position) <= trigger_distance:
+		if global_position.distance_to(%Ship/ShipHull.global_position) <= trigger_distance:
 			state = State.TRIGGERED
 			_detonation_timer = Timer.new()
 			_detonation_timer.one_shot = true
@@ -36,6 +37,7 @@ func _physics_process(delta: float) -> void:
 	
 	_manage_animation_tree_state()
 
+
 func _manage_animation_tree_state() -> void:
 	if state == State.IDLE:
 		animation_tree["parameters/conditions/triggered"] = false
@@ -46,13 +48,16 @@ func _manage_animation_tree_state() -> void:
 	elif state == State.EXPLODING:
 		animation_tree["parameters/conditions/triggered"] = false
 		animation_tree["parameters/conditions/exploding"] = true
-		
+
 
 func explode() -> void:
 	state = State.EXPLODING
-	if global_position.distance_to(%Player.global_position) <= explosion_radius:
-		%Player.take_damage(damage)
-	destroy()
+
+
+func take_damage(_damage:int) -> void:
+	health -= _damage
+	if health <= 0:
+		destroy()
 
 
 func destroy() -> void:

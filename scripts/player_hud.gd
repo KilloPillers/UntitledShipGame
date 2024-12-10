@@ -1,3 +1,4 @@
+class_name HealthBar
 extends Control
 
 @onready var progress_bar = $ProgressBar
@@ -7,6 +8,10 @@ var hp = 100
 var is_paused = false  
 
 func _ready() -> void:
+	progress_bar.value = hp
+
+func _process(delta: float) -> void:
+	hp = %Ship/ShipHull.health
 	progress_bar.value = hp
 
 func _on_subtract_pressed() -> void:
