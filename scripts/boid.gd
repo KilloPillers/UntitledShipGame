@@ -23,6 +23,7 @@ var shoot_timer: Timer
 var targeting_timer: Timer
 var interval_timer: Timer
 
+@onready var animated_sprite_2d = $AnimatedSprite2D
 
 func _ready() -> void:
 	randomize()
@@ -73,7 +74,11 @@ func _physics_process(delta: float) -> void:
 	# Check if the boid can shoot
 	if is_targeting and target:
 		check_and_shoot()
-		
+	
+	if is_targeting:
+		animated_sprite_2d.play("aggro")
+	else:
+		animated_sprite_2d.play("default")
 
 func calculate_random_jitter() -> Vector2:
 	# Generate a small random vector
