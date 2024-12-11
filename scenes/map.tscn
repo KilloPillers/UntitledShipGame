@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://fh32xvaj4ve"]
+[gd_scene load_steps=18 format=3 uid="uid://fh32xvaj4ve"]
 
 [ext_resource type="Script" path="res://scripts/map.gd" id="1_aff03"]
 [ext_resource type="PackedScene" uid="uid://dht8l0kuy2ec" path="res://scenes/boid_spawner.tscn" id="2_84ngi"]
@@ -14,7 +14,6 @@
 [ext_resource type="Texture2D" uid="uid://b6pldejf7cp1j" path="res://assets/pausebtn.png" id="10_whwpe"]
 [ext_resource type="PackedScene" uid="uid://vohrw4dqjkcm" path="res://scenes/bullet_power_up.tscn" id="13_b1enx"]
 [ext_resource type="PackedScene" uid="uid://cfkwr2bc1au7k" path="res://scenes/pause_menu.tscn" id="13_ohou2"]
-[ext_resource type="Texture2D" uid="uid://cdg4c33l6tgfh" path="res://assets/ShipLoFi.png" id="13_pf0ry"]
 [ext_resource type="PackedScene" uid="uid://dymmsld3v8lfa" path="res://scenes/hull_power_up.tscn" id="14_ax6iu"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cpgav"]
@@ -194,6 +193,14 @@ texture = ExtResource("3_yo4r5")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.602487, 0.338804, 0.61561, 1)
 
@@ -201,14 +208,19 @@ color = Color(0.602487, 0.338804, 0.61561, 1)
 unique_name_in_owner = true
 position = Vector2(-2386, -6143)
 
-
 [node name="ShipHull" parent="Ship" index="0" node_paths=PackedStringArray("fadeToBlack") groups=["obstacle"]]
-fadeToBlack = NodePath("../../CanvasLayer/FadeToBlack")
+fadeToBlack = NodePath("../../CanvasLayer/ColorRect")
 
+[node name="Camera2D2" type="Camera2D" parent="Ship/ShipHull" index="0"]
 
-[node name="Camera2D" type="Camera2D" parent="Ship/ShipHull" index="0"]
+[node name="CollisionShape2D" parent="Ship/ShipHull" index="1" groups=["obstacle"]]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="Ship/ShipHull/Camera2D"]
+[node name="Area2D" parent="Ship/ShipHull/Shield" index="1" groups=["obstacle"]]
+visible = false
+
+[node name="HurtBox" parent="Ship/ShipHull" index="6" groups=["obstacle"]]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Ship/ShipHull/Camera2D" index="0"]
 
 [node name="pause" type="Button" parent="Ship/ShipHull/Camera2D/CanvasLayer"]
 anchors_preset = 1
@@ -225,26 +237,12 @@ theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_cpgav")
 icon = ExtResource("10_whwpe")
 flat = true
 
-
-[node name="HullSprite" parent="Ship/ShipHull" index="5"]
-texture_filter = 1
-texture = ExtResource("13_pf0ry")
-
-[node name="CollisionShape2D" parent="Ship/ShipHull" index="1" groups=["obstacle"]]
-
-[node name="Area2D" parent="Ship/ShipHull/Shield" index="1" groups=["obstacle"]]
-visible = false
-
-[node name="HurtBox" parent="Ship/ShipHull" index="6" groups=["obstacle"]]
-
-
 [node name="PauseMenu" type="CanvasLayer" parent="."]
 
 [node name="PauseMenu" parent="PauseMenu" instance=ExtResource("13_ohou2")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_bktdd")
-
 
 [node name="Hull Power Up" parent="." instance=ExtResource("14_ax6iu")]
 position = Vector2(-2452, -5984)
@@ -587,8 +585,5 @@ position = Vector2(888, 2992)
 
 [node name="CollapsibleWall33" parent="CollapsableWalls3" instance=ExtResource("5_m6e0q")]
 position = Vector2(888, 2224)
->>>>>>> 9eadc62 (changes to boid logic and map scene)
-
-[connection signal="pressed" from="Ship/ShipHull/Camera2D/CanvasLayer/pause" to="." method="_on_pause_pressed"]
 
 [editable path="Ship"]
