@@ -16,9 +16,12 @@ func _on_area_entered(_hitbox:HitBox) -> void:
 		# TODO if you want to add piercing to the bullet, this is the area you want to change. 
 		# Could add a property to the bullets that indicated pierce value, and decrement here instead, 
 		# and if it reaches 0 then destroy it
-		_hitbox.owner.pierce -= 1
-		
-		if _hitbox.owner.pierce == 0:
+		if(_hitbox.owner is PlayerProjectile):
+			_hitbox.owner.pierce -= 1
+			
+			if _hitbox.owner.pierce == 0:
+				_hitbox.owner.queue_free()
+		else:
 			_hitbox.owner.queue_free()
 		
 	elif get_parent().has_method("take_damage"):
