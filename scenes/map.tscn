@@ -158,12 +158,24 @@ texture = ExtResource("3_yo4r5")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
+[node name="FadeToBlack" type="ColorRect" parent="CanvasLayer"]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.602487, 0.338804, 0.61561, 1)
 
 [node name="Ship" parent="." instance=ExtResource("4_1753m")]
 unique_name_in_owner = true
 position = Vector2(-2386, -6143)
+
+[node name="ShipHull" parent="Ship" index="0" node_paths=PackedStringArray("fadeToBlack")]
+fadeToBlack = NodePath("../../CanvasLayer/FadeToBlack")
 
 [node name="Camera2D" type="Camera2D" parent="Ship/ShipHull" index="0"]
 
