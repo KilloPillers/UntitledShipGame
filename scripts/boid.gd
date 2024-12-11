@@ -128,7 +128,7 @@ func check_collision() -> Vector2:
 	for ray in ray_folder:
 		var r: RayCast2D = ray
 		if r.is_colliding():
-			if r.get_collider().is_in_group("obstacle"):
+			if r.get_collider() and r.get_collider().is_in_group("obstacle"):
 				var collision_point = r.get_collision_point()
 				var distance = (global_position - collision_point).length()
 				var normal = (global_position - collision_point).normalized()
@@ -165,9 +165,7 @@ func move() -> void:
 	global_position += velocity
 
 func _on_vision_area_entered(area: Area2D) -> void:
-	print("seeing something")
 	if area != self and area.is_in_group("boid"):
-		print(area)
 		boids_i_see.append(area.owner)
 
 func _on_vision_area_exited(area: Area2D) -> void:
