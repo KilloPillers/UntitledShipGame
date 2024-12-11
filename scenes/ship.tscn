@@ -475,4 +475,6 @@ script = ExtResource("11_d0h4u")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ShipHull/HurtBox"]
 shape = SubResource("CircleShape2D_1xnqv")
 
+[node name="Camera2D" type="Camera2D" parent="ShipHull"]
+
 [connection signal="frame_changed" from="ShipHull/HullAnimatedSprite" to="ShipHull" method="_on_hull_animated_sprite_frame_changed"]

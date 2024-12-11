@@ -18,10 +18,7 @@ func _ready() -> void:
 	timer.wait_time = spawn_rate
 	timer.connect("timeout", _on_spawn)
 	timer.start()
-	print("My Posistion " , global_position)
-	print("Parent position: ", get_parent().global_position)
 	
-
 
 func _on_spawn() -> void:
 	if is_target_too_far():
@@ -56,7 +53,7 @@ func spawn_boid() -> void:
 	boid.target = boid_target # Target for boids to move towards
 	boid.targeting_time = randi_range(3, 6) # Move towards target for 3-6 seconds
 	boid.targeting_interval = randi_range(10, 20) # Every 10-20 seconds
-	boid.modulate = Color(randf(), randf(), randf())
+	#boid.modulate = Color(randf(), randf(), randf())
 	$BoidFolder.add_child(boid)
 	
 	

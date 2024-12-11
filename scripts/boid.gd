@@ -1,10 +1,11 @@
-extends Area2D
+class_name Boid
+extends CharacterBody2D
 
 @onready var ray_folder := $RayFolder.get_children()
 
-@export var shooting_range: float = 500.0  # Distance within which the boid can shoot
+@export var shooting_range: float = 900.0  # Distance within which the boid can shoot
 @export var shooting_angle_tolerance: float = 0.02  # Radians of angle tolerance for shooting
-@export var shoot_cooldown: float = 1.0  # Time between consecutive shots
+@export var shoot_cooldown: float = 0.75  # Time between consecutive shots
 @export var projectile: PackedScene
 @export var min_distance_from_target: float = 200.0  # Minimum distance to maintain from the target
 @export var evasion_distance: float = 400.0  # Distance to move away before reengaging
@@ -12,9 +13,8 @@ extends Area2D
 
 var last_shot_time: float = 0.0  # Tracks the last shot time
 var boids_i_see := []
-var velocity := Vector2.ZERO
 var health: int = 1
-var speed := 6.0
+var speed := 300.0
 var movv := 400
 var target: Node
 var is_targeting: bool = false
@@ -61,7 +61,7 @@ func _ready() -> void:
 	interval_timer.wait_time = targeting_interval
 	interval_timer.start()
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	var flocking_force = Vector2.ZERO
 	if boids_i_see:
 		flocking_force = calculate_flocking_force()
@@ -76,7 +76,7 @@ func _physics_process(delta: float) -> void:
 	velocity += flocking_force * 0.1 + wall_avoidance_force * 2.5 + targeting_force * 1.0 + random_jitter
 	
 	velocity = velocity.normalized() * speed
-	move()
+	move_and_slide()
 	
 	if velocity.length() > 0: 
 		rotation = lerp_angle(rotation, velocity.angle(), 0.1)
@@ -103,6 +103,9 @@ func calculate_flocking_force() -> Vector2:
 		var separation_force := Vector2.ZERO
 		
 		for boid in boids_i_see:
+			# Make sure the boid is not in the queue_free queue.
+			if not is_instance_valid(boid):
+				continue 
 			average_velocity += boid.velocity
 			average_position += boid.global_position
 			
@@ -127,7 +130,6 @@ func check_collision() -> Vector2:
 		if r.is_colliding():
 			if r.get_collider().is_in_group("obstacle"):
 				var collision_point = r.get_collision_point()
-				var collision_normal = r.get_collision_normal()
 				var distance = (global_position - collision_point).length()
 				var normal = (global_position - collision_point).normalized()
 				avoidance_force += normal * sqrt(1/distance)
@@ -136,30 +138,41 @@ func check_collision() -> Vector2:
 func calculate_targeting_force() -> Vector2:
 	if not is_targeting or not target:
 		return Vector2.ZERO
-
+		
 	var distance_to_target = global_position.distance_to(target.global_position)
 	
 	if is_evading:
+		# Already in evasion mode, continue moving away from the target
 		var evade_direction = (global_position - target.global_position).normalized()
 		return evade_direction * speed
 	elif distance_to_target < min_distance_from_target:
+		# Start evasion and reset targeting
 		is_evading = true
+		is_targeting = false
 		evasion_timer.start(evasion_time)
+		interval_timer.wait_time = evasion_time
+		interval_timer.start()
+		
+		# Calculate the initial evade direction
 		var evade_direction = (global_position - target.global_position).normalized()
 		return evade_direction * speed
 	else:
+		# Normal targeting behavio
 		return (target.global_position - global_position).normalized() * speed
+
 
 func move() -> void:
 	global_position += velocity
 
 func _on_vision_area_entered(area: Area2D) -> void:
+	print("seeing something")
 	if area != self and area.is_in_group("boid"):
-		boids_i_see.append(area)
+		print(area)
+		boids_i_see.append(area.owner)
 
 func _on_vision_area_exited(area: Area2D) -> void:
 	if area:
-		boids_i_see.erase(area)
+		boids_i_see.erase(area.owner)
 
 func _on_targeting_time_timeout() -> void:
 	is_targeting = false
@@ -183,8 +196,8 @@ func check_and_shoot() -> void:
 	var angle_to_target = direction_to_target.angle()
 	
 	if distance_to_target <= shooting_range:
-		var angle_difference = abs(rotation - angle_to_target)
-		if angle_difference <= shooting_angle_tolerance or angle_difference >= TAU - shooting_angle_tolerance:
+		var _angle_difference = abs(rotation - angle_to_target)
+		if _angle_difference <= shooting_angle_tolerance or _angle_difference >= TAU - shooting_angle_tolerance:
 			if shoot_timer.time_left == 0:
 				_fire_projectile()
 				shoot_timer.start(shoot_cooldown)
