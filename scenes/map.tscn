@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://fh32xvaj4ve"]
+[gd_scene load_steps=18 format=3 uid="uid://fh32xvaj4ve"]
 
 [ext_resource type="Script" path="res://scripts/map.gd" id="1_aff03"]
 [ext_resource type="PackedScene" uid="uid://dht8l0kuy2ec" path="res://scenes/boid_spawner.tscn" id="2_84ngi"]
@@ -12,7 +12,9 @@
 [ext_resource type="PackedScene" uid="uid://bx4k84npg6sen" path="res://scenes/leech.tscn" id="6_qa33p"]
 [ext_resource type="PackedScene" uid="uid://ffo0npwylqoi" path="res://scenes/healthbar.tscn" id="7_g35vy"]
 [ext_resource type="Texture2D" uid="uid://b6pldejf7cp1j" path="res://assets/pausebtn.png" id="10_whwpe"]
+[ext_resource type="PackedScene" uid="uid://vohrw4dqjkcm" path="res://scenes/bullet_power_up.tscn" id="13_b1enx"]
 [ext_resource type="PackedScene" uid="uid://cfkwr2bc1au7k" path="res://scenes/pause_menu.tscn" id="13_ohou2"]
+[ext_resource type="PackedScene" uid="uid://dymmsld3v8lfa" path="res://scenes/hull_power_up.tscn" id="14_ax6iu"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cpgav"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -190,6 +192,12 @@ flat = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_bktdd")
+
+[node name="Hull Power Up" parent="." instance=ExtResource("14_ax6iu")]
+position = Vector2(-2452, -5984)
+
+[node name="Bullet Power Up" parent="." instance=ExtResource("13_b1enx")]
+position = Vector2(-2281, -5943)
 
 [connection signal="pressed" from="Ship/ShipHull/Camera2D/CanvasLayer/pause" to="." method="_on_pause_pressed"]
 

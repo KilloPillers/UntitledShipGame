@@ -1,10 +1,13 @@
 extends Node2D
 
 @export var projectile : PackedScene
+@export var num_projectiles : int = 1
 @export var cooldown_max : float = 0.5
 @export var bullet_spread : float = 0.05
 @export var turn_speed : float = 5
 var cur_cooldown_ : float = 0
+var damage_buff : int = 0
+var pierce_buff : int = 0
 var rng_ : RandomNumberGenerator
 
 @onready var animated_sprite_2d = $AnimatedSprite2D
@@ -23,11 +26,14 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("gun_power"):
 		if (cur_cooldown_ <= 0):
 			cur_cooldown_ = cooldown_max
-			var new_projectile = projectile.instantiate()
-			get_tree().root.add_child(new_projectile)
-			new_projectile.rotation = rotation
-			new_projectile.rotation += (rng_.randf_range(-bullet_spread, bullet_spread))
-			new_projectile.global_position = $ProjectileOrigin.global_position 
+			for i in range(num_projectiles):
+				var new_projectile = projectile.instantiate()
+				new_projectile.damage += damage_buff
+				new_projectile.pierce += pierce_buff
+				get_tree().root.add_child(new_projectile)
+				new_projectile.rotation = rotation
+				new_projectile.rotation += (rng_.randf_range(-bullet_spread, bullet_spread))
+				new_projectile.global_position = $ProjectileOrigin.global_position 
 			animated_sprite_2d.play("shoot")
 	elif not animated_sprite_2d.is_playing():
 		animated_sprite_2d.play("off")

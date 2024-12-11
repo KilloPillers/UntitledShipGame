@@ -3,6 +3,7 @@ extends Node2D
 
 @export var speed : float = 20
 @export var lifetime : float = 5
+@export var pierce : int = 1
 @export var damage : int = 1
 
 var time_left_ : float
