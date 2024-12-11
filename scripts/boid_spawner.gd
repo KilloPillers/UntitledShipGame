@@ -29,7 +29,7 @@ func _on_spawn() -> void:
 			_debug_timer = Timer.new()
 			add_child(_debug_timer)
 			_debug_timer.start(5)
-			print("Target is too far, stopping spawns and despawning all boids.")
+			#print("Target is too far, stopping spawns and despawning all boids.")
 		
 		despawn_distant_boids()
 		return
@@ -70,5 +70,5 @@ func despawn_distant_boids() -> void:
 	# Remove distant boids from the BoidFolder
 	for boid in $BoidFolder.get_children():
 		var distance_to_target = boid.global_position.distance_to(boid_target.global_position)
-		if distance_to_target > 1500:
+		if distance_to_target > 1500: # hard coded value represents the camera view
 			boid.queue_free()

@@ -1,4 +1,3 @@
-class_name HurtBox
 extends Area2D
 
 const DEFAULT_DAMAGE:int = 1

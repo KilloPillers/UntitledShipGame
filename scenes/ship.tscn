@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://c2a6ielbm0t3c"]
+[gd_scene load_steps=56 format=3 uid="uid://c2a6ielbm0t3c"]
 
 [ext_resource type="Script" path="res://scripts/ship_hull.gd" id="1_k84c6"]
 [ext_resource type="Texture2D" uid="uid://cdg4c33l6tgfh" path="res://assets/ShipLoFi.png" id="1_l4aep"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bvwt3ydatqhqb" path="res://scenes/player_projectile.tscn" id="4_di2ho"]
 [ext_resource type="Texture2D" uid="uid://dlswrju7raxvg" path="res://assets/GunShortened-Spritesheet.png" id="4_dpooq"]
 [ext_resource type="Texture2D" uid="uid://vp0h4s450acf" path="res://assets/ShieldOn-Spritesheet.png" id="4_sjmil"]
+[ext_resource type="Script" path="res://scripts/shield_hurtbox.gd" id="7_mqouf"]
 [ext_resource type="Script" path="res://scripts/hurt_box.gd" id="11_d0h4u"]
 [ext_resource type="Texture2D" uid="uid://tvip2rxqh5lh" path="res://assets/ShipDeath-Spritesheet.png" id="12_dn53e"]
 
@@ -142,6 +143,99 @@ animations = [{
 "name": &"on",
 "speed": 10.0
 }]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i8iro"]
+size = Vector2(14.5051, 12.7086)
+
+[sub_resource type="Animation" id="Animation_vlvwv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Area2D/CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_tf050"]
+resource_name = "off"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Area2D/CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_n1ucf"]
+resource_name = "on"
+length = 0.3
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2, 0.266667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 4, 5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Area2D/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_iwsn5"]
+_data = {
+"RESET": SubResource("Animation_vlvwv"),
+"off": SubResource("Animation_tf050"),
+"on": SubResource("Animation_n1ucf")
+}
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h2isu"]
 atlas = ExtResource("4_dpooq")
@@ -323,10 +417,32 @@ rotation = 3.14159
 script = ExtResource("3_yun3w")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="ShipHull/Shield"]
+visible = false
 texture_filter = 1
 position = Vector2(90, 0)
 sprite_frames = SubResource("SpriteFrames_ijd7v")
-animation = &"on"
+animation = &"off"
+frame_progress = 0.998202
+
+[node name="Area2D" type="Area2D" parent="ShipHull/Shield"]
+script = ExtResource("7_mqouf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShipHull/Shield/Area2D"]
+position = Vector2(134, 0.000343323)
+scale = Vector2(2.34401, 9.5348)
+shape = SubResource("RectangleShape2D_i8iro")
+disabled = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ShipHull/Shield"]
+libraries = {
+"": SubResource("AnimationLibrary_iwsn5")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="ShipHull/Shield"]
+position = Vector2(90, 0.000229537)
+texture = ExtResource("4_sjmil")
+hframes = 6
+frame = 1
 
 [node name="Gun" type="Node2D" parent="ShipHull"]
 script = ExtResource("3_ewpnl")
@@ -342,8 +458,8 @@ animation = &"shoot"
 position = Vector2(127, 0)
 
 [node name="Line2D" type="Line2D" parent="ShipHull/Gun"]
-position = Vector2(122, 0)
-scale = Vector2(6.00721, -0.904876)
+position = Vector2(122, 1)
+scale = Vector2(6.13851, -1.09339)
 points = PackedVector2Array(0, 1, 103, 1)
 width = 5.0
 default_color = Color(1, 0, 0, 0.776471)

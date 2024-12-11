@@ -36,55 +36,88 @@ script = ExtResource("1_aff03")
 top_level = true
 
 [node name="BoidSpawner" parent="Boid Enemies" node_paths=PackedStringArray("boid_target") instance=ExtResource("2_84ngi")]
-position = Vector2(-165, -2544)
-spawn_amount = 100
+position = Vector2(-624, -3912)
+spawn_rate = 10.0
+spawn_amount = 10
 boid_target = NodePath("../../Ship/ShipHull")
+despawn_distance = 2000.0
 
 [node name="BoidSpawner2" parent="Boid Enemies" node_paths=PackedStringArray("boid_target") instance=ExtResource("2_84ngi")]
-position = Vector2(-1458, -2437)
-spawn_rate = 20.0
-spawn_amount = 100
+position = Vector2(-2304, -2792)
+spawn_rate = 10.0
+spawn_amount = 10
 boid_target = NodePath("../../Ship/ShipHull")
+despawn_distance = 2000.0
 
 [node name="BoidSpawner3" parent="Boid Enemies" node_paths=PackedStringArray("boid_target") instance=ExtResource("2_84ngi")]
 position = Vector2(2858, -5197)
+spawn_rate = 10.0
+spawn_amount = 10
 boid_target = NodePath("../../Ship/ShipHull")
+despawn_distance = 2000.0
 
 [node name="BoidSpawner4" parent="Boid Enemies" node_paths=PackedStringArray("boid_target") instance=ExtResource("2_84ngi")]
 position = Vector2(3922, -3104)
+spawn_rate = 10.0
+spawn_amount = 10
 boid_target = NodePath("../../Ship/ShipHull")
+despawn_distance = 2000.0
 
 [node name="BoidSpawner5" parent="Boid Enemies" node_paths=PackedStringArray("boid_target") instance=ExtResource("2_84ngi")]
 position = Vector2(1421, -1261)
+spawn_rate = 10.0
+spawn_amount = 10
 boid_target = NodePath("../../Ship/ShipHull")
+despawn_distance = 2000.0
 
 [node name="BoidSpawner6" parent="Boid Enemies" node_paths=PackedStringArray("boid_target") instance=ExtResource("2_84ngi")]
 position = Vector2(2243, 357)
+spawn_rate = 10.0
+spawn_amount = 10
 boid_target = NodePath("../../Ship/ShipHull")
+despawn_distance = 2000.0
 
 [node name="BoidSpawner7" parent="Boid Enemies" node_paths=PackedStringArray("boid_target") instance=ExtResource("2_84ngi")]
 position = Vector2(-2258, -270)
+spawn_rate = 10.0
+spawn_amount = 10
 boid_target = NodePath("../../Ship/ShipHull")
+despawn_distance = 2000.0
 
 [node name="BoidSpawner8" parent="Boid Enemies" node_paths=PackedStringArray("boid_target") instance=ExtResource("2_84ngi")]
 position = Vector2(-2165, 1793)
+spawn_rate = 10.0
+spawn_amount = 10
 boid_target = NodePath("../../Ship/ShipHull")
+despawn_distance = 2000.0
 
 [node name="BoidSpawner9" parent="Boid Enemies" node_paths=PackedStringArray("boid_target") instance=ExtResource("2_84ngi")]
 position = Vector2(-745, 4114)
+spawn_rate = 10.0
+spawn_amount = 10
 boid_target = NodePath("../../Ship/ShipHull")
+despawn_distance = 2000.0
 
 [node name="BoidSpawner10" parent="Boid Enemies" node_paths=PackedStringArray("boid_target") instance=ExtResource("2_84ngi")]
 position = Vector2(4021, 4042)
+spawn_rate = 10.0
+spawn_amount = 10
 boid_target = NodePath("../../Ship/ShipHull")
+despawn_distance = 2000.0
 
 [node name="BoidSpawner11" parent="Boid Enemies" node_paths=PackedStringArray("boid_target") instance=ExtResource("2_84ngi")]
 position = Vector2(-962, 5011)
+spawn_rate = 10.0
+spawn_amount = 10
 boid_target = NodePath("../../Ship/ShipHull")
+despawn_distance = 2000.0
 
 [node name="BoidSpawner12" parent="Boid Enemies" node_paths=PackedStringArray("boid_target") instance=ExtResource("2_84ngi")]
 position = Vector2(4399, 5316)
+spawn_rate = 10.0
+spawn_amount = 10
 boid_target = NodePath("../../Ship/ShipHull")
+despawn_distance = 2000.0
 
 [node name="SpikeWall" parent="Boid Enemies" instance=ExtResource("3_s8r8r")]
 position = Vector2(-451, -2868)
@@ -148,7 +181,7 @@ z_index = 1
 [node name="SpikeWall" parent="Spikey Walls" instance=ExtResource("3_s8r8r")]
 position = Vector2(-2095, -6156)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="StaticBody2D" type="StaticBody2D" parent="." groups=["obstacle"]]
 position = Vector2(0, -27)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
@@ -167,6 +200,11 @@ color = Color(0.602487, 0.338804, 0.61561, 1)
 [node name="Ship" parent="." instance=ExtResource("4_1753m")]
 unique_name_in_owner = true
 position = Vector2(-2386, -6143)
+
+
+[node name="ShipHull" parent="Ship" index="0" node_paths=PackedStringArray("fadeToBlack") groups=["obstacle"]]
+fadeToBlack = NodePath("../../CanvasLayer/FadeToBlack")
+
 
 [node name="Camera2D" type="Camera2D" parent="Ship/ShipHull" index="0"]
 
@@ -187,9 +225,18 @@ theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_cpgav")
 icon = ExtResource("10_whwpe")
 flat = true
 
+
 [node name="HullSprite" parent="Ship/ShipHull" index="5"]
 texture_filter = 1
 texture = ExtResource("13_pf0ry")
+
+[node name="CollisionShape2D" parent="Ship/ShipHull" index="1" groups=["obstacle"]]
+
+[node name="Area2D" parent="Ship/ShipHull/Shield" index="1" groups=["obstacle"]]
+visible = false
+
+[node name="HurtBox" parent="Ship/ShipHull" index="6" groups=["obstacle"]]
+
 
 [node name="PauseMenu" type="CanvasLayer" parent="."]
 
@@ -198,11 +245,349 @@ texture = ExtResource("13_pf0ry")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_bktdd")
 
+
 [node name="Hull Power Up" parent="." instance=ExtResource("14_ax6iu")]
 position = Vector2(-2452, -5984)
 
 [node name="Bullet Power Up" parent="." instance=ExtResource("13_b1enx")]
 position = Vector2(-2281, -5943)
+
+[node name="CollapsableWalls1" type="Node" parent="."]
+
+[node name="CollapsibleWall" parent="CollapsableWalls1" instance=ExtResource("5_m6e0q")]
+position = Vector2(688, -3728)
+
+[node name="CollapsibleWall2" parent="CollapsableWalls1" instance=ExtResource("5_m6e0q")]
+position = Vector2(688, -3632)
+
+[node name="CollapsibleWall3" parent="CollapsableWalls1" instance=ExtResource("5_m6e0q")]
+position = Vector2(688, -3536)
+
+[node name="CollapsibleWall4" parent="CollapsableWalls1" instance=ExtResource("5_m6e0q")]
+position = Vector2(688, -3440)
+
+[node name="CollapsibleWall5" parent="CollapsableWalls1" instance=ExtResource("5_m6e0q")]
+position = Vector2(688, -3344)
+
+[node name="CollapsibleWall6" parent="CollapsableWalls1" instance=ExtResource("5_m6e0q")]
+position = Vector2(688, -3248)
+
+[node name="CollapsibleWall7" parent="CollapsableWalls1" instance=ExtResource("5_m6e0q")]
+position = Vector2(688, -3152)
+
+[node name="CollapsibleWall8" parent="CollapsableWalls1" instance=ExtResource("5_m6e0q")]
+position = Vector2(688, -3056)
+
+[node name="CollapsibleWall9" parent="CollapsableWalls1" instance=ExtResource("5_m6e0q")]
+position = Vector2(784, -3824)
+
+[node name="CollapsibleWall10" parent="CollapsableWalls1" instance=ExtResource("5_m6e0q")]
+position = Vector2(784, -3728)
+
+[node name="CollapsibleWall11" parent="CollapsableWalls1" instance=ExtResource("5_m6e0q")]
+position = Vector2(784, -3632)
+
+[node name="CollapsibleWall12" parent="CollapsableWalls1" instance=ExtResource("5_m6e0q")]
+position = Vector2(784, -3536)
+
+[node name="CollapsibleWall13" parent="CollapsableWalls1" instance=ExtResource("5_m6e0q")]
+position = Vector2(784, -3440)
+
+[node name="CollapsibleWall14" parent="CollapsableWalls1" instance=ExtResource("5_m6e0q")]
+position = Vector2(784, -3344)
+
+[node name="CollapsibleWall15" parent="CollapsableWalls1" instance=ExtResource("5_m6e0q")]
+position = Vector2(784, -3248)
+
+[node name="CollapsibleWall16" parent="CollapsableWalls1" instance=ExtResource("5_m6e0q")]
+position = Vector2(784, -3152)
+
+[node name="CollapsibleWall17" parent="CollapsableWalls1" instance=ExtResource("5_m6e0q")]
+position = Vector2(880, -3920)
+
+[node name="CollapsibleWall18" parent="CollapsableWalls1" instance=ExtResource("5_m6e0q")]
+position = Vector2(880, -3824)
+
+[node name="CollapsibleWall19" parent="CollapsableWalls1" instance=ExtResource("5_m6e0q")]
+position = Vector2(880, -3728)
+
+[node name="CollapsibleWall20" parent="CollapsableWalls1" instance=ExtResource("5_m6e0q")]
+position = Vector2(880, -3632)
+
+[node name="CollapsibleWall21" parent="CollapsableWalls1" instance=ExtResource("5_m6e0q")]
+position = Vector2(880, -3536)
+
+[node name="CollapsibleWall22" parent="CollapsableWalls1" instance=ExtResource("5_m6e0q")]
+position = Vector2(880, -3440)
+
+[node name="CollapsibleWall23" parent="CollapsableWalls1" instance=ExtResource("5_m6e0q")]
+position = Vector2(880, -3344)
+
+[node name="CollapsibleWall24" parent="CollapsableWalls1" instance=ExtResource("5_m6e0q")]
+position = Vector2(880, -3248)
+
+[node name="CollapsibleWall25" parent="CollapsableWalls1" instance=ExtResource("5_m6e0q")]
+position = Vector2(976, -4016)
+
+[node name="CollapsibleWall26" parent="CollapsableWalls1" instance=ExtResource("5_m6e0q")]
+position = Vector2(976, -3920)
+
+[node name="CollapsibleWall27" parent="CollapsableWalls1" instance=ExtResource("5_m6e0q")]
+position = Vector2(976, -3824)
+
+[node name="CollapsibleWall28" parent="CollapsableWalls1" instance=ExtResource("5_m6e0q")]
+position = Vector2(976, -3728)
+
+[node name="CollapsibleWall29" parent="CollapsableWalls1" instance=ExtResource("5_m6e0q")]
+position = Vector2(976, -3632)
+
+[node name="CollapsibleWall30" parent="CollapsableWalls1" instance=ExtResource("5_m6e0q")]
+position = Vector2(976, -3536)
+
+[node name="CollapsibleWall31" parent="CollapsableWalls1" instance=ExtResource("5_m6e0q")]
+position = Vector2(976, -3440)
+
+[node name="CollapsibleWall32" parent="CollapsableWalls1" instance=ExtResource("5_m6e0q")]
+position = Vector2(976, -3344)
+
+[node name="CollapsableWalls2" type="Node" parent="."]
+
+[node name="CollapsibleWall" parent="CollapsableWalls2" instance=ExtResource("5_m6e0q")]
+position = Vector2(520, -360)
+
+[node name="CollapsibleWall2" parent="CollapsableWalls2" instance=ExtResource("5_m6e0q")]
+position = Vector2(520, -264)
+
+[node name="CollapsibleWall3" parent="CollapsableWalls2" instance=ExtResource("5_m6e0q")]
+position = Vector2(520, -168)
+
+[node name="CollapsibleWall4" parent="CollapsableWalls2" instance=ExtResource("5_m6e0q")]
+position = Vector2(520, -72)
+
+[node name="CollapsibleWall5" parent="CollapsableWalls2" instance=ExtResource("5_m6e0q")]
+position = Vector2(520, 24)
+
+[node name="CollapsibleWall6" parent="CollapsableWalls2" instance=ExtResource("5_m6e0q")]
+position = Vector2(520, 120)
+
+[node name="CollapsibleWall7" parent="CollapsableWalls2" instance=ExtResource("5_m6e0q")]
+position = Vector2(520, 216)
+
+[node name="CollapsibleWall8" parent="CollapsableWalls2" instance=ExtResource("5_m6e0q")]
+position = Vector2(520, 312)
+
+[node name="CollapsibleWall9" parent="CollapsableWalls2" instance=ExtResource("5_m6e0q")]
+position = Vector2(616, -456)
+
+[node name="CollapsibleWall10" parent="CollapsableWalls2" instance=ExtResource("5_m6e0q")]
+position = Vector2(616, -360)
+
+[node name="CollapsibleWall11" parent="CollapsableWalls2" instance=ExtResource("5_m6e0q")]
+position = Vector2(616, -264)
+
+[node name="CollapsibleWall12" parent="CollapsableWalls2" instance=ExtResource("5_m6e0q")]
+position = Vector2(616, -168)
+
+[node name="CollapsibleWall13" parent="CollapsableWalls2" instance=ExtResource("5_m6e0q")]
+position = Vector2(616, -72)
+
+[node name="CollapsibleWall14" parent="CollapsableWalls2" instance=ExtResource("5_m6e0q")]
+position = Vector2(616, 24)
+
+[node name="CollapsibleWall15" parent="CollapsableWalls2" instance=ExtResource("5_m6e0q")]
+position = Vector2(616, 120)
+
+[node name="CollapsibleWall16" parent="CollapsableWalls2" instance=ExtResource("5_m6e0q")]
+position = Vector2(616, 216)
+
+[node name="CollapsibleWall17" parent="CollapsableWalls2" instance=ExtResource("5_m6e0q")]
+position = Vector2(712, -432)
+
+[node name="CollapsibleWall18" parent="CollapsableWalls2" instance=ExtResource("5_m6e0q")]
+position = Vector2(712, -336)
+
+[node name="CollapsibleWall19" parent="CollapsableWalls2" instance=ExtResource("5_m6e0q")]
+position = Vector2(712, -240)
+
+[node name="CollapsibleWall20" parent="CollapsableWalls2" instance=ExtResource("5_m6e0q")]
+position = Vector2(712, -144)
+
+[node name="CollapsibleWall21" parent="CollapsableWalls2" instance=ExtResource("5_m6e0q")]
+position = Vector2(712, -48)
+
+[node name="CollapsibleWall22" parent="CollapsableWalls2" instance=ExtResource("5_m6e0q")]
+position = Vector2(712, 48)
+
+[node name="CollapsibleWall23" parent="CollapsableWalls2" instance=ExtResource("5_m6e0q")]
+position = Vector2(712, 144)
+
+[node name="CollapsibleWall24" parent="CollapsableWalls2" instance=ExtResource("5_m6e0q")]
+position = Vector2(712, 240)
+
+[node name="CollapsibleWall25" parent="CollapsableWalls2" instance=ExtResource("5_m6e0q")]
+position = Vector2(808, -384)
+
+[node name="CollapsibleWall26" parent="CollapsableWalls2" instance=ExtResource("5_m6e0q")]
+position = Vector2(808, -288)
+
+[node name="CollapsibleWall27" parent="CollapsableWalls2" instance=ExtResource("5_m6e0q")]
+position = Vector2(808, -192)
+
+[node name="CollapsibleWall28" parent="CollapsableWalls2" instance=ExtResource("5_m6e0q")]
+position = Vector2(808, -96)
+
+[node name="CollapsibleWall29" parent="CollapsableWalls2" instance=ExtResource("5_m6e0q")]
+position = Vector2(808, 0)
+
+[node name="CollapsibleWall30" parent="CollapsableWalls2" instance=ExtResource("5_m6e0q")]
+position = Vector2(808, 96)
+
+[node name="CollapsibleWall31" parent="CollapsableWalls2" instance=ExtResource("5_m6e0q")]
+position = Vector2(808, 192)
+
+[node name="CollapsibleWall32" parent="CollapsableWalls2" instance=ExtResource("5_m6e0q")]
+position = Vector2(808, 288)
+
+[node name="CollapsibleWall33" parent="CollapsableWalls2" instance=ExtResource("5_m6e0q")]
+position = Vector2(808, -480)
+
+[node name="CollapsableWalls3" type="Node" parent="."]
+
+[node name="CollapsibleWall45" parent="CollapsableWalls3" instance=ExtResource("5_m6e0q")]
+position = Vector2(888, 2128)
+
+[node name="CollapsibleWall42" parent="CollapsableWalls3" instance=ExtResource("5_m6e0q")]
+position = Vector2(792, 1984)
+
+[node name="CollapsibleWall43" parent="CollapsableWalls3" instance=ExtResource("5_m6e0q")]
+position = Vector2(792, 2080)
+
+[node name="CollapsibleWall44" parent="CollapsableWalls3" instance=ExtResource("5_m6e0q")]
+position = Vector2(792, 2176)
+
+[node name="CollapsibleWall34" parent="CollapsableWalls3" instance=ExtResource("5_m6e0q")]
+position = Vector2(696, 1960)
+
+[node name="CollapsibleWall35" parent="CollapsableWalls3" instance=ExtResource("5_m6e0q")]
+position = Vector2(696, 2056)
+
+[node name="CollapsibleWall36" parent="CollapsableWalls3" instance=ExtResource("5_m6e0q")]
+position = Vector2(696, 2152)
+
+[node name="CollapsibleWall37" parent="CollapsableWalls3" instance=ExtResource("5_m6e0q")]
+position = Vector2(600, 1864)
+
+[node name="CollapsibleWall38" parent="CollapsableWalls3" instance=ExtResource("5_m6e0q")]
+position = Vector2(600, 1960)
+
+[node name="CollapsibleWall39" parent="CollapsableWalls3" instance=ExtResource("5_m6e0q")]
+position = Vector2(600, 2056)
+
+[node name="CollapsibleWall40" parent="CollapsableWalls3" instance=ExtResource("5_m6e0q")]
+position = Vector2(600, 2152)
+
+[node name="CollapsibleWall41" parent="CollapsableWalls3" instance=ExtResource("5_m6e0q")]
+position = Vector2(600, 2248)
+
+[node name="CollapsibleWall" parent="CollapsableWalls3" instance=ExtResource("5_m6e0q")]
+position = Vector2(600, 2344)
+
+[node name="CollapsibleWall2" parent="CollapsableWalls3" instance=ExtResource("5_m6e0q")]
+position = Vector2(600, 2440)
+
+[node name="CollapsibleWall3" parent="CollapsableWalls3" instance=ExtResource("5_m6e0q")]
+position = Vector2(600, 2536)
+
+[node name="CollapsibleWall4" parent="CollapsableWalls3" instance=ExtResource("5_m6e0q")]
+position = Vector2(600, 2632)
+
+[node name="CollapsibleWall5" parent="CollapsableWalls3" instance=ExtResource("5_m6e0q")]
+position = Vector2(600, 2728)
+
+[node name="CollapsibleWall6" parent="CollapsableWalls3" instance=ExtResource("5_m6e0q")]
+position = Vector2(600, 2824)
+
+[node name="CollapsibleWall7" parent="CollapsableWalls3" instance=ExtResource("5_m6e0q")]
+position = Vector2(600, 2920)
+
+[node name="CollapsibleWall8" parent="CollapsableWalls3" instance=ExtResource("5_m6e0q")]
+position = Vector2(888, 2032)
+
+[node name="CollapsibleWall9" parent="CollapsableWalls3" instance=ExtResource("5_m6e0q")]
+position = Vector2(696, 2248)
+
+[node name="CollapsibleWall10" parent="CollapsableWalls3" instance=ExtResource("5_m6e0q")]
+position = Vector2(696, 2344)
+
+[node name="CollapsibleWall11" parent="CollapsableWalls3" instance=ExtResource("5_m6e0q")]
+position = Vector2(696, 2440)
+
+[node name="CollapsibleWall12" parent="CollapsableWalls3" instance=ExtResource("5_m6e0q")]
+position = Vector2(696, 2536)
+
+[node name="CollapsibleWall13" parent="CollapsableWalls3" instance=ExtResource("5_m6e0q")]
+position = Vector2(696, 2632)
+
+[node name="CollapsibleWall14" parent="CollapsableWalls3" instance=ExtResource("5_m6e0q")]
+position = Vector2(696, 2728)
+
+[node name="CollapsibleWall15" parent="CollapsableWalls3" instance=ExtResource("5_m6e0q")]
+position = Vector2(696, 2824)
+
+[node name="CollapsibleWall16" parent="CollapsableWalls3" instance=ExtResource("5_m6e0q")]
+position = Vector2(696, 2920)
+
+[node name="CollapsibleWall17" parent="CollapsableWalls3" instance=ExtResource("5_m6e0q")]
+position = Vector2(792, 2272)
+
+[node name="CollapsibleWall18" parent="CollapsableWalls3" instance=ExtResource("5_m6e0q")]
+position = Vector2(792, 2368)
+
+[node name="CollapsibleWall19" parent="CollapsableWalls3" instance=ExtResource("5_m6e0q")]
+position = Vector2(792, 2464)
+
+[node name="CollapsibleWall20" parent="CollapsableWalls3" instance=ExtResource("5_m6e0q")]
+position = Vector2(792, 2560)
+
+[node name="CollapsibleWall21" parent="CollapsableWalls3" instance=ExtResource("5_m6e0q")]
+position = Vector2(792, 2656)
+
+[node name="CollapsibleWall22" parent="CollapsableWalls3" instance=ExtResource("5_m6e0q")]
+position = Vector2(792, 2752)
+
+[node name="CollapsibleWall23" parent="CollapsableWalls3" instance=ExtResource("5_m6e0q")]
+position = Vector2(792, 2848)
+
+[node name="CollapsibleWall24" parent="CollapsableWalls3" instance=ExtResource("5_m6e0q")]
+position = Vector2(792, 2944)
+
+[node name="CollapsibleWall25" parent="CollapsableWalls3" instance=ExtResource("5_m6e0q")]
+position = Vector2(888, 2320)
+
+[node name="CollapsibleWall26" parent="CollapsableWalls3" instance=ExtResource("5_m6e0q")]
+position = Vector2(888, 2416)
+
+[node name="CollapsibleWall27" parent="CollapsableWalls3" instance=ExtResource("5_m6e0q")]
+position = Vector2(888, 2512)
+
+[node name="CollapsibleWall28" parent="CollapsableWalls3" instance=ExtResource("5_m6e0q")]
+position = Vector2(888, 2608)
+
+[node name="CollapsibleWall29" parent="CollapsableWalls3" instance=ExtResource("5_m6e0q")]
+position = Vector2(888, 2704)
+
+[node name="CollapsibleWall30" parent="CollapsableWalls3" instance=ExtResource("5_m6e0q")]
+position = Vector2(888, 2800)
+
+[node name="CollapsibleWall31" parent="CollapsableWalls3" instance=ExtResource("5_m6e0q")]
+position = Vector2(888, 2896)
+
+[node name="CollapsibleWall32" parent="CollapsableWalls3" instance=ExtResource("5_m6e0q")]
+position = Vector2(888, 2992)
+
+[node name="CollapsibleWall33" parent="CollapsableWalls3" instance=ExtResource("5_m6e0q")]
+position = Vector2(888, 2224)
+>>>>>>> 9eadc62 (changes to boid logic and map scene)
 
 [connection signal="pressed" from="Ship/ShipHull/Camera2D/CanvasLayer/pause" to="." method="_on_pause_pressed"]
 

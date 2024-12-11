@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c7o8jqk007ob0"]
+[gd_scene load_steps=17 format=3 uid="uid://c7o8jqk007ob0"]
 
 [ext_resource type="Script" path="res://scripts/turret.gd" id="1_a3i3x"]
 [ext_resource type="Script" path="res://scripts/hurt_box.gd" id="2_gprqn"]
@@ -75,6 +75,9 @@ states/RESET/node = SubResource("AnimationNodeAnimation_o5cy1")
 states/RESET/position = Vector2(420, 103)
 transitions = ["Start", "Firing", SubResource("AnimationNodeStateMachineTransition_3etm6"), "Firing", "RESET", SubResource("AnimationNodeStateMachineTransition_4foqi"), "RESET", "Firing", SubResource("AnimationNodeStateMachineTransition_5y7ui")]
 
+[sub_resource type="Gradient" id="Gradient_4e7jg"]
+colors = PackedColorArray(1, 0, 0, 0.72549, 1, 0, 0, 0)
+
 [node name="Turret" type="CharacterBody2D"]
 script = ExtResource("1_a3i3x")
 projectile = ExtResource("2_jjoty")
@@ -109,3 +112,11 @@ tree_root = SubResource("AnimationNodeStateMachine_inlgs")
 anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/firing = false
 parameters/conditions/idle = false
+
+[node name="Line2D" type="Line2D" parent="."]
+position = Vector2(2, 1)
+scale = Vector2(0.848793, -0.189358)
+points = PackedVector2Array(0, 1, 103, 1)
+width = 5.0
+default_color = Color(1, 0, 0, 0.776471)
+gradient = SubResource("Gradient_4e7jg")

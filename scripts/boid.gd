@@ -6,6 +6,9 @@ extends Area2D
 @export var shooting_angle_tolerance: float = 0.02  # Radians of angle tolerance for shooting
 @export var shoot_cooldown: float = 1.0  # Time between consecutive shots
 @export var projectile: PackedScene
+@export var min_distance_from_target: float = 200.0  # Minimum distance to maintain from the target
+@export var evasion_distance: float = 400.0  # Distance to move away before reengaging
+@export var evasion_time: float = 4.0  # Time to spend evading
 
 var last_shot_time: float = 0.0  # Tracks the last shot time
 var boids_i_see := []
@@ -15,13 +18,15 @@ var speed := 6.0
 var movv := 400
 var target: Node
 var is_targeting: bool = false
-var targeting_time: float = 3.0
+var is_evading: bool = false
+var targeting_time: float = 10.0
 var targeting_interval: float = 5.0
 var random_jitter_strength: float = 0.5
 
 var shoot_timer: Timer
 var targeting_timer: Timer
 var interval_timer: Timer
+var evasion_timer: Timer
 
 @onready var animated_sprite_2d = $AnimatedSprite2D
 
@@ -29,7 +34,7 @@ func _ready() -> void:
 	randomize()
 	velocity = Vector2(randf() * 2 - 1, randf() * 2 - 1).normalized() * speed  # Random initial direction
 	
-	 # Create and set up the targeting timer
+	# Create and set up the targeting timer
 	targeting_timer = Timer.new()
 	targeting_timer.one_shot = true
 	targeting_timer.connect("timeout", _on_targeting_time_timeout)
@@ -45,11 +50,16 @@ func _ready() -> void:
 	shoot_timer = Timer.new()
 	shoot_timer.one_shot = true  # Ensures it runs only once per cooldown
 	add_child(shoot_timer)
-
+	
+	# Create and set up the evasion timer
+	evasion_timer = Timer.new()
+	evasion_timer.one_shot = true
+	evasion_timer.connect("timeout", _on_evasion_timeout)
+	add_child(evasion_timer)
+	
 	# Start the interval timer
 	interval_timer.wait_time = targeting_interval
 	interval_timer.start()
-
 
 func _physics_process(delta: float) -> void:
 	var flocking_force = Vector2.ZERO
@@ -81,10 +91,8 @@ func _physics_process(delta: float) -> void:
 		animated_sprite_2d.play("default")
 
 func calculate_random_jitter() -> Vector2:
-	# Generate a small random vector
 	var jitter = Vector2(randf() * 2 - 1, randf() * 2 - 1).normalized()
 	return jitter * random_jitter_strength
-
 
 func calculate_flocking_force() -> Vector2:
 	var flocking_force := Vector2.ZERO
@@ -98,22 +106,19 @@ func calculate_flocking_force() -> Vector2:
 			average_velocity += boid.velocity
 			average_position += boid.global_position
 			
-			# Separation: Steer away from nearby boids
 			var distance = (global_position - boid.global_position).length()
-			if distance < movv:  # Only apply separation within `movv` range
-				var factor = (movv - distance) / movv  # Stronger force closer to the boid
+			if distance < movv:
+				var factor = (movv - distance) / movv
 				separation_force += (global_position - boid.global_position).normalized() * factor
 		
 		average_velocity /= number_of_boids
 		average_position /= number_of_boids
 		
-		# Combine components of the flocking behavior
-		flocking_force += ((average_velocity - velocity) / 2) * 1  # Alignment
-		flocking_force += (average_position - global_position) * .25  # Cohesion 
-		flocking_force += separation_force * 20.0  # separation
+		flocking_force += ((average_velocity - velocity) / 2) * 1
+		flocking_force += (average_position - global_position) * .25
+		flocking_force += separation_force * 20.0
 	
 	return flocking_force
-
 
 func check_collision() -> Vector2:
 	var avoidance_force := Vector2.ZERO
@@ -124,67 +129,65 @@ func check_collision() -> Vector2:
 				var collision_point = r.get_collision_point()
 				var collision_normal = r.get_collision_normal()
 				var distance = (global_position - collision_point).length()
-
-				# Calculate the normal vector (steering direction)
 				var normal = (global_position - collision_point).normalized()
-				
-				# Apply the reflection force
 				avoidance_force += normal * sqrt(1/distance)
-				
 	return avoidance_force
 
-	
 func calculate_targeting_force() -> Vector2:
 	if not is_targeting or not target:
 		return Vector2.ZERO
-	return (target.global_position - global_position).normalized() * speed
 
+	var distance_to_target = global_position.distance_to(target.global_position)
+	
+	if is_evading:
+		var evade_direction = (global_position - target.global_position).normalized()
+		return evade_direction * speed
+	elif distance_to_target < min_distance_from_target:
+		is_evading = true
+		evasion_timer.start(evasion_time)
+		var evade_direction = (global_position - target.global_position).normalized()
+		return evade_direction * speed
+	else:
+		return (target.global_position - global_position).normalized() * speed
 
 func move() -> void:
 	global_position += velocity
-
 
 func _on_vision_area_entered(area: Area2D) -> void:
 	if area != self and area.is_in_group("boid"):
 		boids_i_see.append(area)
 
-
 func _on_vision_area_exited(area: Area2D) -> void:
 	if area:
 		boids_i_see.erase(area)
 
-
 func _on_targeting_time_timeout() -> void:
-	is_targeting = false  # Stop targeting
-	# Start the interval timer
+	is_targeting = false
 	interval_timer.wait_time = targeting_interval
 	interval_timer.start()
-	
 
 func _on_interval_timer_timeout() -> void:
-	is_targeting = true  # Start targeting
-	# Start the targeting timer
+	is_targeting = true
 	targeting_timer.wait_time = targeting_time
 	targeting_timer.start()
 
+func _on_evasion_timeout() -> void:
+	is_evading = false
 
 func check_and_shoot() -> void:
-	# Calculate the distance to the target
+	if is_evading:
+		return
+	
 	var distance_to_target = global_position.distance_to(target.global_position)
-	# Calculate the angle to the target
 	var direction_to_target = (target.global_position - global_position).normalized()
 	var angle_to_target = direction_to_target.angle()
 	
-	# Check if the boid is within shooting range
 	if distance_to_target <= shooting_range:
-		# Check if the boid is looking at the target within tolerance
 		var angle_difference = abs(rotation - angle_to_target)
 		if angle_difference <= shooting_angle_tolerance or angle_difference >= TAU - shooting_angle_tolerance:
-			# Check cooldown
-			if shoot_timer.time_left == 0: # Timer is ready to shoot again
+			if shoot_timer.time_left == 0:
 				_fire_projectile()
-				shoot_timer.start(shoot_cooldown) # Start the cooldown timer
-
+				shoot_timer.start(shoot_cooldown)
 
 func _fire_projectile() -> void:
 	var new_projectile = projectile.instantiate()
@@ -192,13 +195,10 @@ func _fire_projectile() -> void:
 	new_projectile.rotation = rotation
 	new_projectile.global_position = global_position
 
-
-func take_damage(_damage:int) -> void:
+func take_damage(_damage: int) -> void:
 	health -= _damage
 	if health <= 0:
 		destroy()
 
-
 func destroy() -> void:
-	# TODO Implement other logic for when enemy dies, i.e. sound effects, death animation
 	queue_free()

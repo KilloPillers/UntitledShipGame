@@ -4,8 +4,8 @@ extends Node2D
 @export var num_projectiles : int = 1
 @export var cooldown_max : float = 0.5
 @export var bullet_spread : float = 0.05
-@export var turn_speed_max : float = 3.0
-@export var turn_speed_ramp_time : float = 1.0 # Time to reach max turn speed
+@export var turn_speed_max : float = 3.5
+@export var turn_speed_ramp_time : float = 0.75 # Time to reach max turn speed
 var cur_cooldown_ : float = 0
 var damage_buff : int = 0
 var pierce_buff : int = 0
@@ -42,6 +42,7 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("gun_power"):
 		if (cur_cooldown_ <= 0):
 			cur_cooldown_ = cooldown_max
+
 			for i in range(num_projectiles):
 				var new_projectile = projectile.instantiate()
 				new_projectile.damage += damage_buff
@@ -50,6 +51,14 @@ func _process(delta: float) -> void:
 				new_projectile.rotation = rotation
 				new_projectile.rotation += (rng_.randf_range(-bullet_spread, bullet_spread))
 				new_projectile.global_position = $ProjectileOrigin.global_position 
+
+			var new_projectile = projectile.instantiate()
+			get_tree().root.add_child(new_projectile)
+			new_projectile.add_to_group("player_projectiles")
+			new_projectile.rotation = rotation
+			new_projectile.rotation += rng_.randf_range(-bullet_spread, bullet_spread)
+			new_projectile.global_position = $ProjectileOrigin.global_position 
+
 			animated_sprite_2d.play("shoot")
 	elif not animated_sprite_2d.is_playing():
 		animated_sprite_2d.play("off")
