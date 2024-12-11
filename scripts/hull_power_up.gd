@@ -3,7 +3,7 @@ extends Area2D
 
 @export var health_buff: float = 20
 @export var speed_buff: float = 10
-@export var rotation_speed_buff: float = 10
+@export var rotation_speed_buff: float = 3.0
 
 
 @onready var ship_hull: ShipHull = $"../Ship/ShipHull"
@@ -33,6 +33,6 @@ func apply_buff():
 	# apply the rotation speed buffs to all 
 	engine.turn_speed = engine.turn_speed + rotation_speed_buff
 	shield.turn_speed = shield.turn_speed + rotation_speed_buff
-	gun.turn_speed = gun.turn_speed + rotation_speed_buff
+	gun.turn_speed_max = gun.turn_speed_max + rotation_speed_buff
 	
 	queue_free()

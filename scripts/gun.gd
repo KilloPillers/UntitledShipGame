@@ -42,7 +42,6 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("gun_power"):
 		if (cur_cooldown_ <= 0):
 			cur_cooldown_ = cooldown_max
-<<<<<<< HEAD
 			for i in range(num_projectiles):
 				var new_projectile = projectile.instantiate()
 				new_projectile.damage += damage_buff
@@ -51,13 +50,6 @@ func _process(delta: float) -> void:
 				new_projectile.rotation = rotation
 				new_projectile.rotation += (rng_.randf_range(-bullet_spread, bullet_spread))
 				new_projectile.global_position = $ProjectileOrigin.global_position 
-=======
-			var new_projectile = projectile.instantiate()
-			get_tree().root.add_child(new_projectile)
-			new_projectile.rotation = rotation
-			new_projectile.rotation += rng_.randf_range(-bullet_spread, bullet_spread)
-			new_projectile.global_position = $ProjectileOrigin.global_position 
->>>>>>> 6db224ad78d59d0c1c8b6a9aa093908b36cc71b7
 			animated_sprite_2d.play("shoot")
 	elif not animated_sprite_2d.is_playing():
 		animated_sprite_2d.play("off")
