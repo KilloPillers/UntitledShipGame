@@ -72,20 +72,24 @@ shape = SubResource("CircleShape2D_voaap")
 position = Vector2(-2.27374e-13, -8.88178e-16)
 scale = Vector2(2.37881, 2.37881)
 target_position = Vector2(79.6471, 88.3195)
+collision_mask = 5
 
 [node name="RayCast2D4" type="RayCast2D" parent="RayFolder"]
 scale = Vector2(2.43672, 2.43672)
 target_position = Vector2(111.871, 32.448)
+collision_mask = 5
 
 [node name="RayCast2D2" type="RayCast2D" parent="RayFolder"]
 position = Vector2(0, 7.45058e-09)
 scale = Vector2(2.44504, 2.42299)
 target_position = Vector2(112.127, -31.5514)
+collision_mask = 5
 
 [node name="RayCast2D" type="RayCast2D" parent="RayFolder"]
 position = Vector2(4.44089e-16, 5.68434e-14)
 scale = Vector2(2.4325, 2.4325)
 target_position = Vector2(64.3838, -95.7431)
+collision_mask = 5
 
 [node name="ProjectileOrigin" type="Node2D" parent="."]
 position = Vector2(15.9999, 0.0640434)
