@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://c2a6ielbm0t3c"]
+[gd_scene load_steps=50 format=3 uid="uid://c2a6ielbm0t3c"]
 
 [ext_resource type="Script" path="res://scripts/ship_hull.gd" id="1_k84c6"]
 [ext_resource type="Texture2D" uid="uid://cdg4c33l6tgfh" path="res://assets/ShipLoFi.png" id="1_l4aep"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://dlswrju7raxvg" path="res://assets/GunShortened-Spritesheet.png" id="4_dpooq"]
 [ext_resource type="Texture2D" uid="uid://vp0h4s450acf" path="res://assets/ShieldOn-Spritesheet.png" id="4_sjmil"]
 [ext_resource type="Script" path="res://scripts/hurt_box.gd" id="11_d0h4u"]
+[ext_resource type="Texture2D" uid="uid://tvip2rxqh5lh" path="res://assets/ShipDeath-Spritesheet.png" id="12_dn53e"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_iick3"]
 radius = 78.0
@@ -200,6 +201,95 @@ animations = [{
 "speed": 20.0
 }]
 
+[sub_resource type="Gradient" id="Gradient_egt0d"]
+colors = PackedColorArray(1, 0, 0, 0.72549, 1, 0, 0, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oedtt"]
+atlas = ExtResource("12_dn53e")
+region = Rect2(0, 0, 320, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oqyjw"]
+atlas = ExtResource("12_dn53e")
+region = Rect2(320, 0, 320, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dudvc"]
+atlas = ExtResource("12_dn53e")
+region = Rect2(640, 0, 320, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7pfqe"]
+atlas = ExtResource("12_dn53e")
+region = Rect2(960, 0, 320, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_my7ls"]
+atlas = ExtResource("12_dn53e")
+region = Rect2(1280, 0, 320, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3vg6j"]
+atlas = ExtResource("12_dn53e")
+region = Rect2(1600, 0, 320, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wm3gs"]
+atlas = ExtResource("12_dn53e")
+region = Rect2(1920, 0, 320, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tv7sj"]
+atlas = ExtResource("12_dn53e")
+region = Rect2(2240, 0, 320, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3n647"]
+atlas = ExtResource("12_dn53e")
+region = Rect2(2560, 0, 320, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1fv4l"]
+atlas = ExtResource("12_dn53e")
+region = Rect2(2880, 0, 320, 320)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uo5x6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oedtt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oqyjw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dudvc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7pfqe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_my7ls")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3vg6j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wm3gs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tv7sj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3n647")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1fv4l")
+}],
+"loop": false,
+"name": &"death",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_l4aep")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_1xnqv"]
 radius = 83.0241
 
@@ -251,12 +341,22 @@ animation = &"shoot"
 [node name="ProjectileOrigin" type="Node2D" parent="ShipHull/Gun"]
 position = Vector2(127, 0)
 
-[node name="HullSprite" type="Sprite2D" parent="ShipHull"]
-texture_filter = 1
-texture = ExtResource("1_l4aep")
+[node name="Line2D" type="Line2D" parent="ShipHull/Gun"]
+position = Vector2(122, 0)
+scale = Vector2(6.00721, -0.904876)
+points = PackedVector2Array(0, 1, 103, 1)
+width = 5.0
+default_color = Color(1, 0, 0, 0.776471)
+gradient = SubResource("Gradient_egt0d")
+
+[node name="HullAnimatedSprite" type="AnimatedSprite2D" parent="ShipHull"]
+sprite_frames = SubResource("SpriteFrames_uo5x6")
+animation = &"death"
 
 [node name="HurtBox" type="Area2D" parent="ShipHull"]
 script = ExtResource("11_d0h4u")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ShipHull/HurtBox"]
 shape = SubResource("CircleShape2D_1xnqv")
+
+[connection signal="frame_changed" from="ShipHull/HullAnimatedSprite" to="ShipHull" method="_on_hull_animated_sprite_frame_changed"]
