@@ -27,6 +27,20 @@
 bg_color = Color(0.6, 0.6, 0.6, 0)
 draw_center = false
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8kqt2"]
+bg_color = Color(0.341176, 0, 0, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tk411"]
+bg_color = Color(1, 0, 0, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
 [sub_resource type="Environment" id="Environment_bktdd"]
 background_mode = 3
 glow_enabled = true
@@ -34,12 +48,6 @@ glow_intensity = 1.77
 glow_strength = 1.11
 glow_bloom = 0.21
 glow_blend_mode = 0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sw4t3"]
-bg_color = Color(0.341176, 0, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p83p6"]
-bg_color = Color(1, 0, 0, 1)
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_aff03")
@@ -1024,6 +1032,23 @@ texture = ExtResource("4_vtj06")
 
 [node name="healthbar" parent="CanvasLayer2" instance=ExtResource("7_g35vy")]
 
+[node name="BossHealth" type="ProgressBar" parent="CanvasLayer2"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -459.0
+offset_top = -508.0
+offset_right = 441.0
+offset_bottom = -458.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_8kqt2")
+theme_override_styles/fill = SubResource("StyleBoxFlat_tk411")
+max_value = 30.0
+value = 20.0
+
 [node name="Terrain" type="StaticBody2D" parent="." groups=["obstacle"]]
 show_behind_parent = true
 position = Vector2(0, -27)
@@ -1060,17 +1085,6 @@ environment = SubResource("Environment_bktdd")
 
 [node name="BossCore" parent="." node_paths=PackedStringArray("spawners") instance=ExtResource("19_mdid1")]
 spawners = [NodePath("../__ENEMIES__/Boss Spawners/BoidSpawner"), NodePath("../__ENEMIES__/Boss Spawners/BoidSpawner2"), NodePath("../__ENEMIES__/Boss Spawners/BoidSpawner3"), NodePath("../__ENEMIES__/Boss Spawners/BoidSpawner4")]
-
-[node name="BossHealth" type="ProgressBar" parent="BossCore"]
-visible = false
-offset_left = -1117.0
-offset_top = -1231.0
-offset_right = 951.0
-offset_bottom = -1103.0
-theme_override_styles/background = SubResource("StyleBoxFlat_sw4t3")
-theme_override_styles/fill = SubResource("StyleBoxFlat_p83p6")
-max_value = 30.0
-value = 20.0
 
 [connection signal="pressed" from="Ship/ShipHull/Camera2D/CanvasLayer/pause" to="." method="_on_pause_pressed"]
 

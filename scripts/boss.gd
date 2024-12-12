@@ -11,6 +11,7 @@ enum State {
 @export var spawn_rate:float = 1 #This many seconds between timed spawns.
 @export var spawners:Array[EnemySpawner]
 
+
 var boss_scaling = 1
 var state:State
 var health:int
