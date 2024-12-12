@@ -1059,6 +1059,7 @@ color = Color(0.602487, 0.338804, 0.61561, 1)
 environment = SubResource("Environment_bktdd")
 
 [node name="BossCore" parent="." node_paths=PackedStringArray("spawners") instance=ExtResource("19_mdid1")]
+max_health = 125
 spawners = [NodePath("../__ENEMIES__/Boss Spawners/BoidSpawner"), NodePath("../__ENEMIES__/Boss Spawners/BoidSpawner2"), NodePath("../__ENEMIES__/Boss Spawners/BoidSpawner3"), NodePath("../__ENEMIES__/Boss Spawners/BoidSpawner4")]
 
 [node name="BossHealth" type="ProgressBar" parent="BossCore"]
