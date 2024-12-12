@@ -19,11 +19,16 @@ func take_damage(_damage:int) -> void:
 	if health <= 0:
 		return
 	health -= _damage
+	flash_white()
 	if health <= 0:
 		health = 0
 		_start_death()
 	print("ouch, ship took ", _damage, " damage. Ship now has ", health, " health remaining")
 
+func flash_white() -> void:
+	animated_sprite_2d.modulate = Color(1.5,1.5,1.5,1)
+	await get_tree().create_timer(0.1).timeout
+	animated_sprite_2d.modulate = Color(1,1,1)
 
 func _start_death() -> void:
 	$Engine.set_process(false)

@@ -20,7 +20,7 @@ var rng_ : RandomNumberGenerator
 var _timer:Timer
 
 @onready var animation_tree:AnimationTree = $AnimationTree
-
+@onready var sprite:Sprite2D = $Base
 
 func _ready() -> void:
 	_timer = Timer.new()
@@ -82,8 +82,14 @@ func _deal_damage() -> void:
 
 func take_damage(_damage:int) -> void:
 	health -= _damage
+	flash_white()
 	if health <= 0:
 		destroy()
+
+func flash_white() -> void:
+	sprite.modulate = Color(10,10,10,10)
+	await get_tree().create_timer(0.1).timeout
+	sprite.modulate = Color(1,1,1)
 
 # Called by Hurtbox.gd
 func destroy() -> void:

@@ -26,7 +26,7 @@ var target_destination:Vector2
 var _state := State.IDLE
 
 @onready var animation_tree:AnimationTree = $AnimationTree
-
+@onready var sprite:Sprite2D = $Sprite2D
 
 func _ready() -> void:
 	animation_tree["parameters/conditions/exploding"] = false
@@ -82,9 +82,14 @@ func _manage_animation_tree_state() -> void:
 
 func take_damage(_damage:int) -> void:
 	health -= _damage
+	flash_white()
 	if health <= 0:
 		destroy()
 
+func flash_white() -> void:
+	sprite.modulate = Color(10,10,10,10)
+	await get_tree().create_timer(0.1).timeout
+	sprite.modulate = Color(1,1,1)
 
 func attach() -> void:
 	_state = State.ATTACHED
