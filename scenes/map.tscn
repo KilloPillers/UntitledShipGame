@@ -311,6 +311,7 @@ position = Vector2(3748, 5963)
 enemy_type = 2
 enemy_scene = ExtResource("6_qa33p")
 enemy_target = NodePath("../../../Ship/ShipHull")
+spawn_rate = 10.0
 spawn_cap = 3
 
 [node name="Mines" type="Node2D" parent="__ENEMIES__"]
