@@ -8,7 +8,7 @@
 radius = 5.0
 height = 34.0
 
-[node name="PlayerProjectile" type="Node2D"]
+[node name="PlayerProjectile" type="Node2D" groups=["player_projectiles"]]
 script = ExtResource("1_xg6f3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

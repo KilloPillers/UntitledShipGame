@@ -2,7 +2,7 @@ class_name PlayerProjectile
 extends Node2D
 
 @export var speed : float = 20
-@export var lifetime : float = 0.5
+@export var lifetime : float = 0.75
 @export var pierce : int = 1
 @export var damage : int = 1
 
