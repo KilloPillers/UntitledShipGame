@@ -60,7 +60,9 @@ states/flying/position = Vector2(358, 108)
 transitions = ["Start", "flying", SubResource("AnimationNodeStateMachineTransition_p8nvn")]
 
 [node name="LeechEnemy" type="CharacterBody2D"]
+scale = Vector2(3, 3)
 script = ExtResource("1_6by6i")
+damage_lifespan = 2.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 0)
