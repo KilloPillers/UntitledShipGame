@@ -71,7 +71,7 @@ func take_damage(_damage:int) -> void:
 	
 	flash_white()
 	if health <= 0:
-		destroy()
+		get_tree().change_scene_to_file("res://scenes/ending_cutscene.tscn")
 
 func flash_white() -> void:
 	sprite.modulate = Color(10,2,2,2) # red in this case

@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dm1mp11tty2oy"]
+
+[ext_resource type="VideoStream" path="res://assets/EndingCutscene.ogv" id="1_30uyx"]
+[ext_resource type="Script" path="res://scripts/ending_cutscene.gd" id="2_xjpa6"]
+
+[node name="EndingCutscene" type="Node2D"]
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+stream = ExtResource("1_30uyx")
+autoplay = true
+script = ExtResource("2_xjpa6")
+
+[connection signal="finished" from="VideoStreamPlayer" to="VideoStreamPlayer" method="_on_finished"]
