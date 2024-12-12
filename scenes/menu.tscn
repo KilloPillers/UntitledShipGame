@@ -153,6 +153,26 @@ offset_right = 40.0
 offset_bottom = 40.0
 stream = SubResource("VideoStreamTheora_srmn5")
 
+[node name="SkipLabel" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -946.0
+offset_top = 345.0
+offset_right = 286.0
+offset_bottom = 522.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_biyqw")
+theme_override_font_sizes/font_size = 28
+text = "Skip (Space)"
+vertical_alignment = 2
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_itw4k")
 
