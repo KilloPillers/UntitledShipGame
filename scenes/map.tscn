@@ -62,7 +62,7 @@ enemy_scene = ExtResource("3_5n6tv")
 enemy_target = NodePath("../../../Ship/ShipHull")
 spawn_rate = 999.0
 spawn_amount = 1
-spawn_cap = 0
+spawn_cap = 10
 despawn_distance = 2000.0
 is_boss_spawner = true
 
@@ -72,6 +72,7 @@ enemy_scene = ExtResource("3_5n6tv")
 enemy_target = NodePath("../../../Ship/ShipHull")
 spawn_rate = 999.0
 spawn_amount = 1
+spawn_cap = 10
 despawn_distance = 2000.0
 
 [node name="BoidSpawner3" parent="__ENEMIES__/Boss Spawners" node_paths=PackedStringArray("enemy_target") instance=ExtResource("2_84ngi")]
@@ -80,6 +81,7 @@ enemy_scene = ExtResource("3_5n6tv")
 enemy_target = NodePath("../../../Ship/ShipHull")
 spawn_rate = 12.0
 spawn_amount = 1
+spawn_cap = 10
 despawn_distance = 2000.0
 
 [node name="BoidSpawner4" parent="__ENEMIES__/Boss Spawners" node_paths=PackedStringArray("enemy_target") instance=ExtResource("2_84ngi")]
@@ -88,6 +90,7 @@ enemy_scene = ExtResource("3_5n6tv")
 enemy_target = NodePath("../../../Ship/ShipHull")
 spawn_rate = 12.0
 spawn_amount = 1
+spawn_cap = 10
 despawn_distance = 2000.0
 
 [node name="Boid Enemies" type="Node2D" parent="__ENEMIES__"]
@@ -166,6 +169,7 @@ enemy_scene = ExtResource("5_pmmu7")
 enemy_target = NodePath("../../../Ship/ShipHull")
 spawn_rate = 10.0
 spawn_amount = 2
+spawn_cap = 5
 
 [node name="KamikazeSpawner" parent="__ENEMIES__/Kamakaze Enemies" node_paths=PackedStringArray("enemy_target") instance=ExtResource("5_1cle1")]
 position = Vector2(1707, -2561)

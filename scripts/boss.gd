@@ -64,7 +64,7 @@ func take_damage(_damage:int) -> void:
 	
 	_timer.stop()
 	var rng_factor = rng_.randi_range(0, 10)
-	if (rng_factor == 0):
+	if (rng_factor > 0):
 		spawn()
 	
 	if (health > max_health/2):

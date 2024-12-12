@@ -66,6 +66,10 @@ func _on_spawn() -> void:
 
 # used by the boss to manually spawn enemies on spawners
 func force_spawn(power_scale:float) -> void:
+	var number_of_spawned_enemies = len($EnemyFolder.get_children())
+	if number_of_spawned_enemies > spawn_cap:
+		return
+		
 	for i in range(spawn_amount):
 		if enemy_type == EnemyType.BOID:
 			spawn_boid()
