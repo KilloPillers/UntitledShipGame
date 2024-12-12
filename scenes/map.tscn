@@ -21,7 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://vohrw4dqjkcm" path="res://scenes/bullet_power_up.tscn" id="13_b1enx"]
 [ext_resource type="PackedScene" uid="uid://cfkwr2bc1au7k" path="res://scenes/pause_menu.tscn" id="13_ohou2"]
 [ext_resource type="PackedScene" uid="uid://dymmsld3v8lfa" path="res://scenes/hull_power_up.tscn" id="14_ax6iu"]
-[ext_resource type="PackedScene" path="res://scenes/boss_core.tscn" id="19_mdid1"]
+[ext_resource type="PackedScene" uid="uid://5t0m8un3nhpn" path="res://scenes/boss_core.tscn" id="19_mdid1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cpgav"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -935,7 +935,7 @@ fadeToBlack = NodePath("../../CanvasLayer/ColorRect")
 
 [node name="CollisionShape2D" parent="Ship/ShipHull" index="1" groups=["obstacle"]]
 
-[node name="Area2D" parent="Ship/ShipHull/Shield" index="1" groups=["obstacle"]]
+[node name="Area2D" parent="Ship/ShipHull/Shield" index="0" groups=["obstacle"]]
 visible = false
 
 [node name="HurtBox" parent="Ship/ShipHull" index="6" groups=["obstacle"]]
