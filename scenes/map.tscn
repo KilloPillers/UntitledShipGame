@@ -164,18 +164,26 @@ position = Vector2(-1092, -644)
 enemy_type = 1
 enemy_scene = ExtResource("5_pmmu7")
 enemy_target = NodePath("../../../Ship/ShipHull")
+spawn_rate = 10.0
+spawn_amount = 2
 
 [node name="KamikazeSpawner" parent="__ENEMIES__/Kamakaze Enemies" node_paths=PackedStringArray("enemy_target") instance=ExtResource("5_1cle1")]
 position = Vector2(1707, -2561)
 enemy_type = 1
 enemy_scene = ExtResource("5_pmmu7")
 enemy_target = NodePath("../../../Ship/ShipHull")
+spawn_rate = 10.0
+spawn_amount = 2
+spawn_cap = 5
 
 [node name="KamikazeSpawner3" parent="__ENEMIES__/Kamakaze Enemies" node_paths=PackedStringArray("enemy_target") instance=ExtResource("5_1cle1")]
 position = Vector2(-1408, 4840)
 enemy_type = 1
 enemy_scene = ExtResource("5_pmmu7")
 enemy_target = NodePath("../../../Ship/ShipHull")
+spawn_rate = 10.0
+spawn_amount = 2
+spawn_cap = 5
 aggro_distance = 1500
 
 [node name="KamikazeSpawner4" parent="__ENEMIES__/Kamakaze Enemies" node_paths=PackedStringArray("enemy_target") instance=ExtResource("5_1cle1")]
@@ -183,6 +191,9 @@ position = Vector2(4136, 3864)
 enemy_type = 1
 enemy_scene = ExtResource("5_pmmu7")
 enemy_target = NodePath("../../../Ship/ShipHull")
+spawn_rate = 10.0
+spawn_amount = 2
+spawn_cap = 5
 
 [node name="KamikazeEnemy" parent="__ENEMIES__/Kamakaze Enemies" instance=ExtResource("5_pmmu7")]
 position = Vector2(2109, -243)
@@ -323,7 +334,7 @@ position = Vector2(-2631, -5134)
 
 [node name="Turret2" parent="__ENEMIES__/Turrets" instance=ExtResource("5_ygccv")]
 z_index = 1
-position = Vector2(-2184, -4448)
+position = Vector2(2315, -1248)
 rotation = 3.42783
 
 [node name="Turret3" parent="__ENEMIES__/Turrets" instance=ExtResource("5_ygccv")]
