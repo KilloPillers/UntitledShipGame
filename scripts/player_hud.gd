@@ -19,4 +19,4 @@ func _process(delta: float) -> void:
 	hp = %Ship/ShipHull.health
 	progress_bar.value = hp
 	boss_health.value = boss_core.health
-	print(boss_core.health)
+	#print(boss_core.health)
