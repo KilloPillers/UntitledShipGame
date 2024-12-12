@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://c2a6ielbm0t3c"]
+[gd_scene load_steps=49 format=3 uid="uid://c2a6ielbm0t3c"]
 
 [ext_resource type="Script" path="res://scripts/ship_hull.gd" id="1_k84c6"]
 [ext_resource type="Texture2D" uid="uid://cdg4c33l6tgfh" path="res://assets/ShipLoFi.png" id="1_l4aep"]
@@ -9,7 +9,7 @@
 [ext_resource type="Script" path="res://scripts/shield.gd" id="3_yun3w"]
 [ext_resource type="PackedScene" uid="uid://bvwt3ydatqhqb" path="res://scenes/player_projectile.tscn" id="4_di2ho"]
 [ext_resource type="Texture2D" uid="uid://dlswrju7raxvg" path="res://assets/GunShortened-Spritesheet.png" id="4_dpooq"]
-[ext_resource type="Texture2D" uid="uid://vp0h4s450acf" path="res://assets/ShieldOn-Spritesheet.png" id="4_sjmil"]
+[ext_resource type="Texture2D" uid="uid://xroy6lsj1iwc" path="res://assets/ShieldNew-Spritesheet.png" id="7_j0k7w"]
 [ext_resource type="Script" path="res://scripts/shield_hurtbox.gd" id="7_mqouf"]
 [ext_resource type="Script" path="res://scripts/hurt_box.gd" id="11_d0h4u"]
 [ext_resource type="Texture2D" uid="uid://tvip2rxqh5lh" path="res://assets/ShipDeath-Spritesheet.png" id="12_dn53e"]
@@ -83,61 +83,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_8bvq4")
-}],
-"loop": true,
-"name": &"on",
-"speed": 10.0
-}]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0uknn"]
-atlas = ExtResource("4_sjmil")
-region = Rect2(0, 0, 160, 160)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_gm55g"]
-atlas = ExtResource("4_sjmil")
-region = Rect2(160, 0, 160, 160)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_l8fi2"]
-atlas = ExtResource("4_sjmil")
-region = Rect2(320, 0, 160, 160)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_k2oyk"]
-atlas = ExtResource("4_sjmil")
-region = Rect2(480, 0, 160, 160)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_b87pw"]
-atlas = ExtResource("4_sjmil")
-region = Rect2(640, 0, 160, 160)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_k7wgc"]
-atlas = ExtResource("4_sjmil")
-region = Rect2(800, 0, 160, 160)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_ijd7v"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0uknn")
-}],
-"loop": true,
-"name": &"off",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_gm55g")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_l8fi2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_k2oyk")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_b87pw")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_k7wgc")
 }],
 "loop": true,
 "name": &"on",
@@ -416,14 +361,6 @@ frame_progress = 0.277436
 rotation = 3.14159
 script = ExtResource("3_yun3w")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="ShipHull/Shield"]
-visible = false
-texture_filter = 1
-position = Vector2(90, 0)
-sprite_frames = SubResource("SpriteFrames_ijd7v")
-animation = &"off"
-frame_progress = 0.998202
-
 [node name="Area2D" type="Area2D" parent="ShipHull/Shield"]
 script = ExtResource("7_mqouf")
 
@@ -440,7 +377,7 @@ libraries = {
 
 [node name="Sprite2D" type="Sprite2D" parent="ShipHull/Shield"]
 position = Vector2(90, 0.000229537)
-texture = ExtResource("4_sjmil")
+texture = ExtResource("7_j0k7w")
 hframes = 6
 frame = 1
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dymmsld3v8lfa"]
 
-[ext_resource type="Texture2D" uid="uid://bbgn2uxa6qr4a" path="res://assets/traingle.png" id="1_x1slh"]
 [ext_resource type="Script" path="res://scripts/hull_power_up.gd" id="1_ysv81"]
+[ext_resource type="Texture2D" uid="uid://uddpxjo2xrvh" path="res://assets/HullUpgrade.png" id="2_jo0ic"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qc4qv"]
 size = Vector2(32, 33)
@@ -11,7 +11,7 @@ collision_layer = 8
 script = ExtResource("1_ysv81")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_x1slh")
+texture = ExtResource("2_jo0ic")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.5)

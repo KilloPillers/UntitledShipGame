@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://vohrw4dqjkcm"]
 
 [ext_resource type="Script" path="res://scripts/bullet_power_up.gd" id="1_4vcmt"]
-[ext_resource type="Texture2D" uid="uid://bbgn2uxa6qr4a" path="res://assets/traingle.png" id="2_plp1a"]
+[ext_resource type="Texture2D" uid="uid://dbd3y4pkddx4u" path="res://assets/GunUpgrade.png" id="2_qq8kf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eei4j"]
 size = Vector2(31, 32)
@@ -15,4 +15,4 @@ position = Vector2(0.5, -1)
 shape = SubResource("RectangleShape2D_eei4j")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_plp1a")
+texture = ExtResource("2_qq8kf")
