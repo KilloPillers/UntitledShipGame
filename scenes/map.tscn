@@ -279,30 +279,39 @@ position = Vector2(-1383, 1696)
 enemy_type = 2
 enemy_scene = ExtResource("6_qa33p")
 enemy_target = NodePath("../../../Ship/ShipHull")
+spawn_rate = 10.0
+spawn_cap = 3
 
 [node name="LeechSpawner2" parent="__ENEMIES__/Leech Enemies" node_paths=PackedStringArray("enemy_target") instance=ExtResource("6_sjk61")]
 position = Vector2(-352, 5897)
 enemy_type = 2
 enemy_scene = ExtResource("6_qa33p")
 enemy_target = NodePath("../../../Ship/ShipHull")
+spawn_rate = 10.0
+spawn_cap = 3
 
 [node name="LeechSpawner3" parent="__ENEMIES__/Leech Enemies" node_paths=PackedStringArray("enemy_target") instance=ExtResource("6_sjk61")]
 position = Vector2(-2444, -269)
 enemy_type = 2
 enemy_scene = ExtResource("6_qa33p")
 enemy_target = NodePath("../../../Ship/ShipHull")
+spawn_rate = 10.0
+spawn_cap = 3
 
 [node name="LeechSpawner4" parent="__ENEMIES__/Leech Enemies" node_paths=PackedStringArray("enemy_target") instance=ExtResource("6_sjk61")]
 position = Vector2(-1917, 2526)
 enemy_type = 2
 enemy_scene = ExtResource("6_qa33p")
 enemy_target = NodePath("../../../Ship/ShipHull")
+spawn_rate = 10.0
+spawn_cap = 3
 
 [node name="LeechSpawner5" parent="__ENEMIES__/Leech Enemies" node_paths=PackedStringArray("enemy_target") instance=ExtResource("6_sjk61")]
 position = Vector2(3748, 5963)
 enemy_type = 2
 enemy_scene = ExtResource("6_qa33p")
 enemy_target = NodePath("../../../Ship/ShipHull")
+spawn_cap = 3
 
 [node name="Mines" type="Node2D" parent="__ENEMIES__"]
 z_index = 1

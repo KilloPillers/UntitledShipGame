@@ -15,7 +15,7 @@ enum State {
 @export var aggro_distance:float = 800 #TODO adjust this for game feel
 @export var attach_distance:float = 50.0 
 @export var damage_tick_rate:float = 1 #TODO adjust this for game feel
-@export var damage_lifespawn:float = 5 #TODO bandaid, how many times the leech hits before dying.
+@export var damage_lifespan:float = 3 #TODO bandaid, how many times the leech hits before dying.
 
 var turn_radius_factor:float = 100
 var direction:Vector2
@@ -102,7 +102,7 @@ func _deal_damage() -> void:
 		
 		#TEMPORARY
 		_hits_dealt += 1
-		if (_hits_dealt >= 5):
+		if (_hits_dealt >= damage_lifespan):
 			destroy()
 
 
