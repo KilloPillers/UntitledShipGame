@@ -11,7 +11,7 @@ enum State {
 @export var health:int = 2
 @export var speed:float = 300.0
 @export var aggro_distance:float = 800 #TODO find a good value for this
-@export var explosion_damage:float = 10 
+@export var explosion_damage:float = 2 
 @export var detonation_delay:float = 2 #TODO find a good value for this
 
 var turn_radius_factor:float = 0.1

@@ -1,13 +1,13 @@
 [gd_scene load_steps=27 format=3 uid="uid://fh32xvaj4ve"]
 
 [ext_resource type="Script" path="res://scripts/map.gd" id="1_aff03"]
-[ext_resource type="Texture2D" uid="uid://d4jbhmgkqh6ib" path="res://assets/KeybindsEngine.png" id="2_1rxuy"]
+[ext_resource type="Texture2D" uid="uid://s7413bleih65" path="res://assets/KeybindsEngine.png" id="2_1rxuy"]
 [ext_resource type="PackedScene" uid="uid://dht8l0kuy2ec" path="res://scenes/boid_spawner.tscn" id="2_84ngi"]
 [ext_resource type="PackedScene" uid="uid://daqi0gluhdudh" path="res://scenes/boid.tscn" id="3_5n6tv"]
-[ext_resource type="Texture2D" uid="uid://cojc52yoppi0s" path="res://assets/KeybindsGun.png" id="3_j5hck"]
+[ext_resource type="Texture2D" uid="uid://dqckw6k2wr5b8" path="res://assets/KeybindsGun.png" id="3_j5hck"]
 [ext_resource type="PackedScene" uid="uid://c4tc1f64stx57" path="res://scenes/spike_wall.tscn" id="3_s8r8r"]
 [ext_resource type="PackedScene" uid="uid://c2a6ielbm0t3c" path="res://scenes/ship.tscn" id="4_1753m"]
-[ext_resource type="Texture2D" uid="uid://c8w2yfbp6a5xk" path="res://assets/KeybindsShield.png" id="4_vtj06"]
+[ext_resource type="Texture2D" uid="uid://bts6lghevv65m" path="res://assets/KeybindsShield.png" id="4_vtj06"]
 [ext_resource type="PackedScene" uid="uid://iwcpjueq7gqb" path="res://scenes/kamikaze_spawner.tscn" id="5_1cle1"]
 [ext_resource type="PackedScene" uid="uid://dgs74em4x64uf" path="res://scenes/collapsible_wall.tscn" id="5_m6e0q"]
 [ext_resource type="PackedScene" uid="uid://biff6kvg87h5w" path="res://scenes/mine.tscn" id="5_oy8ho"]
@@ -70,7 +70,7 @@ is_boss_spawner = true
 position = Vector2(2620, 5271)
 enemy_scene = ExtResource("3_5n6tv")
 enemy_target = NodePath("../../../Ship/ShipHull")
-spawn_rate = 12.0
+spawn_rate = 999.0
 spawn_amount = 1
 despawn_distance = 2000.0
 
@@ -138,7 +138,6 @@ position = Vector2(-2165, 1793)
 enemy_scene = ExtResource("3_5n6tv")
 enemy_target = NodePath("../../../Ship/ShipHull")
 spawn_rate = 10.0
-spawn_amount = 10
 despawn_distance = 2000.0
 
 [node name="BoidSpawner11" parent="__ENEMIES__/Boid Enemies" node_paths=PackedStringArray("enemy_target") instance=ExtResource("2_84ngi")]
@@ -146,7 +145,7 @@ position = Vector2(-962, 5011)
 enemy_scene = ExtResource("3_5n6tv")
 enemy_target = NodePath("../../../Ship/ShipHull")
 spawn_rate = 10.0
-spawn_amount = 10
+spawn_amount = 1
 despawn_distance = 2000.0
 
 [node name="BoidSpawner12" parent="__ENEMIES__/Boid Enemies" node_paths=PackedStringArray("enemy_target") instance=ExtResource("2_84ngi")]
@@ -154,7 +153,7 @@ position = Vector2(4399, 5316)
 enemy_scene = ExtResource("3_5n6tv")
 enemy_target = NodePath("../../../Ship/ShipHull")
 spawn_rate = 10.0
-spawn_amount = 10
+spawn_amount = 1
 despawn_distance = 2000.0
 
 [node name="Kamakaze Enemies" type="Node2D" parent="__ENEMIES__"]
@@ -978,11 +977,11 @@ rotation_speed_buff = 1.0
 position = Vector2(-1749, -2725)
 
 [node name="Bullet Power Up" parent="__POWERUPS__" instance=ExtResource("13_b1enx")]
-position = Vector2(2195, -4171)
+position = Vector2(2200, -4155)
 
 [node name="Ship" parent="." instance=ExtResource("4_1753m")]
 unique_name_in_owner = true
-position = Vector2(-2419, -6393)
+position = Vector2(-2393, -6341)
 
 [node name="ShipHull" parent="Ship" index="0" node_paths=PackedStringArray("fadeToBlack") groups=["obstacle"]]
 fadeToBlack = NodePath("../../CanvasLayer/ColorRect")
@@ -1046,7 +1045,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_8kqt2")
 theme_override_styles/fill = SubResource("StyleBoxFlat_tk411")
-max_value = 30.0
+max_value = 400.0
 value = 20.0
 
 [node name="Terrain" type="StaticBody2D" parent="." groups=["obstacle"]]
@@ -1084,7 +1083,7 @@ color = Color(0.602487, 0.338804, 0.61561, 1)
 environment = SubResource("Environment_bktdd")
 
 [node name="BossCore" parent="." node_paths=PackedStringArray("spawners") instance=ExtResource("19_mdid1")]
-max_health = 125
+max_health = 300
 spawners = [NodePath("../__ENEMIES__/Boss Spawners/BoidSpawner"), NodePath("../__ENEMIES__/Boss Spawners/BoidSpawner2"), NodePath("../__ENEMIES__/Boss Spawners/BoidSpawner3"), NodePath("../__ENEMIES__/Boss Spawners/BoidSpawner4")]
 
 [connection signal="pressed" from="Ship/ShipHull/Camera2D/CanvasLayer/pause" to="." method="_on_pause_pressed"]

@@ -16,10 +16,11 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	var direction_vector : Vector2 = Vector2(cos(rotation), sin(rotation))
 	position += direction_vector * speed
 	time_left_ -= delta
 	if (time_left_ <= 0):
 		queue_free()
+	
 	

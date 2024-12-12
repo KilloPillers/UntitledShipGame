@@ -1,7 +1,7 @@
 class_name bulletPowerUp
 extends Area2D
 
-@export var damage_buff: int = 2
+@export var damage_buff: int = 0.5
 @export var pierce_buff: int = 2
 @export var bullets_per_fire_buff: int = 5
 
