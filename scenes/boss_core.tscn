@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://5t0m8un3nhpn"]
+[gd_scene load_steps=8 format=3 uid="uid://5t0m8un3nhpn"]
 
 [ext_resource type="Script" path="res://scripts/boss.gd" id="1_0be16"]
 [ext_resource type="Texture2D" uid="uid://c4ep3g8w5kgix" path="res://assets/CoreHurt.png" id="1_q768l"]
@@ -27,6 +27,8 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_4pcaj"]
 radius = 24.0208
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_64dpf"]
+
 [node name="BossCore" type="Node2D"]
 position = Vector2(1776, 5838)
 script = ExtResource("1_0be16")
@@ -44,3 +46,12 @@ script = ExtResource("4_0r7gn")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 scale = Vector2(1.77727, 1.77727)
 shape = SubResource("CircleShape2D_4pcaj")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+disable_mode = 1
+collision_layer = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 200)
+scale = Vector2(120, 100)
+shape = SubResource("CircleShape2D_64dpf")

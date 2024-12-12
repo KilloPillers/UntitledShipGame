@@ -1,13 +1,13 @@
 [gd_scene load_steps=27 format=3 uid="uid://fh32xvaj4ve"]
 
 [ext_resource type="Script" path="res://scripts/map.gd" id="1_aff03"]
-[ext_resource type="Texture2D" uid="uid://s7413bleih65" path="res://assets/KeybindsEngine.png" id="2_1rxuy"]
+[ext_resource type="Texture2D" uid="uid://d4jbhmgkqh6ib" path="res://assets/KeybindsEngine.png" id="2_1rxuy"]
 [ext_resource type="PackedScene" uid="uid://dht8l0kuy2ec" path="res://scenes/boid_spawner.tscn" id="2_84ngi"]
 [ext_resource type="PackedScene" uid="uid://daqi0gluhdudh" path="res://scenes/boid.tscn" id="3_5n6tv"]
-[ext_resource type="Texture2D" uid="uid://dqckw6k2wr5b8" path="res://assets/KeybindsGun.png" id="3_j5hck"]
+[ext_resource type="Texture2D" uid="uid://cojc52yoppi0s" path="res://assets/KeybindsGun.png" id="3_j5hck"]
 [ext_resource type="PackedScene" uid="uid://c4tc1f64stx57" path="res://scenes/spike_wall.tscn" id="3_s8r8r"]
 [ext_resource type="PackedScene" uid="uid://c2a6ielbm0t3c" path="res://scenes/ship.tscn" id="4_1753m"]
-[ext_resource type="Texture2D" uid="uid://bts6lghevv65m" path="res://assets/KeybindsShield.png" id="4_vtj06"]
+[ext_resource type="Texture2D" uid="uid://c8w2yfbp6a5xk" path="res://assets/KeybindsShield.png" id="4_vtj06"]
 [ext_resource type="PackedScene" uid="uid://iwcpjueq7gqb" path="res://scenes/kamikaze_spawner.tscn" id="5_1cle1"]
 [ext_resource type="PackedScene" uid="uid://dgs74em4x64uf" path="res://scenes/collapsible_wall.tscn" id="5_m6e0q"]
 [ext_resource type="PackedScene" uid="uid://biff6kvg87h5w" path="res://scenes/mine.tscn" id="5_oy8ho"]
@@ -982,7 +982,7 @@ position = Vector2(2195, -4171)
 
 [node name="Ship" parent="." instance=ExtResource("4_1753m")]
 unique_name_in_owner = true
-position = Vector2(1218, 2323)
+position = Vector2(-2419, -6393)
 
 [node name="ShipHull" parent="Ship" index="0" node_paths=PackedStringArray("fadeToBlack") groups=["obstacle"]]
 fadeToBlack = NodePath("../../CanvasLayer/ColorRect")
