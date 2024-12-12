@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://daqi0gluhdudh"]
+[gd_scene load_steps=13 format=3 uid="uid://daqi0gluhdudh"]
 
 [ext_resource type="Script" path="res://scripts/boid.gd" id="1_uj5n2"]
 [ext_resource type="PackedScene" uid="uid://cmwi7r1sb76b" path="res://scenes/boid_projectile.tscn" id="2_gg2vn"]
@@ -40,6 +40,12 @@ radius = 120.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_p7v0g"]
 radius = 24.0208
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sge20"]
+bg_color = Color(0.339735, 6.22692e-07, 1.08294e-07, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m2mll"]
+bg_color = Color(1, 0, 0, 1)
 
 [node name="Boid" type="CharacterBody2D" groups=["boid"]]
 rotation = 3.13759
@@ -106,6 +112,18 @@ script = ExtResource("4_85d7c")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 scale = Vector2(1.77727, 1.77727)
 shape = SubResource("CircleShape2D_p7v0g")
+
+[node name="EnemyHealth" type="ProgressBar" parent="."]
+offset_left = -48.0
+offset_top = -27.0
+offset_right = 10.0
+offset_bottom = -22.0
+rotation = 1.5708
+theme_override_styles/background = SubResource("StyleBoxFlat_sge20")
+theme_override_styles/fill = SubResource("StyleBoxFlat_m2mll")
+max_value = 1.0
+value = 0.5
+show_percentage = false
 
 [connection signal="area_entered" from="Vision" to="." method="_on_vision_area_entered"]
 [connection signal="area_exited" from="Vision" to="." method="_on_vision_area_exited"]

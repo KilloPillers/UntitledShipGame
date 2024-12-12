@@ -62,6 +62,7 @@ func _ready() -> void:
 	interval_timer.start()
 
 func _physics_process(_delta: float) -> void:
+	$EnemyHealth.value = health
 	var flocking_force = Vector2.ZERO
 	if boids_i_see:
 		flocking_force = calculate_flocking_force()

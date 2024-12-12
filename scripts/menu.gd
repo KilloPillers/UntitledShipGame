@@ -6,7 +6,8 @@ extends Control
 @onready var title_text = $Label
 
 func _on_exit_pressed() -> void:
-	pass
+	get_tree().quit()
+	#pass
 
 func _on_play_pressed() -> void:
 	play_button.hide()

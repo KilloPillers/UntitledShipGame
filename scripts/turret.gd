@@ -33,6 +33,7 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
+	$TurretHealth.value = health
 	if %Ship != null:
 		target_position = %Ship/ShipHull.global_position
 	else:

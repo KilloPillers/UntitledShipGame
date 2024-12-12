@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://c7o8jqk007ob0"]
+[gd_scene load_steps=19 format=3 uid="uid://c7o8jqk007ob0"]
 
 [ext_resource type="Script" path="res://scripts/turret.gd" id="1_a3i3x"]
 [ext_resource type="Script" path="res://scripts/hurt_box.gd" id="2_gprqn"]
@@ -78,6 +78,12 @@ transitions = ["Start", "Firing", SubResource("AnimationNodeStateMachineTransiti
 [sub_resource type="Gradient" id="Gradient_4e7jg"]
 colors = PackedColorArray(1, 0, 0, 0.72549, 1, 0, 0, 0)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8rmqf"]
+bg_color = Color(0.339735, 6.22692e-07, 1.08294e-07, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6ocya"]
+bg_color = Color(1, 0, 0, 1)
+
 [node name="Turret" type="CharacterBody2D"]
 script = ExtResource("1_a3i3x")
 projectile = ExtResource("2_jjoty")
@@ -120,3 +126,15 @@ points = PackedVector2Array(0, 1, 103, 1)
 width = 5.0
 default_color = Color(1, 0, 0, 0.776471)
 gradient = SubResource("Gradient_4e7jg")
+
+[node name="TurretHealth" type="ProgressBar" parent="."]
+offset_left = -52.0
+offset_top = -27.0
+offset_right = 6.0
+offset_bottom = -22.0
+rotation = 1.5708
+theme_override_styles/background = SubResource("StyleBoxFlat_8rmqf")
+theme_override_styles/fill = SubResource("StyleBoxFlat_6ocya")
+max_value = 5.0
+value = 2.0
+show_percentage = false
