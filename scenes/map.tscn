@@ -62,6 +62,7 @@ enemy_scene = ExtResource("3_5n6tv")
 enemy_target = NodePath("../../../Ship/ShipHull")
 spawn_rate = 999.0
 spawn_amount = 1
+spawn_cap = 30
 despawn_distance = 2000.0
 is_boss_spawner = true
 
@@ -71,6 +72,7 @@ enemy_scene = ExtResource("3_5n6tv")
 enemy_target = NodePath("../../../Ship/ShipHull")
 spawn_rate = 999.0
 spawn_amount = 1
+spawn_cap = 30
 despawn_distance = 2000.0
 
 [node name="BoidSpawner3" parent="__ENEMIES__/Boss Spawners" node_paths=PackedStringArray("enemy_target") instance=ExtResource("2_84ngi")]
@@ -79,6 +81,7 @@ enemy_scene = ExtResource("3_5n6tv")
 enemy_target = NodePath("../../../Ship/ShipHull")
 spawn_rate = 12.0
 spawn_amount = 1
+spawn_cap = 30
 despawn_distance = 2000.0
 
 [node name="BoidSpawner4" parent="__ENEMIES__/Boss Spawners" node_paths=PackedStringArray("enemy_target") instance=ExtResource("2_84ngi")]
@@ -87,6 +90,7 @@ enemy_scene = ExtResource("3_5n6tv")
 enemy_target = NodePath("../../../Ship/ShipHull")
 spawn_rate = 12.0
 spawn_amount = 1
+spawn_cap = 30
 despawn_distance = 2000.0
 
 [node name="Boid Enemies" type="Node2D" parent="__ENEMIES__"]
@@ -185,6 +189,28 @@ spawn_rate = 10.0
 spawn_amount = 2
 spawn_cap = 5
 aggro_distance = 1500
+
+[node name="KamikazeSpawner6" parent="__ENEMIES__/Kamakaze Enemies" node_paths=PackedStringArray("enemy_target") instance=ExtResource("5_1cle1")]
+position = Vector2(452, 6277)
+enemy_type = 1
+enemy_scene = ExtResource("5_pmmu7")
+enemy_target = NodePath("../../../Ship/ShipHull")
+spawn_rate = 7.0
+spawn_amount = 2
+spawn_cap = 5
+despawn_distance = 1000.0
+aggro_distance = 1300
+
+[node name="KamikazeSpawner5" parent="__ENEMIES__/Kamakaze Enemies" node_paths=PackedStringArray("enemy_target") instance=ExtResource("5_1cle1")]
+position = Vector2(3122, 6089)
+enemy_type = 1
+enemy_scene = ExtResource("5_pmmu7")
+enemy_target = NodePath("../../../Ship/ShipHull")
+spawn_rate = 7.0
+spawn_amount = 2
+spawn_cap = 5
+despawn_distance = 1000.0
+aggro_distance = 1300
 
 [node name="KamikazeSpawner4" parent="__ENEMIES__/Kamakaze Enemies" node_paths=PackedStringArray("enemy_target") instance=ExtResource("5_1cle1")]
 position = Vector2(4136, 3864)
