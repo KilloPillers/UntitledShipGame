@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://5t0m8un3nhpn"]
+
+[ext_resource type="Texture2D" uid="uid://16124cxi0ah4" path="res://assets/CoreHurt.png" id="1_q768l"]
+[ext_resource type="Texture2D" uid="uid://bh16waulup5t5" path="res://assets/Core.png" id="2_k7e5t"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lyads"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_q768l")
+}],
+"loop": true,
+"name": &"damaged",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_k7e5t")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="BossCore" type="Node2D"]
+position = Vector2(1776, 5838)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_lyads")
