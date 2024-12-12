@@ -5,11 +5,10 @@ extends Area2D
 @export var speed_buff: float = 10
 @export var rotation_speed_buff: float = 3.0
 
-
-@onready var ship_hull: ShipHull = $"../Ship/ShipHull"
-@onready var engine: Node2D = $"../Ship/ShipHull/Engine"
-@onready var shield: Node2D = $"../Ship/ShipHull/Shield"
-@onready var gun: Node2D = $"../Ship/ShipHull/Gun"
+@onready var ship_hull: ShipHull = %Ship/ShipHull
+@onready var engine: Node2D = %Ship/ShipHull/Engine
+@onready var shield: Node2D = %Ship/ShipHull/Shield
+@onready var gun: Node2D = %Ship/ShipHull/Gun
 
 func _ready() -> void:
 	# CONNECT THE SIGNAL
