@@ -62,7 +62,6 @@ enemy_scene = ExtResource("3_5n6tv")
 enemy_target = NodePath("../../../Ship/ShipHull")
 spawn_rate = 999.0
 spawn_amount = 1
-spawn_cap = 10
 despawn_distance = 2000.0
 is_boss_spawner = true
 
@@ -72,7 +71,6 @@ enemy_scene = ExtResource("3_5n6tv")
 enemy_target = NodePath("../../../Ship/ShipHull")
 spawn_rate = 999.0
 spawn_amount = 1
-spawn_cap = 10
 despawn_distance = 2000.0
 
 [node name="BoidSpawner3" parent="__ENEMIES__/Boss Spawners" node_paths=PackedStringArray("enemy_target") instance=ExtResource("2_84ngi")]
@@ -81,7 +79,6 @@ enemy_scene = ExtResource("3_5n6tv")
 enemy_target = NodePath("../../../Ship/ShipHull")
 spawn_rate = 12.0
 spawn_amount = 1
-spawn_cap = 10
 despawn_distance = 2000.0
 
 [node name="BoidSpawner4" parent="__ENEMIES__/Boss Spawners" node_paths=PackedStringArray("enemy_target") instance=ExtResource("2_84ngi")]
@@ -90,7 +87,6 @@ enemy_scene = ExtResource("3_5n6tv")
 enemy_target = NodePath("../../../Ship/ShipHull")
 spawn_rate = 12.0
 spawn_amount = 1
-spawn_cap = 10
 despawn_distance = 2000.0
 
 [node name="Boid Enemies" type="Node2D" parent="__ENEMIES__"]
@@ -937,7 +933,7 @@ position = Vector2(2200, -4155)
 
 [node name="Ship" parent="." instance=ExtResource("4_1753m")]
 unique_name_in_owner = true
-position = Vector2(1517, 3061)
+position = Vector2(-2413, -6359)
 
 [node name="ShipHull" parent="Ship" index="0" node_paths=PackedStringArray("fadeToBlack") groups=["obstacle"]]
 fadeToBlack = NodePath("../../CanvasLayer/ColorRect")
