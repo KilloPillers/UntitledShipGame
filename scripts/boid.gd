@@ -73,7 +73,7 @@ func _physics_process(_delta: float) -> void:
 	var random_jitter = calculate_random_jitter() if not is_targeting else Vector2.ZERO
 	
 	# Combine forces with weights
-	velocity += flocking_force * 0.1 + wall_avoidance_force * 2.5 + targeting_force * 1.0 + random_jitter
+	velocity += flocking_force * 0.3 + wall_avoidance_force * 150.0 + targeting_force * 1.0 + random_jitter
 	
 	velocity = velocity.normalized() * speed
 	move_and_slide()
