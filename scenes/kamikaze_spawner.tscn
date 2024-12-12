@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://iwcpjueq7gqb"]
+
+[ext_resource type="Script" path="res://scripts/enemy_spawner.gd" id="1_flhnp"]
+
+[node name="KamikazeSpawner" type="Node2D"]
+script = ExtResource("1_flhnp")
+
+[node name="EnemyFolder" type="Node2D" parent="."]

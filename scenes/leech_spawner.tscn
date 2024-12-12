@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bbtrvdosrrjeu"]
+
+[ext_resource type="Script" path="res://scripts/enemy_spawner.gd" id="1_tgfd7"]
+
+[node name="LeechSpawner" type="Node2D"]
+script = ExtResource("1_tgfd7")
+
+[node name="EnemyFolder" type="Node2D" parent="."]

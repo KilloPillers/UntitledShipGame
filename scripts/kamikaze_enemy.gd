@@ -20,6 +20,7 @@ var detonation_timer:Timer
 # damage is set to 0 so that it does no damage upon attaching to the player. This value is used in the hitbox.gd script
 var damage:float = 0.0
 var direction:Vector2
+var target:Node
 var target_destination:Vector2
 
 var _state := State.IDLE
@@ -30,17 +31,16 @@ var _state := State.IDLE
 func _ready() -> void:
 	animation_tree["parameters/conditions/exploding"] = false
 	_state = State.IDLE
-	if %Ship != null:
-		target_destination = %Ship/ShipHull.global_position
+	if target != null:
+		target_destination = target.global_position
 	else:
-		target_destination = global_position
 		print("error, Kamikaze enemy doesn't have ship targeted")
 	direction = (target_destination - global_position).normalized()
 
 
 func _physics_process(_delta: float) -> void:
-	if %Ship != null:
-		target_destination = %Ship/ShipHull.global_position
+	if target != null:
+		target_destination = target.global_position
 	else:
 		target_destination = global_position
 		print("error, Kamikaze enemy doesn't have ship targeted")
@@ -100,8 +100,8 @@ func attach() -> void:
 
 func explode() -> void:
 	_state = State.IDLE
-	if %Ship != null:
-		%Ship/ShipHull.take_damage(explosion_damage)
+	if target != null:
+		target.take_damage(explosion_damage)
 	
 	queue_free()
 

@@ -19,6 +19,7 @@ enum State {
 
 var turn_radius_factor:float = 100
 var direction:Vector2
+var target:Node
 var target_destination:Vector2
 var damage_timer:Timer
 
@@ -30,20 +31,20 @@ var _hits_dealt:int = 0
 
 func _ready() -> void:
 	_state = State.IDLE
-	if %Ship != null:
-		target_destination = %Ship/ShipHull.global_position
+	if target != null:
+		target_destination = target.global_position
 	else:
-		target_destination = global_position + Vector2(5,0)
+		target_destination = global_position
 		print("error, Leech enemy doesn't have ship targeted")
 	direction = (target_destination - global_position).normalized()
 
 
 func _physics_process(_delta: float) -> void:
 	# Get the location of the player ship
-	if %Ship != null:
-		target_destination = %Ship/ShipHull.global_position
+	if target != null:
+		target_destination = target.global_position
 	else:
-		target_destination = global_position + Vector2(5,0)
+		target_destination = global_position
 		print("error, Leech enemy doesn't have ship targeted")
 	
 	# Rotate Sprit accordingly to the direction it is going
@@ -92,8 +93,8 @@ func attach() -> void:
 
 
 func _deal_damage() -> void:
-	if %Ship != null:
-		%Ship/ShipHull.take_damage(damage)
+	if target != null:
+		target.take_damage(damage)
 		damage_timer = Timer.new()
 		damage_timer.one_shot = true
 		add_child(damage_timer)

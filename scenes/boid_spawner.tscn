@@ -1,10 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dht8l0kuy2ec"]
+[gd_scene load_steps=2 format=3 uid="uid://dht8l0kuy2ec"]
 
-[ext_resource type="Script" path="res://scripts/boid_spawner.gd" id="1_0payi"]
-[ext_resource type="PackedScene" uid="uid://daqi0gluhdudh" path="res://scenes/boid.tscn" id="2_5bhv1"]
+[ext_resource type="Script" path="res://scripts/enemy_spawner.gd" id="1_0payi"]
 
 [node name="BoidSpawner" type="Node2D"]
 script = ExtResource("1_0payi")
-boid_scene = ExtResource("2_5bhv1")
 
-[node name="BoidFolder" type="Node2D" parent="."]
+[node name="EnemyFolder" type="Node2D" parent="."]
