@@ -5,7 +5,7 @@ extends Area2D
 @export var pierce_buff: int = 2
 @export var bullets_per_fire_buff: int = 5
 
-@onready var gun: Node2D = $"../Ship/ShipHull/Gun"
+@onready var gun: Node2D = %Ship/ShipHull/Gun
 
 func _ready() -> void:
 	# CONNECT THE SIGNAL
