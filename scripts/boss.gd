@@ -63,7 +63,9 @@ func take_damage(_damage:int) -> void:
 	health -= _damage
 	
 	_timer.stop()
-	spawn()
+	var rng_factor = rng_.randi_range(0, 10)
+	if (rng_factor == 0):
+		spawn()
 	
 	if (health > max_health/2):
 		boss_scaling = 1
