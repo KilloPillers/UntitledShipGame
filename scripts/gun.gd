@@ -2,11 +2,11 @@ extends Node2D
 
 @export var projectile : PackedScene
 @export var num_projectiles : int = 1
-@export var cooldown_max : float = 0.5
-@export var bullet_spread : float = 0.05
-@export var turn_speed_max : float = 3.5
-@export var turn_speed_ramp_time : float = 0.75 # Time to reach max turn speed
-var cur_cooldown_ : float = 0
+@export var cooldown_max : float = 0.40
+@export var bullet_spread : float = 0.1
+@export var turn_speed_max : float = 5.0
+@export var turn_speed_ramp_time : float = 0.5 # Time to reach max turn speed
+var cur_cooldown_ : float = 0.0
 var damage_buff : int = 0
 var pierce_buff : int = 0
 var rng_ : RandomNumberGenerator
@@ -39,7 +39,7 @@ func _process(delta: float) -> void:
 		turn_speed_accumulated_time = 0
 		turn_speed_current = 0
 	
-	if Input.is_action_just_pressed("gun_power"):
+	if Input.is_action_pressed("gun_power"):
 		if (cur_cooldown_ <= 0):
 			cur_cooldown_ = cooldown_max
 
@@ -48,19 +48,22 @@ func _process(delta: float) -> void:
 				new_projectile.damage += damage_buff
 				new_projectile.pierce += pierce_buff
 				get_tree().root.add_child(new_projectile)
-				new_projectile.rotation = rotation
-				new_projectile.rotation += (rng_.randf_range(-bullet_spread, bullet_spread))
-				new_projectile.global_position = $ProjectileOrigin.global_position 
 
-			var new_projectile = projectile.instantiate()
-			get_tree().root.add_child(new_projectile)
-			new_projectile.add_to_group("player_projectiles")
-			new_projectile.rotation = rotation
-			new_projectile.rotation += rng_.randf_range(-bullet_spread, bullet_spread)
-			new_projectile.global_position = $ProjectileOrigin.global_position 
+				# Calculate spread angle
+				var spread_angle = bullet_spread * 2  # Total angle of spread
+				var angle_step = spread_angle / max(1, num_projectiles - 1)  # Avoid division by zero
 
-			animated_sprite_2d.play("shoot")
+				# Set the rotation for the projectile
+				if num_projectiles > 1:
+					new_projectile.rotation = rotation - bullet_spread + (i * angle_step)
+				else:
+					new_projectile.rotation = rotation
+				new_projectile.global_position = $ProjectileOrigin.global_position
+
+				animated_sprite_2d.play("shoot")
+			
 	elif not animated_sprite_2d.is_playing():
 		animated_sprite_2d.play("off")
+		
 	if (cur_cooldown_ > 0):
 		cur_cooldown_ -= delta

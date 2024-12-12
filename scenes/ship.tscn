@@ -9,7 +9,7 @@
 [ext_resource type="Script" path="res://scripts/shield.gd" id="3_yun3w"]
 [ext_resource type="PackedScene" uid="uid://bvwt3ydatqhqb" path="res://scenes/player_projectile.tscn" id="4_di2ho"]
 [ext_resource type="Texture2D" uid="uid://dlswrju7raxvg" path="res://assets/GunShortened-Spritesheet.png" id="4_dpooq"]
-[ext_resource type="Texture2D" uid="uid://xroy6lsj1iwc" path="res://assets/ShieldNew-Spritesheet.png" id="7_j0k7w"]
+[ext_resource type="Texture2D" uid="uid://bownp5o14of05" path="res://assets/ShieldNew-Spritesheet.png" id="7_j0k7w"]
 [ext_resource type="Script" path="res://scripts/shield_hurtbox.gd" id="7_mqouf"]
 [ext_resource type="Script" path="res://scripts/hurt_box.gd" id="11_d0h4u"]
 [ext_resource type="Texture2D" uid="uid://tvip2rxqh5lh" path="res://assets/ShipDeath-Spritesheet.png" id="12_dn53e"]
