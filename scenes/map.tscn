@@ -981,7 +981,7 @@ position = Vector2(2200, -4155)
 
 [node name="Ship" parent="." instance=ExtResource("4_1753m")]
 unique_name_in_owner = true
-position = Vector2(-2393, -6341)
+position = Vector2(-2412, -6411)
 
 [node name="ShipHull" parent="Ship" index="0" node_paths=PackedStringArray("fadeToBlack") groups=["obstacle"]]
 fadeToBlack = NodePath("../../CanvasLayer/ColorRect")
@@ -1083,7 +1083,7 @@ color = Color(0.602487, 0.338804, 0.61561, 1)
 environment = SubResource("Environment_bktdd")
 
 [node name="BossCore" parent="." node_paths=PackedStringArray("spawners") instance=ExtResource("19_mdid1")]
-max_health = 300
+max_health = 400
 spawners = [NodePath("../__ENEMIES__/Boss Spawners/BoidSpawner"), NodePath("../__ENEMIES__/Boss Spawners/BoidSpawner2"), NodePath("../__ENEMIES__/Boss Spawners/BoidSpawner3"), NodePath("../__ENEMIES__/Boss Spawners/BoidSpawner4")]
 
 [connection signal="pressed" from="Ship/ShipHull/Camera2D/CanvasLayer/pause" to="." method="_on_pause_pressed"]
