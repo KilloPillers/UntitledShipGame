@@ -4,6 +4,7 @@ extends Control
 @onready var play_button = $MarginContainer/VBoxContainer/Play
 @onready var exit_button = $MarginContainer/VBoxContainer/Exit
 @onready var title_text = $Label
+@onready var skip_text = $SkipLabel
 
 func _process(delta: float) -> void:
 	if video_player.is_playing() and Input.is_action_pressed("skip_cutscene"):
@@ -17,6 +18,7 @@ func _on_play_pressed() -> void:
 	exit_button.hide()
 	title_text.hide()
 	video_player.show()
+	skip_text.show()
 	video_player.stream = preload("res://assets/FinalProjectCutsceneReducedFlash.ogv")
 	video_player.play()
 
