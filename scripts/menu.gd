@@ -5,6 +5,10 @@ extends Control
 @onready var exit_button = $MarginContainer/VBoxContainer/Exit
 @onready var title_text = $Label
 
+func _process(delta: float) -> void:
+	if video_player.is_playing() and Input.is_action_pressed("skip_cutscene"):
+		get_tree().change_scene_to_file("res://scenes/map.tscn")
+
 func _on_exit_pressed() -> void:
 	pass
 
