@@ -37,7 +37,6 @@ scale = Vector2(0.986713, 1.00764)
 [node name="SpikeWall" parent="." instance=ExtResource("5_50yys")]
 position = Vector2(947, 552)
 
-[node name="BoidSpawner" parent="." node_paths=PackedStringArray("boid_target") instance=ExtResource("4_jdq32")]
+[node name="BoidSpawner" parent="." instance=ExtResource("4_jdq32")]
 position = Vector2(952, 545)
-boid_target = NodePath("../SpikeWall")
 spawn_cap = 1

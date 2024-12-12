@@ -16,10 +16,13 @@ enum EnemyType {
 @export var spawn_cap: int = 20
 @export var despawn_distance: float = 500.0  # Maximum distance to the target before stopping spawns
 @export var aggro_distance:int = 800 # for leeches and kamikaze's
+@export var is_boss_spawner:bool = false
 
-
+var boss_scaling:float = 1 # only used by boss spawners to progressively make enemies stronger.
 var timer: Timer
+
 var _debug_timer: Timer
+
 
 
 func _ready() -> void:
@@ -61,6 +64,15 @@ func _on_spawn() -> void:
 		if enemy_type == EnemyType.LEECH:
 			spawn_leech()
 
+# used by the boss to manually spawn enemies on spawners
+func force_spawn(power_scale:float) -> void:
+	for i in range(spawn_amount):
+		if enemy_type == EnemyType.BOID:
+			spawn_boid()
+		if enemy_type == EnemyType.KAMIKAZE:
+			spawn_kamikaze()
+		if enemy_type == EnemyType.LEECH:
+			spawn_leech()
 
 func spawn_boid() -> void:
 	var boid = enemy_scene.instantiate()
@@ -70,6 +82,9 @@ func spawn_boid() -> void:
 	boid.targeting_interval = randi_range(10, 20) # Every 10-20 seconds
 	#boid.modulate = Color(randf(), randf(), randf())
 	$EnemyFolder.add_child(boid)
+	
+	if (is_boss_spawner):
+		boid.health *= boss_scaling
 
 
 func spawn_kamikaze() -> void:
@@ -80,6 +95,9 @@ func spawn_kamikaze() -> void:
 	kamikaze_enemy.aggro_distance = aggro_distance
 	#boid.modulate = Color(randf(), randf(), randf())
 	$EnemyFolder.add_child(kamikaze_enemy)
+	
+	if (is_boss_spawner):
+		kamikaze_enemy.health *= boss_scaling
 
 
 func spawn_leech() -> void:
@@ -90,6 +108,9 @@ func spawn_leech() -> void:
 	leech_enemy.aggro_distance = aggro_distance
 	#boid.modulate = Color(randf(), randf(), randf())
 	$EnemyFolder.add_child(leech_enemy)
+	
+	if (is_boss_spawner):
+		leech_enemy.health *= boss_scaling
 
 
 func is_target_too_far() -> bool:

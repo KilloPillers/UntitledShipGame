@@ -40,42 +40,6 @@ script = ExtResource("1_aff03")
 
 [node name="__ENEMIES__" type="Node" parent="."]
 
-[node name="Boss Spawners" type="Node2D" parent="__ENEMIES__"]
-
-[node name="BoidSpawner" parent="__ENEMIES__/Boss Spawners" node_paths=PackedStringArray("enemy_target") instance=ExtResource("2_84ngi")]
-position = Vector2(685, 5576)
-enemy_scene = ExtResource("3_5n6tv")
-enemy_target = NodePath("../../../Ship/ShipHull")
-spawn_rate = 999.0
-spawn_amount = 1
-spawn_cap = 0
-despawn_distance = 2000.0
-is_boss_spawner = true
-
-[node name="BoidSpawner2" parent="__ENEMIES__/Boss Spawners" node_paths=PackedStringArray("enemy_target") instance=ExtResource("2_84ngi")]
-position = Vector2(2620, 5271)
-enemy_scene = ExtResource("3_5n6tv")
-enemy_target = NodePath("../../../Ship/ShipHull")
-spawn_rate = 12.0
-spawn_amount = 1
-despawn_distance = 2000.0
-
-[node name="BoidSpawner3" parent="__ENEMIES__/Boss Spawners" node_paths=PackedStringArray("enemy_target") instance=ExtResource("2_84ngi")]
-position = Vector2(2069, 5044)
-enemy_scene = ExtResource("3_5n6tv")
-enemy_target = NodePath("../../../Ship/ShipHull")
-spawn_rate = 12.0
-spawn_amount = 1
-despawn_distance = 2000.0
-
-[node name="BoidSpawner4" parent="__ENEMIES__/Boss Spawners" node_paths=PackedStringArray("enemy_target") instance=ExtResource("2_84ngi")]
-position = Vector2(1072, 5202)
-enemy_scene = ExtResource("3_5n6tv")
-enemy_target = NodePath("../../../Ship/ShipHull")
-spawn_rate = 12.0
-spawn_amount = 1
-despawn_distance = 2000.0
-
 [node name="Boid Enemies" type="Node2D" parent="__ENEMIES__"]
 top_level = true
 
@@ -954,12 +918,6 @@ position = Vector2(-1793, -2871)
 
 [node name="__POWERUPS__" type="Node" parent="."]
 
-[node name="Hull Power Up2" parent="__POWERUPS__" instance=ExtResource("14_ax6iu")]
-position = Vector2(1664, 3005)
-health_buff = 50.0
-speed_buff = 5.0
-rotation_speed_buff = 1.0
-
 [node name="Hull Power Up" parent="__POWERUPS__" instance=ExtResource("14_ax6iu")]
 position = Vector2(-1749, -2725)
 
@@ -968,7 +926,7 @@ position = Vector2(2195, -4171)
 
 [node name="Ship" parent="." instance=ExtResource("4_1753m")]
 unique_name_in_owner = true
-position = Vector2(1218, 2323)
+position = Vector2(1325, 3398)
 
 [node name="ShipHull" parent="Ship" index="0" node_paths=PackedStringArray("fadeToBlack") groups=["obstacle"]]
 fadeToBlack = NodePath("../../CanvasLayer/ColorRect")
@@ -1051,7 +1009,6 @@ color = Color(0.602487, 0.338804, 0.61561, 1)
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_bktdd")
 
-[node name="BossCore" parent="." node_paths=PackedStringArray("spawners") instance=ExtResource("19_mdid1")]
-spawners = [NodePath("../__ENEMIES__/Boss Spawners/BoidSpawner"), NodePath("../__ENEMIES__/Boss Spawners/BoidSpawner2"), NodePath("../__ENEMIES__/Boss Spawners/BoidSpawner3"), NodePath("../__ENEMIES__/Boss Spawners/BoidSpawner4")]
+[node name="BossCore" parent="." instance=ExtResource("19_mdid1")]
 
 [editable path="Ship"]

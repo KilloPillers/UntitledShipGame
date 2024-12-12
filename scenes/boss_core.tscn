@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://5t0m8un3nhpn"]
+[gd_scene load_steps=7 format=3 uid="uid://5t0m8un3nhpn"]
 
-[ext_resource type="Texture2D" uid="uid://16124cxi0ah4" path="res://assets/CoreHurt.png" id="1_q768l"]
-[ext_resource type="Texture2D" uid="uid://bh16waulup5t5" path="res://assets/Core.png" id="2_k7e5t"]
+[ext_resource type="Script" path="res://scripts/boss.gd" id="1_0be16"]
+[ext_resource type="Texture2D" uid="uid://c4ep3g8w5kgix" path="res://assets/CoreHurt.png" id="1_q768l"]
+[ext_resource type="Texture2D" uid="uid://cglfcsrp0luik" path="res://assets/Core.png" id="2_k7e5t"]
+[ext_resource type="Script" path="res://scripts/hurt_box.gd" id="4_0r7gn"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_lyads"]
 animations = [{
@@ -22,8 +24,23 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_4pcaj"]
+radius = 24.0208
+
 [node name="BossCore" type="Node2D"]
 position = Vector2(1776, 5838)
+script = ExtResource("1_0be16")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_lyads")
+
+[node name="HurtBox" type="Area2D" parent="."]
+position = Vector2(10, 250)
+scale = Vector2(29.2, 25.5)
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("4_0r7gn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+scale = Vector2(1.77727, 1.77727)
+shape = SubResource("CircleShape2D_4pcaj")
