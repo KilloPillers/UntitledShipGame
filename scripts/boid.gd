@@ -73,7 +73,7 @@ func _physics_process(_delta: float) -> void:
 	var random_jitter = calculate_random_jitter() if not is_targeting else Vector2.ZERO
 	
 	# Combine forces with weights
-	velocity += flocking_force * 0.3 + wall_avoidance_force * 150.0 + targeting_force * 1.0 + random_jitter
+	velocity += flocking_force * 0.5 + wall_avoidance_force * 200.0 + targeting_force * 1.0 + random_jitter
 	
 	velocity = velocity.normalized() * speed
 	move_and_slide()
@@ -106,6 +106,10 @@ func calculate_flocking_force() -> Vector2:
 			# Make sure the boid is not in the queue_free queue.
 			if not is_instance_valid(boid):
 				continue 
+				
+			#if not boid.is_targeting:
+			#	continue
+				
 			average_velocity += boid.velocity
 			average_position += boid.global_position
 			
@@ -119,7 +123,7 @@ func calculate_flocking_force() -> Vector2:
 		
 		flocking_force += ((average_velocity - velocity) / 2) * 1
 		flocking_force += (average_position - global_position) * .25
-		flocking_force += separation_force * 20.0
+		flocking_force += separation_force * 40.0
 	
 	return flocking_force
 

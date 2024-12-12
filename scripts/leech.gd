@@ -35,7 +35,7 @@ func _ready() -> void:
 		target_destination = target.global_position
 	else:
 		target_destination = global_position
-		print("error, Leech enemy doesn't have ship targeted")
+		#print("error, Leech enemy doesn't have ship targeted")
 	direction = (target_destination - global_position).normalized()
 
 
@@ -45,7 +45,7 @@ func _physics_process(_delta: float) -> void:
 		target_destination = target.global_position
 	else:
 		target_destination = global_position
-		print("error, Leech enemy doesn't have ship targeted")
+		#print("error, Leech enemy doesn't have ship targeted")
 	
 	# Rotate Sprit accordingly to the direction it is going
 	rotate(angle_difference(rotation, direction.angle()))
@@ -83,7 +83,7 @@ func take_damage(_damage:float) -> void:
 
 func attach() -> void:
 	_state = State.ATTACHED
-	print("attaching")
+	#print("attaching")
 	$CollisionShape2D.disabled = true
 	
 	damage_timer = Timer.new()

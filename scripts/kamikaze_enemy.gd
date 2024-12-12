@@ -34,7 +34,8 @@ func _ready() -> void:
 	if target != null:
 		target_destination = target.global_position
 	else:
-		print("error, Kamikaze enemy doesn't have ship targeted")
+		pass
+		#print("error, Kamikaze enemy doesn't have ship targeted")
 	direction = (target_destination - global_position).normalized()
 
 
@@ -43,7 +44,7 @@ func _physics_process(_delta: float) -> void:
 		target_destination = target.global_position
 	else:
 		target_destination = global_position
-		print("error, Kamikaze enemy doesn't have ship targeted")
+		#print("error, Kamikaze enemy doesn't have ship targeted")
 	
 	# Rotate Sprit accordingly
 	rotate(angle_difference(rotation, direction.angle()))
@@ -93,7 +94,7 @@ func flash_white() -> void:
 
 func attach() -> void:
 	_state = State.ATTACHED
-	print("attaching, distance to target = ", global_position.distance_to(target_destination))
+	#print("attaching, distance to target = ", global_position.distance_to(target_destination))
 	$CollisionShape2D.disabled = true
 	animation_tree["parameters/conditions/exploding"] = true
 	
