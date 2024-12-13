@@ -1,9 +1,10 @@
-[gd_scene load_steps=20 format=3 uid="uid://biff6kvg87h5w"]
+[gd_scene load_steps=21 format=3 uid="uid://biff6kvg87h5w"]
 
 [ext_resource type="Script" path="res://scripts/mine.gd" id="1_7ado1"]
 [ext_resource type="Texture2D" uid="uid://ivfnfrq1poup" path="res://assets/Mine-Spritesheet.png" id="1_effl1"]
 [ext_resource type="Script" path="res://scripts/hurt_box.gd" id="2_fwc2m"]
 [ext_resource type="Script" path="res://scripts/hit_box.gd" id="3_qrt27"]
+[ext_resource type="PackedScene" uid="uid://c8tae3mbhovun" path="res://light.tscn" id="5_w2sij"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ulvv7"]
 radius = 30.0167
@@ -175,3 +176,8 @@ tree_root = SubResource("AnimationNodeStateMachine_71e00")
 anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/exploding = false
 parameters/conditions/triggered = false
+
+[node name="Light" parent="." instance=ExtResource("5_w2sij")]
+color = Color(0.395048, 0.587972, 0.179111, 1)
+energy = 0.45
+texture_scale = 0.6

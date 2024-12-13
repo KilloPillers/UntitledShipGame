@@ -10,8 +10,7 @@ extends Area2D
 func _ready() -> void:
 	# CONNECT THE SIGNAL
 	area_entered.connect(_on_body_entered)
-	modulate = Color(randf(),randf(), randf())
-	
+
 # function for detecting when shape is entered by player 
 func _on_body_entered(body: Node2D):
 	# print power up of the body is entered

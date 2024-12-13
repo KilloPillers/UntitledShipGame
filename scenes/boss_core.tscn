@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://5t0m8un3nhpn"]
+[gd_scene load_steps=9 format=3 uid="uid://5t0m8un3nhpn"]
 
 [ext_resource type="Script" path="res://scripts/boss.gd" id="1_0be16"]
 [ext_resource type="Texture2D" uid="uid://c4ep3g8w5kgix" path="res://assets/CoreHurt.png" id="1_q768l"]
 [ext_resource type="Texture2D" uid="uid://cglfcsrp0luik" path="res://assets/Core.png" id="2_k7e5t"]
 [ext_resource type="Script" path="res://scripts/hurt_box.gd" id="4_0r7gn"]
+[ext_resource type="PackedScene" uid="uid://c8tae3mbhovun" path="res://light.tscn" id="4_uod6l"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_lyads"]
 animations = [{
@@ -35,6 +36,11 @@ script = ExtResource("1_0be16")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_lyads")
+
+[node name="Light" parent="AnimatedSprite2D" instance=ExtResource("4_uod6l")]
+color = Color(0.69439, 0.000392939, 0.70106, 1)
+energy = 1.2
+texture_scale = 4.5
 
 [node name="HurtBox" type="Area2D" parent="."]
 position = Vector2(10, 250)

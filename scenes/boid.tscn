@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://daqi0gluhdudh"]
+[gd_scene load_steps=14 format=3 uid="uid://daqi0gluhdudh"]
 
 [ext_resource type="Script" path="res://scripts/boid.gd" id="1_uj5n2"]
 [ext_resource type="PackedScene" uid="uid://cmwi7r1sb76b" path="res://scenes/boid_projectile.tscn" id="2_gg2vn"]
 [ext_resource type="Texture2D" uid="uid://dc0l12t5bdkhc" path="res://assets/Boid-Spritesheet.png" id="3_e02uf"]
 [ext_resource type="Script" path="res://scripts/hurt_box.gd" id="4_85d7c"]
+[ext_resource type="PackedScene" uid="uid://c8tae3mbhovun" path="res://light.tscn" id="5_ugpuh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hlxfx"]
 atlas = ExtResource("3_e02uf")
@@ -124,6 +125,11 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_m2mll")
 max_value = 1.0
 value = 0.5
 show_percentage = false
+
+[node name="Light" parent="." instance=ExtResource("5_ugpuh")]
+color = Color(1.15514e-06, 0.628126, 0.633905, 1)
+energy = 0.45
+texture_scale = 0.7
 
 [connection signal="area_entered" from="Vision" to="." method="_on_vision_area_entered"]
 [connection signal="area_exited" from="Vision" to="." method="_on_vision_area_exited"]

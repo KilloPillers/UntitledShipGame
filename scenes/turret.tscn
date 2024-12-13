@@ -1,9 +1,10 @@
-[gd_scene load_steps=19 format=3 uid="uid://c7o8jqk007ob0"]
+[gd_scene load_steps=20 format=3 uid="uid://c7o8jqk007ob0"]
 
 [ext_resource type="Script" path="res://scripts/turret.gd" id="1_a3i3x"]
 [ext_resource type="Script" path="res://scripts/hurt_box.gd" id="2_gprqn"]
 [ext_resource type="PackedScene" uid="uid://bw4vi72rvaoqy" path="res://scenes/turret-projectile.tscn" id="2_jjoty"]
 [ext_resource type="Texture2D" uid="uid://dqre5r52nxgvk" path="res://assets/Turret-Spritesheet.png" id="3_02kcc"]
+[ext_resource type="PackedScene" uid="uid://c8tae3mbhovun" path="res://light.tscn" id="5_e8nd1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nmlv8"]
 size = Vector2(79, 47)
@@ -138,3 +139,8 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_6ocya")
 max_value = 5.0
 value = 2.0
 show_percentage = false
+
+[node name="Light" parent="." instance=ExtResource("5_e8nd1")]
+color = Color(0.887156, 0, 0.156187, 1)
+energy = 0.7
+texture_scale = 0.7

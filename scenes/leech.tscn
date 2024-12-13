@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://bx4k84npg6sen"]
+[gd_scene load_steps=13 format=3 uid="uid://bx4k84npg6sen"]
 
 [ext_resource type="Script" path="res://scripts/leech.gd" id="1_6by6i"]
 [ext_resource type="Script" path="res://scripts/hurt_box.gd" id="1_anowc"]
 [ext_resource type="Texture2D" uid="uid://cbnhj2146njc2" path="res://assets/LeechBoid-Spritesheet.png" id="2_ipvv5"]
+[ext_resource type="PackedScene" uid="uid://c8tae3mbhovun" path="res://light.tscn" id="4_2l6lh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rfkkw"]
 size = Vector2(37, 20)
@@ -89,3 +90,8 @@ libraries = {
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_tfhji")
 anim_player = NodePath("../AnimationPlayer")
+
+[node name="Light" parent="." instance=ExtResource("4_2l6lh")]
+color = Color(0.27451, 0.447059, 0.898039, 1)
+energy = 0.45
+texture_scale = 0.6

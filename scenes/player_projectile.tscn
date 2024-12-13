@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bvwt3ydatqhqb"]
+[gd_scene load_steps=6 format=3 uid="uid://bvwt3ydatqhqb"]
 
 [ext_resource type="Texture2D" uid="uid://dechdjuiaylke" path="res://assets/GunProjectile.png" id="1_nuk61"]
 [ext_resource type="Script" path="res://scripts/player_projectile.gd" id="1_xg6f3"]
 [ext_resource type="Script" path="res://scripts/hit_box.gd" id="3_guo7h"]
+[ext_resource type="PackedScene" uid="uid://c8tae3mbhovun" path="res://light.tscn" id="4_hr2l2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ytyhr"]
 radius = 5.0
@@ -24,3 +25,8 @@ script = ExtResource("3_guo7h")
 position = Vector2(0, -0.5)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_ytyhr")
+
+[node name="Light" parent="." instance=ExtResource("4_hr2l2")]
+color = Color(0, 0.941099, 0.953061, 1)
+energy = 0.6
+texture_scale = 0.7

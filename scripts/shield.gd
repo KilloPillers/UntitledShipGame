@@ -5,6 +5,8 @@ extends Node2D
 #@onready var animated_sprite_2d = $AnimatedSprite2D
 @onready var animation = $AnimationPlayer
 
+var shield_power_up = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass
@@ -18,7 +20,10 @@ func _process(delta: float) -> void:
 		rotation -= turn_speed * delta
 	if Input.is_action_pressed("shield_power"):
 		#animated_sprite_2d.play("on")
-		animation.play("on")
+		if shield_power_up:
+			animation.play("upgraded_shield")
+		else:
+			animation.play("on")
 		pass
 		# will enable a trigger, can't implement till boid projectiles are added
 	else:

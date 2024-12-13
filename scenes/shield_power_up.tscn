@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://dq2m18ow4rsie"]
+
+[ext_resource type="Script" path="res://scripts/shield_power_up.gd" id="1_0oyxb"]
+[ext_resource type="Texture2D" uid="uid://cadf1jonu15vj" path="res://assets/ShieldUpgrade.png" id="1_i4w3b"]
+[ext_resource type="PackedScene" uid="uid://c8tae3mbhovun" path="res://light.tscn" id="3_43a5w"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cgma2"]
+size = Vector2(41, 42)
+
+[node name="Shield_Power_Up" type="Area2D"]
+collision_layer = 8
+script = ExtResource("1_0oyxb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 1)
+shape = SubResource("RectangleShape2D_cgma2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_i4w3b")
+
+[node name="Light" parent="." instance=ExtResource("3_43a5w")]
+color = Color(0.948881, 0.477874, 0.647131, 1)
+energy = 0.7
+texture_scale = 0.6

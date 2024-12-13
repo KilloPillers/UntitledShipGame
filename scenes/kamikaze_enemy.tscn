@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://b5fnthted8hwa"]
+[gd_scene load_steps=16 format=3 uid="uid://b5fnthted8hwa"]
 
 [ext_resource type="Script" path="res://scripts/kamikaze_enemy.gd" id="1_y07qj"]
 [ext_resource type="Script" path="res://scripts/hurt_box.gd" id="2_bsmln"]
 [ext_resource type="Texture2D" uid="uid://bom1hgsijt2c1" path="res://assets/KamikazeBoid-Spritesheet.png" id="2_sjr62"]
+[ext_resource type="PackedScene" uid="uid://c8tae3mbhovun" path="res://light.tscn" id="4_bgtxb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ctfcd"]
 radius = 10.6046
@@ -116,3 +117,8 @@ libraries = {
 tree_root = SubResource("AnimationNodeStateMachine_ouniu")
 anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/exploding = false
+
+[node name="Light" parent="." instance=ExtResource("4_bgtxb")]
+color = Color(0.77291, 0.117405, 0.648417, 1)
+energy = 0.45
+texture_scale = 0.6

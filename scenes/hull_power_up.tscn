@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dymmsld3v8lfa"]
+[gd_scene load_steps=5 format=3 uid="uid://dymmsld3v8lfa"]
 
 [ext_resource type="Script" path="res://scripts/hull_power_up.gd" id="1_ysv81"]
-[ext_resource type="Texture2D" uid="uid://uddpxjo2xrvh" path="res://assets/HullUpgrade.png" id="2_jo0ic"]
+[ext_resource type="Texture2D" uid="uid://dcytnqixiy0dw" path="res://assets/HullUpgrade.png" id="2_jo0ic"]
+[ext_resource type="PackedScene" uid="uid://c8tae3mbhovun" path="res://light.tscn" id="3_l3kk7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qc4qv"]
 size = Vector2(32, 33)
@@ -16,3 +17,8 @@ texture = ExtResource("2_jo0ic")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_qc4qv")
+
+[node name="Light" parent="." instance=ExtResource("3_l3kk7")]
+color = Color(0.304702, 0.685887, 0.324038, 1)
+energy = 2.0
+texture_scale = 0.7
