@@ -3,8 +3,8 @@ extends RigidBody2D
 
 @export var fadeToBlack: Node
 @export var health:int = 100
-
 @onready var animated_sprite_2d = $HullAnimatedSprite
+@onready var camera = $Camera2D
 
 func _ready() -> void:
 	animated_sprite_2d.play("default")
@@ -20,6 +20,7 @@ func take_damage(_damage:int) -> void:
 		return
 	health -= _damage
 	flash_white()
+	shake_camera(_damage) 
 	if health <= 0:
 		health = 0
 		_start_death()
@@ -28,7 +29,7 @@ func take_damage(_damage:int) -> void:
 func flash_white() -> void:
 	animated_sprite_2d.modulate = Color(1.5,1.5,1.5,1)
 	await get_tree().create_timer(0.1).timeout
-	animated_sprite_2d.modulate = Color(1,1,1)
+	animated_sprite_2d.modulate = Color(1,1,1)	
 
 func _start_death() -> void:
 	$Engine.set_process(false)
@@ -55,3 +56,13 @@ func _fade_to_black_and_return_to_menu() -> void:
 		timer = get_tree().create_timer(0.1)
 	fadeToBlack.color.a = 1.0
 	get_tree().change_scene_to_file("res://scenes/menu.tscn")
+
+func shake_camera(damage: int):
+	var original_position = camera.position
+	#shake sensitivity 
+	var shake_factor = 5 
+	var intensity = damage * shake_factor
+	var offset = Vector2(randf_range(-intensity, intensity), randf_range(-intensity, intensity))
+	camera.position += offset
+	await get_tree().create_timer(0.05).timeout
+	camera.position = original_position
