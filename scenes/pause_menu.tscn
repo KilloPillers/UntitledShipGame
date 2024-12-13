@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://cfkwr2bc1au7k"]
 
 [ext_resource type="Script" path="res://scripts/pause_menu.gd" id="1_3yypf"]
-[ext_resource type="FontFile" uid="uid://bajxpg4kqbw1j" path="res://assets/Orbitron-VariableFont_wght.ttf" id="2_a6djp"]
+[ext_resource type="FontFile" uid="uid://mssyv0rxicy3" path="res://assets/PressStart2P-Regular.ttf" id="2_fpm06"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sg2d1"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -13,7 +13,7 @@ corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
-expand_margin_bottom = 2.0
+expand_margin_top = 3.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_edh6g"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -70,7 +70,7 @@ offset_right = 380.5
 offset_bottom = -225.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("2_a6djp")
+theme_override_fonts/font = ExtResource("2_fpm06")
 theme_override_font_sizes/font_size = 120
 text = "PAUSED"
 horizontal_alignment = 1
@@ -82,9 +82,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -200.0
+offset_left = -289.0
 offset_top = -500.0
-offset_right = -42.0
+offset_right = -109.0
 offset_bottom = -422.0
 grow_horizontal = 2
 grow_vertical = 0
@@ -92,11 +92,13 @@ scale = Vector2(3.27, 3)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
+alignment = 1
 
 [node name="Resume" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_a6djp")
-theme_override_font_sizes/font_size = 30
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_fpm06")
+theme_override_font_sizes/font_size = 28
 theme_override_styles/focus = SubResource("StyleBoxFlat_sg2d1")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_sg2d1")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_sg2d1")
@@ -109,8 +111,8 @@ text = "RESUME"
 [node name="Quit" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_fonts/font = ExtResource("2_a6djp")
-theme_override_font_sizes/font_size = 24
+theme_override_fonts/font = ExtResource("2_fpm06")
+theme_override_font_sizes/font_size = 27
 theme_override_styles/focus = SubResource("StyleBoxFlat_sg2d1")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_sg2d1")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_sg2d1")

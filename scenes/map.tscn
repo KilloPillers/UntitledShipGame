@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://fh32xvaj4ve"]
+[gd_scene load_steps=29 format=3 uid="uid://fh32xvaj4ve"]
 
 [ext_resource type="Script" path="res://scripts/map.gd" id="1_aff03"]
 [ext_resource type="Texture2D" uid="uid://s7413bleih65" path="res://assets/KeybindsEngine.png" id="2_1rxuy"]
@@ -22,7 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://dymmsld3v8lfa" path="res://scenes/hull_power_up.tscn" id="14_ax6iu"]
 [ext_resource type="PackedScene" uid="uid://5t0m8un3nhpn" path="res://scenes/boss_core.tscn" id="19_mdid1"]
 [ext_resource type="Texture2D" uid="uid://gvdhbncb2qlp" path="res://assets/MapRefined15K.png" id="20_m4ck8"]
-[ext_resource type="PackedScene" uid="uid://dq2m18ow4rsie" path="res://scenes/shield_power_up.tscn" id="21_35y3f"]
+[ext_resource type="PackedScene" path="res://scenes/shield_power_up.tscn" id="21_35y3f"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cpgav"]
 bg_color = Color(0.6, 0.6, 0.6, 0)

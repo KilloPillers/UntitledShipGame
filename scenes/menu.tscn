@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/menu.gd" id="1_4g2h6"]
 [ext_resource type="Texture2D" uid="uid://cy0le873x1cv5" path="res://assets/MainMenu.png" id="2_er0ck"]
-[ext_resource type="FontFile" uid="uid://bajxpg4kqbw1j" path="res://assets/Orbitron-VariableFont_wght.ttf" id="3_biyqw"]
+[ext_resource type="FontFile" uid="uid://mssyv0rxicy3" path="res://assets/PressStart2P-Regular.ttf" id="4_wrrp8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_crlqa"]
 bg_color = Color(0.579566, 0.540585, 0.922958, 1)
@@ -31,6 +31,8 @@ corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
+expand_margin_left = 3.0
+expand_margin_right = 3.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4dgt5"]
 bg_color = Color(0.886275, 0, 0.772549, 0)
@@ -78,17 +80,17 @@ texture = ExtResource("2_er0ck")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
-anchors_preset = 7
+anchors_preset = 8
 anchor_left = 0.5
-anchor_top = 1.0
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -176.0
-offset_top = -421.0
-offset_right = -66.0001
-offset_bottom = -320.0
+anchor_bottom = 0.5
+offset_left = -177.0
+offset_top = 170.0
+offset_right = -58.0
+offset_bottom = 271.0
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
 scale = Vector2(3.27, 3)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
@@ -97,8 +99,8 @@ layout_mode = 2
 [node name="Play" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_fonts/font = ExtResource("3_biyqw")
-theme_override_font_sizes/font_size = 32
+theme_override_fonts/font = ExtResource("4_wrrp8")
+theme_override_font_sizes/font_size = 25
 theme_override_styles/focus = SubResource("StyleBoxFlat_r3g47")
 theme_override_styles/hover = SubResource("StyleBoxFlat_pf06d")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_r3g47")
@@ -108,8 +110,8 @@ text = "PLAY"
 [node name="Credits" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_fonts/font = ExtResource("3_biyqw")
-theme_override_font_sizes/font_size = 20
+theme_override_fonts/font = ExtResource("4_wrrp8")
+theme_override_font_sizes/font_size = 17
 theme_override_styles/focus = SubResource("StyleBoxFlat_r3g47")
 theme_override_styles/hover = SubResource("StyleBoxFlat_c5s0u")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_r3g47")
@@ -119,8 +121,8 @@ text = "CREDITS"
 [node name="Exit" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_fonts/font = ExtResource("3_biyqw")
-theme_override_font_sizes/font_size = 20
+theme_override_fonts/font = ExtResource("4_wrrp8")
+theme_override_font_sizes/font_size = 18
 theme_override_styles/focus = SubResource("StyleBoxFlat_r3g47")
 theme_override_styles/hover = SubResource("StyleBoxFlat_c5s0u")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_r3g47")
@@ -135,16 +137,18 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -616.0
-offset_top = -424.0
-offset_right = 616.0
-offset_bottom = -247.0
+offset_left = -909.0
+offset_top = -475.0
+offset_right = 909.0
+offset_bottom = -298.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("3_biyqw")
-theme_override_font_sizes/font_size = 120
+theme_override_fonts/font = ExtResource("4_wrrp8")
+theme_override_font_sizes/font_size = 96
 text = "Untitled Ship Game"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
 visible = false
@@ -168,7 +172,7 @@ offset_bottom = 522.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("3_biyqw")
+theme_override_fonts/font = ExtResource("4_wrrp8")
 theme_override_font_sizes/font_size = 28
 text = "Skip (Space)"
 vertical_alignment = 2

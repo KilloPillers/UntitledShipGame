@@ -3,7 +3,7 @@
 [ext_resource type="Shader" path="res://scripts/menu.gdshader" id="1_erxcs"]
 [ext_resource type="Script" path="res://scripts/credits.gd" id="1_jhjth"]
 [ext_resource type="Texture2D" uid="uid://b3d1621mrecbd" path="res://assets/creditbackground.png" id="2_77we1"]
-[ext_resource type="FontFile" uid="uid://bajxpg4kqbw1j" path="res://assets/Orbitron-VariableFont_wght.ttf" id="3_rbrwj"]
+[ext_resource type="FontFile" uid="uid://mssyv0rxicy3" path="res://assets/PressStart2P-Regular.ttf" id="4_giwue"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_e38ie"]
 shader = ExtResource("1_erxcs")
@@ -19,7 +19,8 @@ corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
-expand_margin_bottom = 2.0
+expand_margin_left = 6.0
+expand_margin_right = 6.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uao6c"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -76,13 +77,13 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -504.0
-offset_top = 62.0
-offset_right = 504.0
-offset_bottom = 314.0
+offset_left = -595.0
+offset_top = 105.0
+offset_right = 595.0
+offset_bottom = 357.0
 grow_horizontal = 2
-theme_override_fonts/font = ExtResource("3_rbrwj")
-theme_override_font_sizes/font_size = 200
+theme_override_fonts/font = ExtResource("4_giwue")
+theme_override_font_sizes/font_size = 170
 text = "CREDITS"
 
 [node name="names" type="Label" parent="."]
@@ -93,20 +94,22 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -723.5
-offset_top = -163.0
-offset_right = 723.5
-offset_bottom = 272.0
+offset_left = -916.0
+offset_top = -276.0
+offset_right = 1364.0
+offset_bottom = 354.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("3_rbrwj")
-theme_override_font_sizes/font_size = 52
-text = "Animation and Visuals, Press Kit and Trailor  - Richard Zhang 
+theme_override_constants/line_spacing = 37
+theme_override_fonts/font = ExtResource("4_giwue")
+theme_override_font_sizes/font_size = 33
+text = "Animation & Visuals, Press Kit & Trailor - Richard Zhang 
 Game Logic, Gameplay Testing - Nico Medina
-Producer,  Gameplay Testing - Juan Alvarez
-Movement and Physics, Audio - Jasper Fadden
-Map Design, Narrative Design- Ruben Leon
-User Interface and Input, Game Feel - Alex Salgado"
+Producer, Gameplay Testing - Juan Alvarez
+Movement & Physics, Audio - Jasper Fadden
+Map Design, Narrative Design - Ruben Leon
+User Interface & Input, Game Feel - Alex Salgado"
+vertical_alignment = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_direction = 1
@@ -130,8 +133,9 @@ alignment = 1
 
 [node name="back" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_rbrwj")
-theme_override_font_sizes/font_size = 24
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("4_giwue")
+theme_override_font_sizes/font_size = 25
 theme_override_styles/focus = SubResource("StyleBoxFlat_6cqfl")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_6cqfl")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_6cqfl")
