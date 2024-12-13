@@ -39,7 +39,7 @@ sprite_frames = SubResource("SpriteFrames_lyads")
 
 [node name="Light" parent="AnimatedSprite2D" instance=ExtResource("4_uod6l")]
 color = Color(0.69439, 0.000392939, 0.70106, 1)
-energy = 1.2
+energy = 1.4
 texture_scale = 4.5
 
 [node name="HurtBox" type="Area2D" parent="."]

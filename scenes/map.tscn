@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://fh32xvaj4ve"]
+[gd_scene load_steps=30 format=3 uid="uid://fh32xvaj4ve"]
 
 [ext_resource type="Script" path="res://scripts/map.gd" id="1_aff03"]
 [ext_resource type="Texture2D" uid="uid://s7413bleih65" path="res://assets/KeybindsEngine.png" id="2_1rxuy"]
@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://vohrw4dqjkcm" path="res://scenes/bullet_power_up.tscn" id="13_b1enx"]
 [ext_resource type="PackedScene" uid="uid://cfkwr2bc1au7k" path="res://scenes/pause_menu.tscn" id="13_ohou2"]
 [ext_resource type="PackedScene" uid="uid://dymmsld3v8lfa" path="res://scenes/hull_power_up.tscn" id="14_ax6iu"]
+[ext_resource type="PackedScene" uid="uid://c8tae3mbhovun" path="res://light.tscn" id="15_6v4gp"]
 [ext_resource type="PackedScene" uid="uid://5t0m8un3nhpn" path="res://scenes/boss_core.tscn" id="19_mdid1"]
 [ext_resource type="Texture2D" uid="uid://gvdhbncb2qlp" path="res://assets/MapRefined15K.png" id="20_m4ck8"]
 [ext_resource type="PackedScene" uid="uid://dq2m18ow4rsie" path="res://scenes/shield_power_up.tscn" id="21_35y3f"]
@@ -964,6 +965,41 @@ position = Vector2(2200, -4155)
 [node name="Shield_Power_Up" parent="__POWERUPS__" instance=ExtResource("21_35y3f")]
 position = Vector2(-2320, -6056)
 
+[node name="__LIGHTING__" type="Node" parent="."]
+
+[node name="Light" parent="__LIGHTING__" instance=ExtResource("15_6v4gp")]
+position = Vector2(-726, -3048)
+energy = 0.3
+texture_scale = 6.0
+
+[node name="Light2" parent="__LIGHTING__" instance=ExtResource("15_6v4gp")]
+position = Vector2(1755, -3994)
+energy = 0.3
+texture_scale = 9.0
+
+[node name="Light3" parent="__LIGHTING__" instance=ExtResource("15_6v4gp")]
+position = Vector2(-902, 1310)
+color = Color(0.311095, 0.548709, 0.999998, 1)
+energy = 0.3
+texture_scale = 10.0
+
+[node name="Light4" parent="__LIGHTING__" instance=ExtResource("15_6v4gp")]
+position = Vector2(1706, 4570)
+color = Color(0.451738, 0.092434, 0.706947, 1)
+energy = 0.3
+texture_scale = 12.0
+
+[node name="Light5" parent="__LIGHTING__" instance=ExtResource("15_6v4gp")]
+position = Vector2(3014, -2010)
+energy = 0.15
+texture_scale = 12.0
+
+[node name="Light12" parent="__LIGHTING__" instance=ExtResource("15_6v4gp")]
+position = Vector2(1238, 2370)
+color = Color(0.605843, 0.372512, 0.934496, 1)
+energy = 0.15
+texture_scale = 12.0
+
 [node name="Ship" parent="." instance=ExtResource("4_1753m")]
 unique_name_in_owner = true
 position = Vector2(-2431, -6390)
@@ -1061,7 +1097,7 @@ color = Color(0, 0, 0, 0)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 position = Vector2(-2426, -7062)
-color = Color(0.309032, 0.124175, 0.216839, 0.992157)
+color = Color(0.221415, 0.0805254, 0.151226, 0.992157)
 
 [node name="PauseMenu" type="CanvasLayer" parent="."]
 
