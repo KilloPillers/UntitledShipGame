@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://c2a6ielbm0t3c"]
+[gd_scene load_steps=55 format=3 uid="uid://c2a6ielbm0t3c"]
 
 [ext_resource type="Script" path="res://scripts/ship_hull.gd" id="1_k84c6"]
 [ext_resource type="Texture2D" uid="uid://cdg4c33l6tgfh" path="res://assets/ShipLoFi.png" id="1_l4aep"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://brk7f7yv4p086" path="res://assets/ShieldModule-Spritesheet.png" id="9_g4p06"]
 [ext_resource type="Script" path="res://scripts/hurt_box.gd" id="11_d0h4u"]
 [ext_resource type="Texture2D" uid="uid://tvip2rxqh5lh" path="res://assets/ShipDeath-Spritesheet.png" id="12_dn53e"]
+[ext_resource type="PackedScene" uid="uid://c8tae3mbhovun" path="res://light.tscn" id="13_rbydh"]
 [ext_resource type="Texture2D" uid="uid://chr665phfaem5" path="res://assets/light.png" id="14_5gqqr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_iick3"]
@@ -643,6 +644,12 @@ points = PackedVector2Array(0, 1, 103, 1)
 width = 5.0
 default_color = Color(1, 0, 0, 0.776471)
 gradient = SubResource("Gradient_egt0d")
+
+[node name="Light" parent="ShipHull/Gun" instance=ExtResource("13_rbydh")]
+position = Vector2(127, 0)
+color = Color(1, 0.241106, 0.222598, 1)
+energy = 0.45
+texture_scale = 0.4
 
 [node name="HullAnimatedSprite" type="AnimatedSprite2D" parent="ShipHull"]
 sprite_frames = SubResource("SpriteFrames_uo5x6")

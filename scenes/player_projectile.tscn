@@ -27,6 +27,6 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_ytyhr")
 
 [node name="Light" parent="." instance=ExtResource("4_hr2l2")]
-color = Color(0, 0.941099, 0.953061, 1)
-energy = 0.6
-texture_scale = 0.7
+color = Color(0.780793, 0.0988017, 0.243956, 1)
+energy = 0.45
+texture_scale = 0.45
