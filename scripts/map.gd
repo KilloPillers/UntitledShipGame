@@ -1,11 +1,11 @@
 extends Node2D
 
 
-#Pause Testing---------------------
-@onready var pause_menu = $PauseMenu/PauseMenu        
-
+@onready var pause_menu = $PauseMenu/PauseMenu
+@onready var boss_bar = $CanvasLayer2/BossHealth
 var is_paused = false  
-#----------------------
+
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -16,7 +16,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-#pause-----------------
 func _on_pause_pressed() -> void:
 	is_paused = true
 	if is_paused:
@@ -24,4 +23,8 @@ func _on_pause_pressed() -> void:
 		pause_menu.show()
 	else:
 		get_tree().paused = false
-#----------------------
+
+func _on_area_2d_body_entered(body: Node):
+	if body.name == "ShipHull":
+		print("In boss area")
+		boss_bar.show()
