@@ -1,4 +1,4 @@
-# Untitled Ship Game
+# Untitled Ship Game - ECS179 Final Report Document
 
 ## Summary
 
