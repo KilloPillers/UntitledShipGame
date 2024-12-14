@@ -8,7 +8,9 @@ func _init() -> void:
 
 
 func _on_area_entered(_hitbox: Hitbox) -> void:
-	if owner.has_method("take_damage"):
+	if owner == _hitbox.owner:
+		pass
+	elif owner.has_method("take_damage"):
 		if _hitbox.owner.damage != null:
 			owner.take_damage(_hitbox.owner.damage)
 		else:

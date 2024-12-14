@@ -2,24 +2,23 @@ class_name HealthBar
 extends Control
 
 @onready var progress_bar = $ProgressBar
-@onready var boss_health: ProgressBar = $"../BossHealth"
-
+@onready var shield_progress_bar = $ShieldProgressBar
+@onready var boss_health_bar: ProgressBar = $"../BossHealth"
 @onready var boss_core: Boss = $"../../BossCore"
-
-
-var boss_hp: int = 30
-var hp: int = 100
-var is_paused = false  
+@onready var ship_hull: ShipHull = %Ship/ShipHull
+@onready var ship_shield: Shield = %Ship/ShipHull/Shield
 
 
 func _ready() -> void:
-	progress_bar.value = hp
-	boss_hp = boss_core.health
-	#boss_health.max_value = boss_hp
+	progress_bar.max_value = ship_hull.health
+	progress_bar.value = ship_hull.health
+	shield_progress_bar.max_value = ship_shield.shield_health
+	shield_progress_bar.value = ship_shield.shield_health
+	boss_health_bar.max_value = boss_core.health
+	boss_health_bar.value = boss_core.health
 
 
 func _process(delta: float) -> void:
-	hp = %Ship/ShipHull.health
-	progress_bar.value = hp
-	boss_health.value = boss_core.health
-	#print(boss_core.health)
+	progress_bar.value = ship_hull.health
+	shield_progress_bar.value = ship_shield.shield_health
+	boss_health_bar.value = boss_core.health

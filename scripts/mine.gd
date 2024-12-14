@@ -23,7 +23,7 @@ func _ready() -> void:
 	state = State.IDLE
 
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if state == State.IDLE:
 		if global_position.distance_to(%Ship/ShipHull.global_position) <= trigger_distance:
 			state = State.TRIGGERED
@@ -32,6 +32,7 @@ func _physics_process(_delta: float) -> void:
 			add_child(_detonation_timer)
 			_detonation_timer.start(detonation_delay)
 	elif state == State.TRIGGERED:
+		$Light.energy += delta * 1.5
 		if _detonation_timer.is_stopped():
 			explode()
 	

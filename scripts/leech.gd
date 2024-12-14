@@ -14,7 +14,7 @@ enum State {
 @export var damage: int = 1 
 @export var speed: float = 200.0
 @export var aggro_distance: float = 800 
-@export var attach_distance: float = 50.0 
+@export var attach_distance: float = 100.0 
 @export var damage_tick_rate: float = 1
 @export var damage_lifespan: float = 3
 
@@ -24,11 +24,11 @@ var target_destination: Vector2
 var damage_timer: Timer
 
 var _state : State
-var _hits_dealt: int = 0
 var _rng: RandomNumberGenerator
 var _spawn_wander_timer: Timer
 var _spawn_wander_direction: Vector2
 var _spawn_wander_duration: float = 0.5
+var _attach_position: Vector2
 
 @onready var animation_tree:AnimationTree = $AnimationTree
 
@@ -57,6 +57,12 @@ func _physics_process(_delta: float) -> void:
 		move_and_slide()
 		if _spawn_wander_timer.is_stopped():
 			_state = State.IDLE
+	
+	# IDLE Logic
+	elif _state == State.IDLE and global_position.distance_to(target.global_position) < aggro_distance:
+		# Start tracking if player is within enemy range
+		_state = State.TRACKING
+	
 	# TRACKING Logic
 	elif _state == State.TRACKING:
 		# Move the enemy if the enemy is TRACKING. 
@@ -67,15 +73,10 @@ func _physics_process(_delta: float) -> void:
 		if global_position.distance_to(target.global_position) < attach_distance:
 			attach()
 	
-	# IDLE Logic
-	elif _state == State.IDLE and global_position.distance_to(target.global_position) < aggro_distance:
-		# Start tracking if player is within enemy range
-		_state = State.TRACKING
-	
 	# ATTACHED Logic
 	elif _state == State.ATTACHED:
 		# Keep the enemy on the player
-		global_position = target.global_position
+		global_position = target.global_position - _attach_position
 		
 		# Tick damage once timer finishes
 		if damage_timer.is_stopped():
@@ -91,6 +92,7 @@ func take_damage(_damage: float) -> void:
 
 func attach() -> void:
 	_state = State.ATTACHED
+	_attach_position = target.global_position - global_position
 	#print("attaching")
 	$CollisionShape2D.disabled = true
 	
@@ -107,11 +109,6 @@ func _deal_damage() -> void:
 		damage_timer.one_shot = true
 		add_child(damage_timer)
 		damage_timer.start(damage_tick_rate)
-		
-		#TEMPORARY
-		_hits_dealt += 1
-		if (_hits_dealt >= damage_lifespan):
-			destroy()
 
 
 func destroy() -> void:

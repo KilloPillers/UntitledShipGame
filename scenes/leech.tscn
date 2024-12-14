@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://bx4k84npg6sen"]
+[gd_scene load_steps=15 format=3 uid="uid://bx4k84npg6sen"]
 
 [ext_resource type="Script" path="res://scripts/leech.gd" id="1_6by6i"]
 [ext_resource type="Script" path="res://scripts/hurt_box.gd" id="1_anowc"]
 [ext_resource type="Texture2D" uid="uid://cbnhj2146njc2" path="res://assets/LeechBoid-Spritesheet.png" id="2_ipvv5"]
-[ext_resource type="PackedScene" uid="uid://c8tae3mbhovun" path="res://light.tscn" id="4_2l6lh"]
+[ext_resource type="PackedScene" path="res://light.tscn" id="4_2l6lh"]
+[ext_resource type="Script" path="res://scripts/hit_box.gd" id="5_dxcor"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rfkkw"]
 size = Vector2(37, 20)
@@ -60,6 +61,9 @@ states/flying/node = SubResource("AnimationNodeAnimation_1sce4")
 states/flying/position = Vector2(358, 108)
 transitions = ["Start", "flying", SubResource("AnimationNodeStateMachineTransition_p8nvn")]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eego1"]
+size = Vector2(37, 20)
+
 [node name="LeechEnemy" type="CharacterBody2D"]
 scale = Vector2(2, 2)
 script = ExtResource("1_6by6i")
@@ -71,6 +75,8 @@ shape = SubResource("RectangleShape2D_rfkkw")
 disabled = true
 
 [node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("1_anowc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
@@ -82,7 +88,7 @@ texture = ExtResource("2_ipvv5")
 flip_h = true
 hframes = 8
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." groups=["can_hit_player_shield"]]
 libraries = {
 "": SubResource("AnimationLibrary_dpmie")
 }
@@ -95,3 +101,10 @@ anim_player = NodePath("../AnimationPlayer")
 color = Color(0.27451, 0.447059, 0.898039, 1)
 energy = 0.4
 texture_scale = 0.4
+
+[node name="Hitbox" type="Area2D" parent="."]
+script = ExtResource("5_dxcor")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_eego1")
