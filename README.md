@@ -13,9 +13,7 @@ A cosmic seed of horror travels toward a distant sun, piercing its core and corr
 
 ## Gameplay Explanation 
 
-**In this section, explain how the game should be played. Treat this as a manual within a game. Explaining the button mappings and the most optimal gameplay strategy is encouraged.**
-
-\*\*Add it here if you did work that should be factored into your grade but does not fit easily into the proscribed roles\! Please include links to resources and descriptions of game-related material that does not fit into roles here.\*\*
+This is a 3 player game best played with a split keyboard. There are three subsystems (Gun, Shield, Engine) to the capsule ship the players control. Each player is responsible for one subsystem. The gun is controlled with keys WAD. The shield is controlled with keys UHK. The engine is controlled with the arrow keys. The beginning of the game starts with a cutscene which you can skip by pressing space. The objective of the game is to reach the bottom of the map and kill the boss. In order to do so, you will venture through various chambers of an underground and underwater environment. There are 5 different types of enemies: boids, leeches, kamikaze, mines, and turrets. The boids are the most common and will flock towards the capsule and shoot projectiles at it. Leeches will grab onto the ship and deal periodic damage. Kamikaze enemies will fly towards the ship and blow up. Mines are stationary and will blow up if the ship gets close to it. Turrets are stationary but have a ranged projectile attack. The optimal strategy is to push past heavy boid areas as fast as possible since they continously spawn. Then grab the gun upgrade in the second large chamber in the map. This gun upgrade will significantly increase the damage and spread of the gun subsystem. Afterwards, get the hull upgrade at the top of the boss room so you are at full health before engaging the boss. To fight the boss optimally, first kill the turrets directly above the boss. Then shoot the boss until 2-3 flocks of boids spawn. Then fly away from the boss and kill off the boids. After that, go back to shooting the boss and repeat. This way, the players are not overwhelmed by the boids spawn in the boss fight. 
 
 # External Code, Ideas, and Structure 
 
@@ -169,7 +167,7 @@ Enemies
 
 | Boid | Leech | Kamikaze | Mine | Turret |
 | :---- | :---- | :---- | :---- | :---- |
-| ![Boid](https://github.com/richardzhangptc/shipgameimages/raw/main/Boid-Spritesheet.png) | ![Leech](https://github.com/richardzhangptc/shipgameimages/raw/main/LeechBoid.gif)  | ![Kamikaze](https://github.com/richardzhangptc/shipgameimages/raw/main/KamikazeEnemyComp.gif) | ![Mine](https://github.com/richardzhangptc/shipgameimages/raw/main/Mine.gif) | [Turret](https://github.com/richardzhangptc/shipgameimages/raw/main/Turret.gif) |
+| ![Boid](https://github.com/richardzhangptc/shipgameimages/raw/main/Boid-Spritesheet.png) | ![Leech](https://github.com/richardzhangptc/shipgameimages/raw/main/LeechBoid.gif)  | ![Kamikaze](https://github.com/richardzhangptc/shipgameimages/raw/main/KamikazeEnemyComp.gif) | ![Mine](https://github.com/richardzhangptc/shipgameimages/raw/main/Mine.gif) | ![Turret](https://github.com/richardzhangptc/shipgameimages/raw/main/Turret.gif) |
 
 Enemy Projectiles
 
