@@ -1291,6 +1291,9 @@ texture_scale = 12.0
 [node name="Audio" type="Node" parent="."]
 script = ExtResource("16_t5pkn")
 
+[node name="ShieldSoundPlayer" type="AudioStreamPlayer" parent="Audio"]
+volume_db = -12.5
+
 [node name="EngineSoundPlayer" type="AudioStreamPlayer" parent="Audio"]
 volume_db = -10.0
 
@@ -1401,6 +1404,9 @@ audio_manager = NodePath("../../Audio")
 [node name="CollisionShape2D" parent="Ship/ShipHull" index="1" groups=["obstacle"]]
 
 [node name="Engine" parent="Ship/ShipHull" index="2" node_paths=PackedStringArray("audio_manager")]
+audio_manager = NodePath("../../../Audio")
+
+[node name="Shield" parent="Ship/ShipHull" index="3" node_paths=PackedStringArray("audio_manager")]
 audio_manager = NodePath("../../../Audio")
 
 [node name="Area2D" parent="Ship/ShipHull/Shield" index="0" groups=["obstacle"]]

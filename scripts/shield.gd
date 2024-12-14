@@ -1,11 +1,13 @@
 extends Node2D
 
 @export var turn_speed : float = 5
+@export var audio_manager : AudioManager
 
-#@onready var animated_sprite_2d = $AnimatedSprite2D
-@onready var animation = $AnimationPlayer
+@onready var animation : AnimationPlayer = $AnimationPlayer
 
-var shield_power_up = false
+var shield_power_up : bool = false
+
+var playing_shield_sound : bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -24,7 +26,11 @@ func _process(delta: float) -> void:
 			animation.play("upgraded_shield")
 		else:
 			animation.play("on")
-		pass
-		# will enable a trigger, can't implement till boid projectiles are added
+		if !playing_shield_sound && audio_manager:
+			playing_shield_sound = true
+			audio_manager.play_sfx("shields_on")
 	else:
 		animation.play("off")
+		if playing_shield_sound && audio_manager:
+			playing_shield_sound = false
+			audio_manager.play_sfx("shields_off")
