@@ -1,14 +1,15 @@
+class_name CanvasModule
 extends CanvasModulate
 
 # variables that controls the light to dark transition. Smaller means longer transition
-@export var light_gradient : float = 0.1
+@export var light_gradient: float = 0.1
+
+var depth: float
+var ship_origin: Vector2
 
 @onready var ship: Node2D = %Ship
 @onready var ship_hull: ShipHull = $"../Ship/ShipHull"
 
-var depth : float
-
-var ship_origin
 
 func _ready() -> void:
 	ship_origin = ship_hull.global_position
@@ -20,7 +21,8 @@ func _process(delta: float) -> void:
 	if depth < 0:
 		_adjust_brightness(color)
 
-func _adjust_brightness(curr_color : Color) -> void:
+
+func _adjust_brightness(curr_color: Color) -> void:
 	# modulates the brightness of the environment the deeper the ship is.
 	var brightness_factor = clampf(1.0 - depth * light_gradient, 0.0, 1.0)
 	

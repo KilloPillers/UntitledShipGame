@@ -437,9 +437,33 @@ position = Vector2(-1092, -644)
 enemy_type = 1
 enemy_scene = ExtResource("5_pmmu7")
 enemy_target = NodePath("../../../Ship/ShipHull")
-spawn_rate = 10.0
+spawn_rate = 7.0
 spawn_amount = 2
 spawn_cap = 5
+despawn_distance = 1500.0
+aggro_distance = 1500
+
+[node name="KamikazeSpawner7" parent="__ENEMIES__/Kamakaze Enemies" node_paths=PackedStringArray("enemy_target") instance=ExtResource("5_1cle1")]
+position = Vector2(-1092, -644)
+enemy_type = 1
+enemy_scene = ExtResource("5_pmmu7")
+enemy_target = NodePath("../../../Ship/ShipHull")
+spawn_rate = 7.0
+spawn_amount = 2
+spawn_cap = 5
+despawn_distance = 2000.0
+aggro_distance = 2000
+
+[node name="KamikazeSpawner8" parent="__ENEMIES__/Kamakaze Enemies" node_paths=PackedStringArray("enemy_target") instance=ExtResource("5_1cle1")]
+position = Vector2(-2485, 338)
+enemy_type = 1
+enemy_scene = ExtResource("5_pmmu7")
+enemy_target = NodePath("../../../Ship/ShipHull")
+spawn_rate = 7.0
+spawn_amount = 2
+spawn_cap = 5
+despawn_distance = 1500.0
+aggro_distance = 1500
 
 [node name="KamikazeSpawner" parent="__ENEMIES__/Kamakaze Enemies" node_paths=PackedStringArray("enemy_target") instance=ExtResource("5_1cle1")]
 position = Vector2(1707, -2561)
@@ -461,7 +485,7 @@ spawn_cap = 5
 aggro_distance = 1500
 
 [node name="KamikazeSpawner6" parent="__ENEMIES__/Kamakaze Enemies" node_paths=PackedStringArray("enemy_target") instance=ExtResource("5_1cle1")]
-position = Vector2(452, 6277)
+position = Vector2(196, 6461)
 enemy_type = 1
 enemy_scene = ExtResource("5_pmmu7")
 enemy_target = NodePath("../../../Ship/ShipHull")
@@ -490,24 +514,6 @@ enemy_target = NodePath("../../../Ship/ShipHull")
 spawn_rate = 10.0
 spawn_amount = 2
 spawn_cap = 5
-
-[node name="KamikazeEnemy" parent="__ENEMIES__/Kamakaze Enemies" instance=ExtResource("5_pmmu7")]
-position = Vector2(2109, -243)
-
-[node name="KamikazeEnemy2" parent="__ENEMIES__/Kamakaze Enemies" instance=ExtResource("5_pmmu7")]
-position = Vector2(1723, -884)
-
-[node name="KamikazeEnemy3" parent="__ENEMIES__/Kamakaze Enemies" instance=ExtResource("5_pmmu7")]
-position = Vector2(2543, -203)
-
-[node name="KamikazeEnemy4" parent="__ENEMIES__/Kamakaze Enemies" instance=ExtResource("5_pmmu7")]
-position = Vector2(-1114, 1498)
-
-[node name="KamikazeEnemy5" parent="__ENEMIES__/Kamakaze Enemies" instance=ExtResource("5_pmmu7")]
-position = Vector2(2738, 4496)
-
-[node name="KamikazeEnemy6" parent="__ENEMIES__/Kamakaze Enemies" instance=ExtResource("5_pmmu7")]
-position = Vector2(-237, 5433)
 
 [node name="Leech Enemies" type="Node2D" parent="__ENEMIES__"]
 z_index = 1
@@ -543,6 +549,7 @@ enemy_scene = ExtResource("6_qa33p")
 enemy_target = NodePath("../../../Ship/ShipHull")
 spawn_rate = 10.0
 spawn_cap = 3
+despawn_distance = 2000.0
 
 [node name="LeechSpawner5" parent="__ENEMIES__/Leech Enemies" node_paths=PackedStringArray("enemy_target") instance=ExtResource("6_sjk61")]
 position = Vector2(3748, 5963)
@@ -1259,34 +1266,40 @@ position = Vector2(3401, -2724)
 position = Vector2(-726, -3048)
 energy = 0.3
 texture_scale = 6.0
+metadata/_edit_lock_ = true
 
 [node name="Light2" parent="__LIGHTING__" instance=ExtResource("15_6v4gp")]
 position = Vector2(1755, -3994)
 energy = 0.3
 texture_scale = 9.0
+metadata/_edit_lock_ = true
 
 [node name="Light3" parent="__LIGHTING__" instance=ExtResource("15_6v4gp")]
 position = Vector2(-902, 1310)
 color = Color(0.311095, 0.548709, 0.999998, 1)
 energy = 0.3
 texture_scale = 10.0
+metadata/_edit_lock_ = true
 
 [node name="Light4" parent="__LIGHTING__" instance=ExtResource("15_6v4gp")]
 position = Vector2(1706, 4570)
 color = Color(0.451738, 0.092434, 0.706947, 1)
 energy = 0.3
 texture_scale = 12.0
+metadata/_edit_lock_ = true
 
 [node name="Light5" parent="__LIGHTING__" instance=ExtResource("15_6v4gp")]
 position = Vector2(3014, -2010)
 energy = 0.15
 texture_scale = 12.0
+metadata/_edit_lock_ = true
 
 [node name="Light12" parent="__LIGHTING__" instance=ExtResource("15_6v4gp")]
 position = Vector2(1238, 2370)
 color = Color(0.605843, 0.372512, 0.934496, 1)
 energy = 0.15
 texture_scale = 12.0
+metadata/_edit_lock_ = true
 
 [node name="Audio" type="Node" parent="."]
 script = ExtResource("16_t5pkn")
@@ -1395,7 +1408,7 @@ unique_name_in_owner = true
 position = Vector2(-2431, -6390)
 
 [node name="ShipHull" parent="Ship" index="0" node_paths=PackedStringArray("fadeToBlack", "audio_manager") groups=["obstacle"]]
-position = Vector2(-19, 36)
+position = Vector2(1111, 6543)
 fadeToBlack = NodePath("../../CanvasLayer/ColorRect")
 audio_manager = NodePath("../../Audio")
 
@@ -1503,6 +1516,7 @@ polygon = PackedVector2Array(-569, -6532, -677, -6534, -677, -6532.3, -679, -653
 [node name="Sprite2D" type="Sprite2D" parent="Terrain"]
 position = Vector2(0, -2)
 texture = ExtResource("20_m4ck8")
+metadata/_edit_lock_ = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -1528,6 +1542,7 @@ environment = SubResource("Environment_bktdd")
 [node name="BossCore" parent="." node_paths=PackedStringArray("spawners") instance=ExtResource("19_mdid1")]
 max_health = 400
 spawners = [NodePath("../__ENEMIES__/Boss Spawners/BoidSpawner"), NodePath("../__ENEMIES__/Boss Spawners/BoidSpawner2"), NodePath("../__ENEMIES__/Boss Spawners/BoidSpawner3"), NodePath("../__ENEMIES__/Boss Spawners/BoidSpawner4")]
+metadata/_edit_lock_ = true
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(40, 49)

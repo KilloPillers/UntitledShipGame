@@ -53,7 +53,7 @@ func play_sfx(sound_name : String) -> void:
 # The 5 functions below are signal receivers for the 5 music crossfade zones throughout the map
 # If it isn't playing already, crossfade to the next song by activating an animation controlling
 # the volume properties of the tracks in the animation player. All songs autoplay, but 5 are muted.
-func _on_capsule_2_area_entered(area: Area2D) -> void:
+func _on_capsule_2_area_entered(_area: Area2D) -> void:
 	if (_current_song_id < 2):
 		_current_song_id = 2
 	else:
@@ -62,7 +62,7 @@ func _on_capsule_2_area_entered(area: Area2D) -> void:
 	_crossfader.play("FadeToCapsule2")
 
 
-func _on_capsule_3_area_entered(area: Area2D) -> void:
+func _on_capsule_3_area_entered(_area: Area2D) -> void:
 	if (_current_song_id < 3):
 		_current_song_id = 3
 	else:
@@ -71,7 +71,7 @@ func _on_capsule_3_area_entered(area: Area2D) -> void:
 	_crossfader.play("FadeToCapsule3")
 
 
-func _on_capsule_4_area_entered(area: Area2D) -> void:
+func _on_capsule_4_area_entered(_area: Area2D) -> void:
 	if (_current_song_id < 4):
 		_current_song_id = 4
 	else:
@@ -80,7 +80,7 @@ func _on_capsule_4_area_entered(area: Area2D) -> void:
 	_crossfader.play("FadeToCapsule4")
 
 
-func _on_capsule_5_area_entered(area: Area2D) -> void:
+func _on_capsule_5_area_entered(_area: Area2D) -> void:
 	if (_current_song_id < 5):
 		_current_song_id = 5
 	else:
@@ -89,7 +89,7 @@ func _on_capsule_5_area_entered(area: Area2D) -> void:
 	_crossfader.play("FadeToCapsule5")
 
 
-func _on_capsule_6_area_entered(area: Area2D) -> void:
+func _on_capsule_6_area_entered(_area: Area2D) -> void:
 	if (_current_song_id < 6):
 		_current_song_id = 6
 	else:

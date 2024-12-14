@@ -7,11 +7,10 @@ enum State {
 	EXPLODING,
 }
 
-@export var health:int = 2
-@export var damage:int = 10
-@export var trigger_distance:float = 200
-#@export var explosion_radius:float = 100
-@export var detonation_delay:float = 1.0
+@export var health: int = 2
+@export var damage: int = 10
+@export var trigger_distance: float = 200
+@export var detonation_delay: float = 1.0
 
 var state:State
 var _detonation_timer:Timer
@@ -19,11 +18,12 @@ var _detonation_timer:Timer
 @onready var animation_tree:AnimationTree = $AnimationTree
 @onready var sprite:Sprite2D = $Sprite2D
 
+
 func _ready() -> void:
 	state = State.IDLE
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if state == State.IDLE:
 		if global_position.distance_to(%Ship/ShipHull.global_position) <= trigger_distance:
 			state = State.TRIGGERED

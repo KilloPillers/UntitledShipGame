@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scripts/hurt_box.gd" id="2_gprqn"]
 [ext_resource type="PackedScene" uid="uid://bw4vi72rvaoqy" path="res://scenes/turret-projectile.tscn" id="2_jjoty"]
 [ext_resource type="Texture2D" uid="uid://dqre5r52nxgvk" path="res://assets/Turret-Spritesheet.png" id="3_02kcc"]
-[ext_resource type="PackedScene" uid="uid://c8tae3mbhovun" path="res://light.tscn" id="5_e8nd1"]
+[ext_resource type="PackedScene" path="res://light.tscn" id="5_e8nd1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nmlv8"]
 size = Vector2(79, 47)

@@ -2,7 +2,7 @@ extends Node2D
 
 var num := 100
 var margin := 100
-var screensize : Vector2
+var screensize: Vector2
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

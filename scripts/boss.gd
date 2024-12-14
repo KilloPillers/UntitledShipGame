@@ -1,28 +1,28 @@
-class_name BOSS
+class_name Boss
 extends Node2D
 
 enum State {
 	IDLE,
-	PHASE1
+	PHASE1,
 }
 
-@export var max_health:int = 30 # About 60 shots
-@export var aggro_range:float = 1000 #Trigger boss fight
-@export var spawn_rate:float = 1 #This many seconds between timed spawns.
-@export var spawners:Array[EnemySpawner]
+@export var max_health: int = 30 # About 60 shots
+@export var aggro_range: float = 1000 #Trigger boss fight
+@export var spawn_rate: float = 1 #This many seconds between timed spawns.
+@export var spawners: Array[EnemySpawner]
 
 
 var boss_scaling = 1
-var state:State
-var health:int
-var target_position:Vector2
-var target_direction:Vector2
-var rng_ : RandomNumberGenerator
-var _timer:Timer
-var _boss_died:bool = false
+var state: State
+var health: int
+var target_position: Vector2
+var target_direction: Vector2
+var rng_: RandomNumberGenerator
+var _timer: Timer
+var _boss_died: bool = false
 
-@onready var animation_tree:AnimationTree = $AnimationTree
-@onready var sprite:AnimatedSprite2D = $AnimatedSprite2D
+#@onready var animation_tree: AnimationTree = $AnimationTree
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 func _ready() -> void:
 	health = max_health
@@ -57,16 +57,13 @@ func spawn() -> void:
 	_timer.start(spawn_rate)
 
 
-
-
-
 func take_damage(_damage:int) -> void:
 	health -= _damage
 	
 	_timer.stop()
 	spawn()
 	
-	if (health > max_health/2):
+	if (health > max_health / 2):
 		boss_scaling = 1
 	else:
 		boss_scaling = 3 - 2 * (health/max_health)
@@ -76,12 +73,14 @@ func take_damage(_damage:int) -> void:
 		_boss_died = true
 		get_tree().change_scene_to_file("res://scenes/ending_cutscene.tscn")
 
+
 func flash_white() -> void:
 	if (health < 30):
 		return
 	sprite.modulate = Color(10,2,2,2) # red in this case
 	await get_tree().create_timer(0.2).timeout
 	sprite.modulate = Color(1,1,1)
+
 
 # Called by Hurtbox.gd
 func destroy() -> void:

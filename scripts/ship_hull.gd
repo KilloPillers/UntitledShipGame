@@ -2,8 +2,8 @@ class_name ShipHull
 extends RigidBody2D
 
 @export var fadeToBlack: Node
-@export var health:int = 100
-@export var audio_manager : AudioManager
+@export var health: int = 100
+@export var audio_manager: AudioManager
 
 @onready var animated_sprite_2d = $HullAnimatedSprite
 @onready var camera = $Camera2D
@@ -12,12 +12,7 @@ func _ready() -> void:
 	animated_sprite_2d.play("default")
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass
-
-
-func take_damage(_damage:int) -> void:
+func take_damage(_damage: int) -> void:
 	if health <= 0:
 		return
 	health -= _damage
@@ -48,13 +43,15 @@ func _start_death() -> void:
 	set_deferred("freeze", true)
 	animated_sprite_2d.play("death")
 
+
 func _on_hull_animated_sprite_frame_changed() -> void:
 	if animated_sprite_2d.animation == "death" and animated_sprite_2d.frame == animated_sprite_2d.sprite_frames.get_frame_count("death") - 1:
 		await get_tree().create_timer(1.0).timeout
 		_fade_to_black_and_return_to_menu()
 
+
 func _fade_to_black_and_return_to_menu() -> void:
-	var current_alpha = 0.0
+	var current_alpha: float = 0.0
 	var timer = get_tree().create_timer(0.1)
 	while current_alpha < 1.0:
 		current_alpha += 0.05
@@ -64,12 +61,13 @@ func _fade_to_black_and_return_to_menu() -> void:
 	fadeToBlack.color.a = 1.0
 	get_tree().change_scene_to_file("res://scenes/menu.tscn")
 
+
 func shake_camera(damage: int):
 	var original_position = camera.position
 	#shake sensitivity 
-	var shake_factor = 5 
-	var intensity = damage * shake_factor
-	var offset = Vector2(randf_range(-intensity, intensity), randf_range(-intensity, intensity))
+	var shake_factor: int = 5 
+	var intensity: int = damage * shake_factor
+	var offset := Vector2(randf_range(-intensity, intensity), randf_range(-intensity, intensity))
 	camera.position += offset
 	await get_tree().create_timer(0.05).timeout
 	camera.position = original_position

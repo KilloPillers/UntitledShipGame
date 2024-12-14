@@ -1,10 +1,5 @@
-class_name HitBox
+class_name Hitbox
 extends Area2D
-
-const DEFAULT_DAMAGE:int = 1
-
-# NOTICE I have realized that this script is kind of pointless (as far as my understanding) because you 
-# can just have all the logic go in the hurt_box.gd script instead, which is how it currently is implemented
 
 
 func _init() -> void:
@@ -12,13 +7,5 @@ func _init() -> void:
 	pass
 
 
-func _on_area_entered(_hurtbox:HurtBox) -> void:
+func _on_area_entered(_hurtbox: Hurtbox) -> void:
 	pass
-	
-	#if _hurtbox.get_parent().has_method("take_damage"):
-		#if "damage" in owner:
-			#_hurtbox.get_parent().take_damage(owner.damage)
-		#else:
-			#_hurtbox.get_parent().take_damage(DEFAULT_DAMAGE)
-	#if _hurtbox.owner.has_method("destroy"):
-		#_hurtbox.owner.destroy()

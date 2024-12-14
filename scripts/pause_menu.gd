@@ -1,6 +1,8 @@
 extends Control
 
+
 @onready var pause_menu = $"../PauseMenu"  
+
 
 func _ready() -> void:
 	pause_menu.hide()  
@@ -9,6 +11,7 @@ func _ready() -> void:
 func resume():
 	print("Resuming game...")
 	get_tree().paused = false
+
 
 #delete after done testing 
 func _on_delete_later_pressed() -> void:

@@ -8,21 +8,20 @@ enum EnemyType {
 }
 
 
-@export var enemy_type:EnemyType
+@export var enemy_type: EnemyType
 @export var enemy_scene: PackedScene
 @export var enemy_target: Node
 @export var spawn_rate: float = 1.0
 @export var spawn_amount: int = 5
 @export var spawn_cap: int = 20
 @export var despawn_distance: float = 500.0  # Maximum distance to the target before stopping spawns
-@export var aggro_distance:int = 800 # for leeches and kamikaze's
-@export var is_boss_spawner:bool = false
+@export var aggro_distance: int = 800 # for leeches and kamikaze's
+@export var is_boss_spawner: bool = false
 
-var boss_scaling:float = 1 # only used by boss spawners to progressively make enemies stronger.
+var boss_scaling: float = 1 # only used by boss spawners to progressively make enemies stronger.
 var timer: Timer
 
-var _debug_timer: Timer
-
+#var _debug_timer: Timer
 
 
 func _ready() -> void:
@@ -48,8 +47,9 @@ func _on_spawn() -> void:
 	# in this cycle. Its normally spawn_amount but in the rare
 	# instances where spawn_amount will exceed spawn capacity
 	# we must change it so that it wont. 
-	var cycle_spawn_amount = spawn_amount
-	var number_of_spawned_enemies = len($EnemyFolder.get_children())
+	var cycle_spawn_amount: int = spawn_amount
+	var number_of_spawned_enemies: int = len($EnemyFolder.get_children())
+	
 	# Makes sure that the amount spawned this cycle does not 
 	# exceed the spawn cap
 	if number_of_spawned_enemies + spawn_amount > spawn_cap:
@@ -64,8 +64,9 @@ func _on_spawn() -> void:
 		if enemy_type == EnemyType.LEECH:
 			spawn_leech()
 
+
 # used by the boss to manually spawn enemies on spawners
-func force_spawn(power_scale:float) -> void:
+func force_spawn(_power_scale: float) -> void:
 	var number_of_spawned_enemies = len($EnemyFolder.get_children())
 	if number_of_spawned_enemies > spawn_cap:
 		return
@@ -77,6 +78,7 @@ func force_spawn(power_scale:float) -> void:
 			spawn_kamikaze()
 		if enemy_type == EnemyType.LEECH:
 			spawn_leech()
+
 
 func spawn_boid() -> void:
 	var boid = enemy_scene.instantiate()
@@ -92,7 +94,7 @@ func spawn_boid() -> void:
 
 
 func spawn_kamikaze() -> void:
-	print("spawning Kamikaze Enemy")
+	#print("spawning Kamikaze Enemy")
 	var kamikaze_enemy = enemy_scene.instantiate()
 	kamikaze_enemy.target = enemy_target
 	kamikaze_enemy.global_position = $EnemyFolder.global_position - global_position
@@ -105,14 +107,12 @@ func spawn_kamikaze() -> void:
 
 
 func spawn_leech() -> void:
-	print("spawning Leech Enemy")
+	#print("spawning Leech Enemy")
 	var leech_enemy = enemy_scene.instantiate()
 	leech_enemy.target = enemy_target
 	leech_enemy.global_position = $EnemyFolder.global_position - global_position
 	leech_enemy.aggro_distance = aggro_distance
-	#boid.modulate = Color(randf(), randf(), randf())
 	$EnemyFolder.add_child(leech_enemy)
-	
 	if (is_boss_spawner):
 		leech_enemy.health *= boss_scaling
 

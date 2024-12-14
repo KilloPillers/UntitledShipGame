@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://4hcqwj88er64"
+path="res://.godot/imported/Capsule (Trailer).mp3-75091ee62994728568371a62d819834f.mp3str"
+
+[deps]
+
+source_file="res://assets/Audio/Songs/Capsule (Trailer).mp3"
+dest_files=["res://.godot/imported/Capsule (Trailer).mp3-75091ee62994728568371a62d819834f.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

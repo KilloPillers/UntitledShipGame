@@ -6,13 +6,16 @@ extends Control
 @onready var title_text = $Label
 @onready var skip_text = $SkipLabel
 
-func _process(delta: float) -> void:
+
+func _process(_delta: float) -> void:
 	if video_player.is_playing() and Input.is_action_pressed("skip_cutscene"):
 		get_tree().change_scene_to_file("res://scenes/map.tscn")
+
 
 func _on_exit_pressed() -> void:
 	get_tree().quit()
 	#pass
+
 
 func _on_play_pressed() -> void:
 	play_button.hide()
@@ -26,6 +29,7 @@ func _on_play_pressed() -> void:
 
 func _on_video_stream_player_finished() -> void:
 	get_tree().change_scene_to_file("res://scenes/map.tscn")
+
 
 func _on_credits_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/credits.tscn")
