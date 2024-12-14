@@ -75,6 +75,8 @@ func take_damage(_damage:int) -> void:
 		get_tree().change_scene_to_file("res://scenes/ending_cutscene.tscn")
 
 func flash_white() -> void:
+	if (health < 30):
+		return
 	sprite.modulate = Color(10,2,2,2) # red in this case
 	await get_tree().create_timer(0.2).timeout
 	sprite.modulate = Color(1,1,1)
