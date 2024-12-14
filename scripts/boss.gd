@@ -19,6 +19,7 @@ var target_position:Vector2
 var target_direction:Vector2
 var rng_ : RandomNumberGenerator
 var _timer:Timer
+var _boss_died:bool = false
 
 @onready var animation_tree:AnimationTree = $AnimationTree
 @onready var sprite:AnimatedSprite2D = $AnimatedSprite2D
@@ -71,7 +72,8 @@ func take_damage(_damage:int) -> void:
 		boss_scaling = 3 - 2 * (health/max_health)
 	
 	flash_white()
-	if health <= 0:
+	if health <= 0 && !_boss_died:
+		_boss_died = true
 		get_tree().change_scene_to_file("res://scenes/ending_cutscene.tscn")
 
 func flash_white() -> void:
