@@ -274,11 +274,14 @@ Game data used:
 
 All audio in the game is self-made, with both the music and sound effects being made through JummBox ([https://jummb.us](https://jummb.us)). This DAW happens to have an FM and chip syntheizer that proved useful for creating simple sound effects, along with some mild editing with Audacity.
 
-The game has 3 sound effects:
+All audio for the game is contained in the [Audio folder](https://github.com/KilloPillers/UntitledShipGame/tree/8f5a2c9e3b83b6df928fd507f8adb85301290b7d/assets/Audio). Here you can hear the sound effects, and each version of the main theme (looped twice for a bit under 20 seconds each). You can also hear the trialer theme (unused in-game), which smoothly progresses through each part
 
-1. Shot.wav  
-2. Engines.wav  
+The game has 4 sound effects:
+
+1. shot.wav  
 3. damaged.wav
+2. engines.mp3  
+3. shields.mp3
 
 The game also has the following 6 music tracks, each of which are variations of a song that increase in intensity:
 
@@ -286,8 +289,8 @@ The game also has the following 6 music tracks, each of which are variations of 
 2. Capsule2.mp3 (melody plus ambient harmony)  
 3. Capsule3.mp3 (above with drums added)  
 4. Capsule4.mp3 (above with more drums added and a modified melody  
-5. Capsule5.mp3 (above with even more drums and a modified harmony)  
-6. Capsule6.mp3 (final boss song, all parts modified)
+5. Capsule5.mp3 (above with even more drums, a faint bass-line, and a modified harmony)  
+6. Capsule6.mp3 (final boss song, with 2 more layers of drums, further modified harmony, and further changed melody)
 
 **Describe the implementation of your audio system.**
 
@@ -300,7 +303,7 @@ Crossfading is achieved through an animation player. This animation player has 5
 
 **Document the sound style.** 
 
-The music was focused on having a short and concise melody surrounded by a complex rhythm, originally very mellow but increasingly fast as the hazards of the setting become more lethal. Bells are used for the underwater setting, mixed with digital pads considering the mix with technology and alien life. I placed special attention to atmosphere for this game's soundtrack, as I believe that was an important goal for all members of the team.
+The music was focused on having a short and concise melody surrounded by a complex rhythm, originally very mellow but increasingly fast as the hazards of the setting become more lethal. Bells and high-reverb are used for the underwater setting, mixed with digital pads considering the mix with technology and alien life. I placed special attention to atmosphere for this game's soundtrack, as I believe that was an important goal for all members of the team.
 
 Sound effects use heavily modified chip-noises, which served well for not being too annoying when played often, fitting with the pixel art style, and being snappy / recognizeable.
 
