@@ -158,7 +158,7 @@ Ship and subsystems:
 
 | Ship | Gun | Shield | Engines |
 | :---- | :---- | :---- | :---- |
-| ![][image1] | ![Gun](https://github.com/richardzhangptc/gameimages/raw/main/GunShortened.gif)  | ![Shield](https://github.com/richardzhangptc/shipgameimages/raw/main/Shield.gif)  | ![Engines](https://github.com/richardzhangptc/shipgameimages/raw/main/Thruster.gif)  |
+| ![Ship](https://github.com/richardzhangptc/shipgameimages/blob/main/Ship.png) | ![Gun](https://github.com/richardzhangptc/gameimages/raw/main/GunShortened.gif)  | ![Shield](https://github.com/richardzhangptc/shipgameimages/raw/main/Shield.gif)  | ![Engines](https://github.com/richardzhangptc/shipgameimages/raw/main/Thruster.gif)  |
 
 Ship Death
 
@@ -169,36 +169,36 @@ Enemies
 
 | Boid | Leech | Kamikaze | Mine | Turret |
 | :---- | :---- | :---- | :---- | :---- |
-| ![][image2] | ![Leech](https://github.com/richardzhangptc/shipgameimages/raw/main/LeechBoid.gif)  | ![Kamikaze](https://github.com/richardzhangptc/shipgameimages/raw/main/KamikazeEnemyComp.gif) | ![Mine](https://github.com/richardzhangptc/shipgameimages/raw/main/Mine.gif) | [Turret](https://github.com/richardzhangptc/shipgameimages/raw/main/Turret.gif) |
+| ![Boid](https://github.com/richardzhangptc/shipgameimages/raw/main/Boid-Spritesheet.png) | ![Leech](https://github.com/richardzhangptc/shipgameimages/raw/main/LeechBoid.gif)  | ![Kamikaze](https://github.com/richardzhangptc/shipgameimages/raw/main/KamikazeEnemyComp.gif) | ![Mine](https://github.com/richardzhangptc/shipgameimages/raw/main/Mine.gif) | [Turret](https://github.com/richardzhangptc/shipgameimages/raw/main/Turret.gif) |
 
 Enemy Projectiles
 
 | Boid Projectile | Turret Projectile |
 | :---- | :---- |
-| ![][image3] | ![][image4] |
+| ![BoidProjectile](https://github.com/richardzhangptc/shipgameimages/raw/main/BoidProjectile.png) | ![TurretProjectile](https://github.com/richardzhangptc/shipgameimages/raw/main/TurretProjectile.png) |
 
 Upgrade Pickup Icons
 
 | Hull Upgrade | Gun Upgrade | Shield Upgrade | Thruster Upgrade |
 | :---- | :---- | :---- | :---- |
-| ![][image5] | ![][image6] | ![][image7] | ![][image8] |
+| ![Hull](https://github.com/richardzhangptc/shipgameimages/raw/main/HullUpgrade.png) | ![Gun](https://github.com/richardzhangptc/shipgameimages/raw/main/GunUpgrade.png) | ![Shield](https://github.com/richardzhangptc/shipgameimages/raw/main/ShieldUpgrade.png) | ![Thruster](https://github.com/richardzhangptc/shipgameimages/raw/main/ThrusterUpgrade.png) |
 
 Map Obstacles
 
 | Collapsable Wall | Spike Wall |
 | :---- | :---- |
-| ![][image9] | ![][image10] |
+| ![CollapsableWall](https://github.com/richardzhangptc/shipgameimages/raw/main/CollapsableWallLofi.png) | ![Spike](https://github.com/richardzhangptc/shipgameimages/raw/main/SpikeWallLofi.png) |
 
 Map (Downscaled)
 
-| ![][image11] |
+| ![Map](https://github.com/richardzhangptc/shipgameimages/blob/main/MapDownscaled.png) |
 | :---- |
 
 Control Icons
 
 | Gun | Shield | Engine |
 | :---- | :---- | :---- |
-| ![][image12] | ![][image13] | ![][image14] |
+| ![Gun](https://github.com/richardzhangptc/shipgameimages/raw/main/KeybindsGun.png) | ![Shield](https://github.com/richardzhangptc/shipgameimages/raw/main/KeybindsShield.png) | ![Engine](https://github.com/richardzhangptc/shipgameimages/raw/main/KeybindsEngine.png) |
 
 Cutscenes
 
