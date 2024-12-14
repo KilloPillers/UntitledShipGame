@@ -297,6 +297,10 @@ Crossfading is achieved through an animation player. This animation player has 5
 
 **Document the sound style.** 
 
+The music was focused on having a short and concise melody surrounded by a complex rhythm, originally very mellow but increasingly fast as the hazards of the setting become more lethal. Bells are used for the underwater setting, mixed with digital pads considering the mix with technology and alien life. I placed special attention to atmosphere for this game's soundtrack, as I believe that was an important goal for all members of the team.
+
+Sound effects use heavily modified chip-noises, which served well for not being too annoying when played often, fitting with the pixel art style, and being snappy / recognizeable.
+
 ## Gameplay Testing
 
 **Add a link to the full results of your gameplay tests.**  
