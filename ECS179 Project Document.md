@@ -158,18 +158,18 @@ Ship and subsystems:
 
 | Ship | Gun | Shield | Engines |
 | :---- | :---- | :---- | :---- |
-| ![][image1] | \!\[Gun\](https://github.com/richardzhangptc/gameimages/raw/main/GunShortened.gif)  | \!\[Shield\](https://github.com/richardzhangptc/shipgameimages/raw/main/Shield.gif)  | \!\[Engines\](https://github.com/richardzhangptc/shipgameimages/raw/main/Thruster.gif)  |
+| ![][image1] | ![Gun](https://github.com/richardzhangptc/gameimages/raw/main/GunShortened.gif)  | ![Shield](https://github.com/richardzhangptc/shipgameimages/raw/main/Shield.gif)  | ![Engines](https://github.com/richardzhangptc/shipgameimages/raw/main/Thruster.gif)  |
 
 Ship Death
 
-| \!\[ShipDeath\](https://github.com/richardzhangptc/shipgameimages/blob/main/ShipDeath-Spritesheet.gif) |
+| ![ShipDeath](https://github.com/richardzhangptc/shipgameimages/blob/main/ShipDeath-Spritesheet.gif) |
 | :---- |
 
 Enemies
 
 | Boid | Leech | Kamikaze | Mine | Turret |
 | :---- | :---- | :---- | :---- | :---- |
-| ![][image2] | \!\[Leech\](https://github.com/richardzhangptc/shipgameimages/raw/main/LeechBoid.gif)  | \!\[Kamikaze\](https://github.com/richardzhangptc/shipgameimages/raw/main/KamikazeEnemyComp.gif) | \!\[Mine\](https://github.com/richardzhangptc/shipgameimages/raw/main/Mine.gif) | \[Turret\](https://github.com/richardzhangptc/shipgameimages/raw/main/Turret.gif) |
+| ![][image2] | ![Leech](https://github.com/richardzhangptc/shipgameimages/raw/main/LeechBoid.gif)  | ![Kamikaze](https://github.com/richardzhangptc/shipgameimages/raw/main/KamikazeEnemyComp.gif) | ![Mine](https://github.com/richardzhangptc/shipgameimages/raw/main/Mine.gif) | [Turret](https://github.com/richardzhangptc/shipgameimages/raw/main/Turret.gif) |
 
 Enemy Projectiles
 
