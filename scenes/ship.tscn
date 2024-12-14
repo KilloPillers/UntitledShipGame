@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://c2a6ielbm0t3c"]
+[gd_scene load_steps=56 format=3 uid="uid://c2a6ielbm0t3c"]
 
 [ext_resource type="Script" path="res://scripts/ship_hull.gd" id="1_k84c6"]
 [ext_resource type="Texture2D" uid="uid://cdg4c33l6tgfh" path="res://assets/ShipLoFi.png" id="1_l4aep"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://tvip2rxqh5lh" path="res://assets/ShipDeath-Spritesheet.png" id="12_dn53e"]
 [ext_resource type="PackedScene" uid="uid://c8tae3mbhovun" path="res://light.tscn" id="13_rbydh"]
 [ext_resource type="Texture2D" uid="uid://chr665phfaem5" path="res://assets/light.png" id="14_5gqqr"]
+[ext_resource type="Texture2D" uid="uid://ccrhcx6um881r" path="res://assets/laser.png" id="15_tyqkn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_iick3"]
 radius = 78.0
@@ -185,6 +186,66 @@ tracks/6/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("PointLight2D:enabled")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("PointLight2D:texture_scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.8]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("PointLight2D:energy")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.73]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("PointLight2D:scale")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.135, 0.645)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("PointLight2D:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(126, 0.000318348)]
+}
 
 [sub_resource type="Animation" id="Animation_tf050"]
 resource_name = "off"
@@ -243,6 +304,18 @@ tracks/4/path = NodePath("BigShieldProjection:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("PointLight2D:enabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -325,6 +398,66 @@ tracks/5/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("PointLight2D:enabled")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("PointLight2D:texture_scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.4]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("PointLight2D:energy")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0.0666667, 0.133333, 0.233333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.73, 0.34, 0.44]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("PointLight2D:scale")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0.0666667, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.135, 0.645), Vector2(0.23, 0.785)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("PointLight2D:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(126, 0.000318348)]
+}
 
 [sub_resource type="Animation" id="Animation_s06cr"]
 resource_name = "upgraded_shield"
@@ -401,6 +534,42 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("PointLight2D:texture_scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.8]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("PointLight2D:enabled")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("PointLight2D:energy")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.433333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [3.83, 14.43]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_iwsn5"]
@@ -624,6 +793,15 @@ position = Vector2(90, 0.000231385)
 texture = ExtResource("9_g4p06")
 hframes = 5
 
+[node name="PointLight2D" type="PointLight2D" parent="ShipHull/Shield"]
+position = Vector2(126, 0.000318348)
+scale = Vector2(0.135, 0.645)
+enabled = false
+color = Color(0.199807, 0.490251, 0.513753, 1)
+energy = 0.73
+texture = ExtResource("14_5gqqr")
+texture_scale = 0.8
+
 [node name="Gun" type="Node2D" parent="ShipHull"]
 script = ExtResource("3_ewpnl")
 projectile = ExtResource("4_di2ho")
@@ -647,9 +825,19 @@ gradient = SubResource("Gradient_egt0d")
 
 [node name="Light" parent="ShipHull/Gun" instance=ExtResource("13_rbydh")]
 position = Vector2(127, 0)
+color = Color(0.69799, 0, 0.0595555, 1)
+energy = 14.55
+texture_scale = 0.1
+
+[node name="Light2" parent="ShipHull/Gun" instance=ExtResource("13_rbydh")]
+position = Vector2(122, 0)
+scale = Vector2(17.125, 0.065)
 color = Color(1, 0.241106, 0.222598, 1)
 energy = 0.45
-texture_scale = 0.4
+range_z_min = -3054
+range_item_cull_mask = 33
+texture = ExtResource("15_tyqkn")
+texture_scale = 0.2
 
 [node name="HullAnimatedSprite" type="AnimatedSprite2D" parent="ShipHull"]
 sprite_frames = SubResource("SpriteFrames_uo5x6")

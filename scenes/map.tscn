@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://fh32xvaj4ve"]
+[gd_scene load_steps=32 format=3 uid="uid://fh32xvaj4ve"]
 
 [ext_resource type="Script" path="res://scripts/map.gd" id="1_aff03"]
 [ext_resource type="Texture2D" uid="uid://s7413bleih65" path="res://assets/KeybindsEngine.png" id="2_1rxuy"]
@@ -21,6 +21,8 @@
 [ext_resource type="PackedScene" uid="uid://cfkwr2bc1au7k" path="res://scenes/pause_menu.tscn" id="13_ohou2"]
 [ext_resource type="PackedScene" uid="uid://dymmsld3v8lfa" path="res://scenes/hull_power_up.tscn" id="14_ax6iu"]
 [ext_resource type="PackedScene" uid="uid://c8tae3mbhovun" path="res://light.tscn" id="15_6v4gp"]
+[ext_resource type="Texture2D" uid="uid://ccrhcx6um881r" path="res://assets/laser.png" id="17_wl64s"]
+[ext_resource type="Texture2D" uid="uid://chr665phfaem5" path="res://assets/light.png" id="18_6vl8q"]
 [ext_resource type="PackedScene" uid="uid://5t0m8un3nhpn" path="res://scenes/boss_core.tscn" id="19_mdid1"]
 [ext_resource type="Texture2D" uid="uid://gvdhbncb2qlp" path="res://assets/MapRefined15K.png" id="20_m4ck8"]
 [ext_resource type="PackedScene" uid="uid://dq2m18ow4rsie" path="res://scenes/shield_power_up.tscn" id="21_35y3f"]
@@ -1014,6 +1016,22 @@ fadeToBlack = NodePath("../../CanvasLayer/ColorRect")
 
 [node name="Area2D" parent="Ship/ShipHull/Shield" index="0" groups=["obstacle"]]
 visible = false
+
+[node name="Light" parent="Ship/ShipHull/Gun" index="3"]
+position = Vector2(122, 0)
+scale = Vector2(17.125, 0.065)
+energy = 0.83
+range_z_min = -3054
+range_item_cull_mask = 33
+texture = ExtResource("17_wl64s")
+texture_scale = 0.2
+
+[node name="Light2" parent="Ship/ShipHull/Gun" index="4"]
+position = Vector2(122, -0.000175782)
+scale = Vector2(0.115, 0.125)
+energy = 0.97
+texture = ExtResource("18_6vl8q")
+texture_scale = 0.5
 
 [node name="HurtBox" parent="Ship/ShipHull" index="6" groups=["obstacle"]]
 
