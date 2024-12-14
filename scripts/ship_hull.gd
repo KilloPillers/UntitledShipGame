@@ -3,6 +3,8 @@ extends RigidBody2D
 
 @export var fadeToBlack: Node
 @export var health:int = 100
+@export var audio_manager : AudioManager
+
 @onready var animated_sprite_2d = $HullAnimatedSprite
 @onready var camera = $Camera2D
 
@@ -21,9 +23,14 @@ func take_damage(_damage:int) -> void:
 	health -= _damage
 	flash_white()
 	shake_camera(_damage) 
+	
 	if health <= 0:
 		health = 0
 		_start_death()
+		
+	if (audio_manager):
+		audio_manager.play_sfx("damaged")
+	
 	print("ouch, ship took ", _damage, " damage. Ship now has ", health, " health remaining")
 
 func flash_white() -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://c2a6ielbm0t3c"]
+[gd_scene load_steps=57 format=3 uid="uid://c2a6ielbm0t3c"]
 
 [ext_resource type="Script" path="res://scripts/ship_hull.gd" id="1_k84c6"]
 [ext_resource type="Texture2D" uid="uid://cdg4c33l6tgfh" path="res://assets/ShipLoFi.png" id="1_l4aep"]
@@ -15,7 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://brk7f7yv4p086" path="res://assets/ShieldModule-Spritesheet.png" id="9_g4p06"]
 [ext_resource type="Script" path="res://scripts/hurt_box.gd" id="11_d0h4u"]
 [ext_resource type="Texture2D" uid="uid://tvip2rxqh5lh" path="res://assets/ShipDeath-Spritesheet.png" id="12_dn53e"]
-[ext_resource type="PackedScene" uid="uid://c8tae3mbhovun" path="res://light.tscn" id="13_rbydh"]
+[ext_resource type="PackedScene" path="res://light.tscn" id="13_rbydh"]
 [ext_resource type="Texture2D" uid="uid://chr665phfaem5" path="res://assets/light.png" id="14_5gqqr"]
 [ext_resource type="Texture2D" uid="uid://ccrhcx6um881r" path="res://assets/laser.png" id="15_tyqkn"]
 
@@ -730,6 +730,8 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_1xnqv"]
 radius = 83.0241
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_34j6k"]
+
 [node name="Ship" type="Node2D"]
 position = Vector2(111, 111)
 
@@ -856,5 +858,13 @@ color = Color(0.521569, 0.960784, 0.94902, 1)
 energy = 0.45
 texture = ExtResource("14_5gqqr")
 texture_scale = 0.7
+
+[node name="AudioTriggerHitbox" type="Area2D" parent="ShipHull"]
+scale = Vector2(7, 7)
+collision_layer = 64
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShipHull/AudioTriggerHitbox"]
+shape = SubResource("CircleShape2D_34j6k")
 
 [connection signal="frame_changed" from="ShipHull/HullAnimatedSprite" to="ShipHull" method="_on_hull_animated_sprite_frame_changed"]

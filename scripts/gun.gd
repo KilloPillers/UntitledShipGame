@@ -1,5 +1,6 @@
 extends Node2D
 
+@export var audio_manager : AudioManager
 @export var projectile : PackedScene
 @export var num_projectiles : int = 1
 @export var cooldown_max : float = 0.40
@@ -61,6 +62,8 @@ func _process(delta: float) -> void:
 				new_projectile.global_position = $ProjectileOrigin.global_position
 
 				animated_sprite_2d.play("shoot")
+				if (audio_manager):
+					audio_manager.play_sfx("shot")
 			
 	elif not animated_sprite_2d.is_playing():
 		animated_sprite_2d.play("off")

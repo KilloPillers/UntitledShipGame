@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://fh32xvaj4ve"]
+[gd_scene load_steps=48 format=3 uid="uid://fh32xvaj4ve"]
 
 [ext_resource type="Script" path="res://scripts/map.gd" id="1_aff03"]
 [ext_resource type="Texture2D" uid="uid://s7413bleih65" path="res://assets/KeybindsEngine.png" id="2_1rxuy"]
@@ -20,12 +20,275 @@
 [ext_resource type="PackedScene" uid="uid://vohrw4dqjkcm" path="res://scenes/bullet_power_up.tscn" id="13_b1enx"]
 [ext_resource type="PackedScene" uid="uid://cfkwr2bc1au7k" path="res://scenes/pause_menu.tscn" id="13_ohou2"]
 [ext_resource type="PackedScene" uid="uid://dymmsld3v8lfa" path="res://scenes/hull_power_up.tscn" id="14_ax6iu"]
-[ext_resource type="PackedScene" uid="uid://c8tae3mbhovun" path="res://light.tscn" id="15_6v4gp"]
+[ext_resource type="PackedScene" path="res://light.tscn" id="15_6v4gp"]
+[ext_resource type="Script" path="res://scripts/audio_manager.gd" id="16_t5pkn"]
+[ext_resource type="AudioStream" uid="uid://dpxfore1g438v" path="res://assets/Audio/Songs/Capsule1.mp3" id="17_04vn0"]
 [ext_resource type="Texture2D" uid="uid://ccrhcx6um881r" path="res://assets/laser.png" id="17_wl64s"]
 [ext_resource type="Texture2D" uid="uid://chr665phfaem5" path="res://assets/light.png" id="18_6vl8q"]
+[ext_resource type="AudioStream" uid="uid://d8lpx16vn3fw" path="res://assets/Audio/Songs/Capsule2.mp3" id="18_kfyym"]
+[ext_resource type="AudioStream" uid="uid://cyt00jnqxcpod" path="res://assets/Audio/Songs/Capsule3.mp3" id="19_ah8nv"]
 [ext_resource type="PackedScene" uid="uid://5t0m8un3nhpn" path="res://scenes/boss_core.tscn" id="19_mdid1"]
+[ext_resource type="AudioStream" uid="uid://rvo1rojxnrr4" path="res://assets/Audio/Songs/Capsule4.mp3" id="20_jtxaf"]
 [ext_resource type="Texture2D" uid="uid://gvdhbncb2qlp" path="res://assets/MapRefined15K.png" id="20_m4ck8"]
-[ext_resource type="PackedScene" uid="uid://dq2m18ow4rsie" path="res://scenes/shield_power_up.tscn" id="21_35y3f"]
+[ext_resource type="PackedScene" path="res://scenes/shield_power_up.tscn" id="21_35y3f"]
+[ext_resource type="AudioStream" uid="uid://bygoh1nel0uvi" path="res://assets/Audio/Songs/Capsule5.mp3" id="21_aw7gb"]
+[ext_resource type="AudioStream" uid="uid://bgqb3enwo3dya" path="res://assets/Audio/Songs/Capsule6.mp3" id="22_kn4c1"]
+
+[sub_resource type="Animation" id="Animation_47ruu"]
+resource_name = "FadeToCapsule2"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Audio/Capsule1:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 2),
+"transitions": PackedFloat32Array(3.03143, 2.96229, 6.06286),
+"update": 0,
+"values": [0.0, -9.0, -80.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Audio/Capsule2:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.5, 2),
+"transitions": PackedFloat32Array(10.5561, 1.68179, 2.21914, 10.5561),
+"update": 0,
+"values": [-80.0, -30.0, -9.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_v4grl"]
+resource_name = "FadeToCapsule3"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Audio/Capsule2:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 2),
+"transitions": PackedFloat32Array(3.03143, 2.96229, 6.06286),
+"update": 0,
+"values": [0.0, -9.0, -80.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Audio/Capsule3:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.5, 2),
+"transitions": PackedFloat32Array(10.5561, 1.68179, 2.21914, 10.5561),
+"update": 0,
+"values": [-80.0, -30.0, -9.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_vit6p"]
+resource_name = "FadeToCapsule4"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Audio/Capsule3:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 2),
+"transitions": PackedFloat32Array(3.03143, 2.96229, 6.06286),
+"update": 0,
+"values": [0.0, -9.0, -80.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Audio/Capsule4:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.5, 2),
+"transitions": PackedFloat32Array(10.5561, 1.68179, 2.21914, 10.5561),
+"update": 0,
+"values": [-80.0, -30.0, -9.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_04w48"]
+resource_name = "FadeToCapsule5"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Audio/Capsule4:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 2),
+"transitions": PackedFloat32Array(3.03143, 2.96229, 6.06286),
+"update": 0,
+"values": [0.0, -9.0, -80.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Audio/Capsule5:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.5, 2),
+"transitions": PackedFloat32Array(10.5561, 1.68179, 2.21914, 10.5561),
+"update": 0,
+"values": [-80.0, -30.0, -9.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_vlj2f"]
+resource_name = "FadeToCapsule6"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Audio/Capsule5:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 2),
+"transitions": PackedFloat32Array(3.03143, 2.96229, 6.06286),
+"update": 0,
+"values": [0.0, -9.0, -80.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Audio/Capsule6:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.5, 2),
+"transitions": PackedFloat32Array(10.5561, 1.68179, 2.21914, 10.5561),
+"update": 0,
+"values": [-80.0, -30.0, -9.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_7tkyr"]
+resource_name = "InitializeVolume"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Audio/Capsule1:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Audio/Capsule2:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-80.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Audio/Capsule3:volume_db")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-80.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Audio/Capsule4:volume_db")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-80.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Audio/Capsule5:volume_db")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-80.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Audio/Capsule6:volume_db")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-80.0]
+}
+
+[sub_resource type="Animation" id="Animation_tx2tt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Audio/Capsule1:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Audio/Capsule2:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-80.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_htg5u"]
+_data = {
+"FadeToCapsule2": SubResource("Animation_47ruu"),
+"FadeToCapsule3": SubResource("Animation_v4grl"),
+"FadeToCapsule4": SubResource("Animation_vit6p"),
+"FadeToCapsule5": SubResource("Animation_04w48"),
+"FadeToCapsule6": SubResource("Animation_vlj2f"),
+"InitializeVolume": SubResource("Animation_7tkyr"),
+"RESET": SubResource("Animation_tx2tt")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_02hx2"]
+size = Vector2(2468.54, 188.92)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cpgav"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -1025,20 +1288,126 @@ color = Color(0.605843, 0.372512, 0.934496, 1)
 energy = 0.15
 texture_scale = 12.0
 
+[node name="Audio" type="Node" parent="."]
+script = ExtResource("16_t5pkn")
+
+[node name="EngineSoundPlayer" type="AudioStreamPlayer" parent="Audio"]
+volume_db = -10.0
+
+[node name="SFX" type="AudioStreamPlayer" parent="Audio"]
+volume_db = -17.0
+
+[node name="Crossfader" type="AnimationPlayer" parent="Audio"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_htg5u")
+}
+
+[node name="Capsule1" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("17_04vn0")
+autoplay = true
+
+[node name="Capsule2" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("18_kfyym")
+volume_db = -80.0
+autoplay = true
+
+[node name="Capsule3" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("19_ah8nv")
+volume_db = -80.0
+autoplay = true
+
+[node name="Capsule4" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("20_jtxaf")
+volume_db = -80.0
+autoplay = true
+
+[node name="Capsule5" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("21_aw7gb")
+volume_db = -80.0
+autoplay = true
+
+[node name="Capsule6" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("22_kn4c1")
+volume_db = -80.0
+autoplay = true
+
+[node name="CrossfadeTriggers" type="Node2D" parent="Audio"]
+
+[node name="Capsule2" type="Area2D" parent="Audio/CrossfadeTriggers"]
+position = Vector2(-4306, -7052)
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Audio/CrossfadeTriggers/Capsule2"]
+position = Vector2(1855, 3094)
+rotation = -0.23268
+scale = Vector2(1, 1.11632)
+shape = SubResource("RectangleShape2D_02hx2")
+
+[node name="Capsule3" type="Area2D" parent="Audio/CrossfadeTriggers"]
+position = Vector2(-2184, -1932)
+rotation = -1.50889
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Audio/CrossfadeTriggers/Capsule3"]
+position = Vector2(1855, 3094)
+rotation = -0.23268
+scale = Vector2(1, 1.11632)
+shape = SubResource("RectangleShape2D_02hx2")
+
+[node name="Capsule4" type="Area2D" parent="Audio/CrossfadeTriggers"]
+position = Vector2(1177, -5171)
+rotation = 0.236971
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Audio/CrossfadeTriggers/Capsule4"]
+position = Vector2(1855, 3094)
+rotation = -0.23268
+scale = Vector2(1, 1.11632)
+shape = SubResource("RectangleShape2D_02hx2")
+
+[node name="Capsule5" type="Area2D" parent="Audio/CrossfadeTriggers"]
+position = Vector2(3892, -1330)
+rotation = 1.73118
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Audio/CrossfadeTriggers/Capsule5"]
+position = Vector2(1855, 3094)
+rotation = -0.23268
+scale = Vector2(1, 1.11632)
+shape = SubResource("RectangleShape2D_02hx2")
+
+[node name="Capsule6" type="Area2D" parent="Audio/CrossfadeTriggers"]
+position = Vector2(77, 131)
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Audio/CrossfadeTriggers/Capsule6"]
+position = Vector2(1855, 3094)
+rotation = -0.23268
+scale = Vector2(1, 1.11632)
+shape = SubResource("RectangleShape2D_02hx2")
+
 [node name="Ship" parent="." instance=ExtResource("4_1753m")]
 unique_name_in_owner = true
 position = Vector2(-2431, -6390)
 
-[node name="ShipHull" parent="Ship" index="0" node_paths=PackedStringArray("fadeToBlack") groups=["obstacle"]]
+[node name="ShipHull" parent="Ship" index="0" node_paths=PackedStringArray("fadeToBlack", "audio_manager") groups=["obstacle"]]
 position = Vector2(-19, 36)
 fadeToBlack = NodePath("../../CanvasLayer/ColorRect")
+audio_manager = NodePath("../../Audio")
 
 [node name="Camera2D2" type="Camera2D" parent="Ship/ShipHull" index="0"]
 
 [node name="CollisionShape2D" parent="Ship/ShipHull" index="1" groups=["obstacle"]]
 
+[node name="Engine" parent="Ship/ShipHull" index="2" node_paths=PackedStringArray("audio_manager")]
+audio_manager = NodePath("../../../Audio")
+
 [node name="Area2D" parent="Ship/ShipHull/Shield" index="0" groups=["obstacle"]]
 visible = false
+
+[node name="Gun" parent="Ship/ShipHull" index="4" node_paths=PackedStringArray("audio_manager")]
+audio_manager = NodePath("../../../Audio")
 
 [node name="Light" parent="Ship/ShipHull/Gun" index="3"]
 position = Vector2(122, 0)
@@ -1163,6 +1532,11 @@ rotation = -0.23268
 scale = Vector2(1, 1.11632)
 shape = SubResource("RectangleShape2D_yqet8")
 
+[connection signal="area_entered" from="Audio/CrossfadeTriggers/Capsule2" to="Audio" method="_on_capsule_2_area_entered"]
+[connection signal="area_entered" from="Audio/CrossfadeTriggers/Capsule3" to="Audio" method="_on_capsule_3_area_entered"]
+[connection signal="area_entered" from="Audio/CrossfadeTriggers/Capsule4" to="Audio" method="_on_capsule_4_area_entered"]
+[connection signal="area_entered" from="Audio/CrossfadeTriggers/Capsule5" to="Audio" method="_on_capsule_5_area_entered"]
+[connection signal="area_entered" from="Audio/CrossfadeTriggers/Capsule6" to="Audio" method="_on_capsule_6_area_entered"]
 [connection signal="pressed" from="Ship/ShipHull/Camera2D/CanvasLayer/pause" to="." method="_on_pause_pressed"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 
