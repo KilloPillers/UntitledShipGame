@@ -126,9 +126,9 @@ Other smaller notes for my programming task include incorporating the changes an
 
 ## User Interface and Input
 
-For my approach in the User Interface, I wanted to use a minimalist design to provide visually engaging interactions. This approach reduces visual clutter, easier navigation, and keeps players' attention on gameplay. The main menu features options to play, view credits, and exit.The pause menu, is an option to pause all gameplay, resume gameplay, or quit the current game. Credits menu highlights team contributions with a dynamic background of the game map. There are also two health bars, bottom health bar is the player's health bar, updating when the ship receives damage or gains damage. The top health bar is the boss health bar, it only appears when the player enters the boss zone.   
-Keyboard controls were implemented by groupmates. To use the ENGINE player needs to use Arrow keys, left key turn engine counterclockwise, right arrow key turn engine clockwise, and up key turn engine on. To use GUN payer needs to use key (A) to move gun counterclockwise, key (D) to move gun clockwise, and key (W) to shoot gun. To use SHIELD, key (H) moves shield counterclockwise, key (K) moves shield clockwise, and key (U) turns on the shield. Key (Esc) pauses game.  
-.   
+For my approach in the User Interface, I wanted to use a minimalist design to provide visually engaging interactions. This approach reduces visual clutter, easier navigation, and keeps players' attention on gameplay. The main menu features options to play, view credits, and exit.The pause menu, is an option to pause all gameplay, resume gameplay, or quit the current game. Credits menu highlights team contributions with a dynamic background of the game map. There are also two health bars , bottom health bar is the player's health bar, updating when the ship receives damage or gains damage. Smaller health bars shows boids and turrets health letting players know. The top health bar is the boss health bar, it only appears when the player enters the boss zone. 
+Keyboard controls were implemented by groupmates. To use the ENGINE player needs to use Arrow keys, left key turn engine counterclockwise, right arrow key turn engine clockwise, and up key turn engine on. To use GUN payer needs to use key (A) to move gun counterclockwise, key (D) to move gun clockwise, and key (W) to shoot gun. To use SHIELD, key (H) moves shield counterclockwise, key (K) moves shield clockwise, and key (U) turns on the shield. Key (Esc) pauses game.
+  
  
 
 ## Movement/Physics
@@ -351,8 +351,7 @@ I chose to use the intro cutscene at the start of the trailer to hook the viewer
 I chose to make the presskit using the differently press kit maker because I was familiar with working with plain HTML. I chose the screenshots in a way so that every area could be shown. This would help the visitor discern the mood of the game and get a grasp of the variety of areas in the game.
 
 ## Game Feel and Polish
-
-**Document what you added to and how you tweaked your game to improve its game feel.**  
+For game feel I decided to use google font (Press Start 2P) to match the games title, and buttons with Richards intro cutscene. I also used a Paused Icon to improve game visuals and made the ESC key the pause key to help users quickly pause the game. To improve game feel I added camera shake which uses damage received to increase shake intensity. I also put an Area 2D to trigger the boss health bar when the player enters the boss zone. This changed the initial setup of showing the boss health bar at the beginning of the game. Added WorldEnvironment to the Main menu, map, and credit scenes to give the game a glowing effect. 
 (Paused Icon: [https://www.flaticon.com/free-icon/pause\_13077337?term=pause\&page=1\&position=54\&origin=search\&related\_id=13077337](https://www.flaticon.com/free-icon/pause_13077337?term=pause&page=1&position=54&origin=search&related_id=13077337))  
 
 
