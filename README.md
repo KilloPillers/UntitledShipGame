@@ -154,7 +154,7 @@ Aside from physics, I helped as the main bugfixer during the presentation (makin
 
 ## Animation and Visuals
 
-All art was created with Aseprite.
+All art was created with Aseprite. Files can be found [here](https://drive.google.com/drive/folders/1g8gaDGPGwVXlb4_7w5iiQK4bSr8u2fFo?usp=sharing)
 
 Assets:  
 Ship and subsystems:
